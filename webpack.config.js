@@ -4,7 +4,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './src/script.js',
+  entry: {
+    main: ['@babel/polyfill', './src/script.js', './src/assets/css/auth.css'],
+    auth: ['@babel/polyfill', './src/assets/javascript/auth.js', './src/style.css'],
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
@@ -16,6 +19,26 @@ module.exports = {
       minify: {
         collapseWhitespace: true,
       },
+      inject: true,
+      chunks: ['main'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/signin.html',
+      filename: './signin.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['auth'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/signup.html',
+      filename: './signup.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['auth'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
