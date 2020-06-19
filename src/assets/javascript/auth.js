@@ -3,7 +3,7 @@ import '@babel/polyfill';
 
 const BUTTON_SIGN_IN = document.querySelector('.auth__button-signin');
 const BUTTON_SIGN_UP = document.querySelector('.auth__button-signup');
-const TEXT_ERROR = document.querySelector('.auth__message');
+const BUTTON_LOGOUT = document.querySelector('.auth__button-logout');
 const INPUT_EMAIL = document.querySelector('.auth__input-email');
 const INPUT_PASSWORD = document.querySelector('.auth__input-password');
 
@@ -35,7 +35,6 @@ async function authRequest(user, url) {
     isCompleted: false,
     message: '',
   };
-  TEXT_ERROR.classList.add('hidden');
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -99,12 +98,20 @@ async function signup() {
   }
 }
 
+function logout() {
+  localStorage.removeItem('user_data');
+  localStorage.removeItem('user_credentials');
+}
+
 function main() {
   if (BUTTON_SIGN_IN) {
     BUTTON_SIGN_IN.addEventListener('click', signin);
   }
   if (BUTTON_SIGN_UP) {
     BUTTON_SIGN_UP.addEventListener('click', signup);
+  }
+  if (BUTTON_LOGOUT) {
+    BUTTON_LOGOUT.addEventListener('click', logout);
   }
 }
 
