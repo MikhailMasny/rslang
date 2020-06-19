@@ -3,11 +3,39 @@ import '@babel/polyfill';
 
 const BUTTON_SIGN_IN = document.querySelector('.auth__button-signin');
 const BUTTON_SIGN_UP = document.querySelector('.auth__button-signup');
-
+const TEXT_ERROR = document.querySelector('.auth__message');
 const INPUT_EMAIL = document.querySelector('.auth__input-email');
 const INPUT_PASSWORD = document.querySelector('.auth__input-password');
 
+function clearInputs() {
+  INPUT_EMAIL.value = '';
+  INPUT_PASSWORD.value = '';
+}
+
+function checkAndSetUserInputs() {
+  if (INPUT_EMAIL.value === '' || INPUT_PASSWORD.value === '') {
+    alert('Enter data and try again');
+    return {
+      hasError: true,
+      user: {},
+    };
+  }
+  const user = {
+    email: INPUT_EMAIL.value,
+    password: INPUT_PASSWORD.value,
+  };
+  return {
+    hasError: false,
+    user,
+  };
+}
+
 async function authRequest(user, url) {
+  const result = {
+    isCompleted: false,
+    message: '',
+  };
+  TEXT_ERROR.classList.add('hidden');
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -16,48 +44,59 @@ async function authRequest(user, url) {
       },
       body: JSON.stringify(user),
     });
-
     if (!response.ok) {
       switch (response.status) {
         case 417:
-          console.log('user with this e-mail exists');
+          result.message = 'User with this e-mail exists';
+          alert(result.message);
           break;
 
+        case 403:
+        case 404:
         case 422:
-          console.log('Incorrect e-mail or password');
+          result.message = 'Incorrect e-mail or password';
+          alert(result.message);
           break;
 
         default:
-          console.log('Unexpected exception');
+          result.message = 'Unexpected exception';
+          alert(result.message);
           break;
       }
       console.log(response);
-      console.log(response.status);
-      console.log(response.statusText);
-      return;
+      return result;
     }
-
-    const result = await response.json();
-    console.log('this is content', result);
+    result.isCompleted = true;
+    result.message = await response.json();
   } catch (error) {
+    result.message = error;
     console.log(error);
+  }
+  return result;
+}
+
+async function signin() {
+  const data = checkAndSetUserInputs();
+  if (!data.hasError) {
+    const result = await authRequest(data.user, constants.SIGN_IN);
+    if (result && result.isCompleted) {
+      localStorage.setItem('user_credentials', JSON.stringify(result.message));
+      alert('You have successfully logged in');
+      clearInputs();
+    }
   }
 }
 
-function signin() {
-  const user = {
-    email: INPUT_EMAIL.value,
-    password: INPUT_PASSWORD.value,
-  };
-  authRequest(user, constants.SIGN_IN);
-}
-
-function signup() {
-  const user = {
-    email: INPUT_EMAIL.value,
-    password: INPUT_PASSWORD.value,
-  };
-  authRequest(user, constants.USER_CREATE);
+async function signup() {
+  const data = checkAndSetUserInputs();
+  if (!data.hasError) {
+    const result = await authRequest(data.user, constants.USER_CREATE);
+    if (result && result.isCompleted) {
+      localStorage.setItem('user_data', JSON.stringify(result.message));
+      alert('You are successfully registered in the system');
+      clearInputs();
+    }
+  }
 }
 
 function main() {

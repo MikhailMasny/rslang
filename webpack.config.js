@@ -5,8 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   mode: 'production',
   entry: {
-    main: ['@babel/polyfill', './src/script.js', './src/assets/css/auth.css'],
-    auth: ['@babel/polyfill', './src/assets/javascript/auth.js', './src/style.css'],
+    main: ['@babel/polyfill', './src/script.js', './src/style.css'],
+    auth: ['@babel/polyfill', './src/assets/javascript/auth.js', './src/assets/css/auth.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
