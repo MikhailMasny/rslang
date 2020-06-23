@@ -11,8 +11,31 @@
     <div id="home" class="flex-center flex-column">
       <h1 class="title">Listen<span>&</span>Guess</h1>
       <a class="btn" href="/game.html" onclick=startGame()>Start game</a>
-      <a class="btn" href="/hignscores.html">High scores</a>
+      <button class ='btn btn-inst' id="myBtn">Instruction</button>
     </div>
   </div>
+  
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h1 class="title">Listen<span>&</span>Guess</h1>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>To start the game press "Start game" button</li>
+          <li>The game consists of 20 words</li>
+          <li>Listen to the word</li>
+          <li>Choose your answer from an answer option list</li>
+          <li>If the asnwer is correct you'll get the choosen answer highlighted and underlined </li>
+          <li>If the asnwer is incorrect the choosen answer will get a line-through effect</li>
+          <li>Click the "Next" button to procced to the next question</li>
+          <li>If you don't know the answer press "Не знаю" button to proceed to the next question</li>
+          <li>If you press "Не знаю" button the right answer will be automatically highlighted and underlined</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<script src="app.js"></script>
 </body>
 </html>

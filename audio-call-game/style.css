@@ -12,6 +12,7 @@ body{
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+  overflow: hidden;
 }
 
 .container{
@@ -37,10 +38,18 @@ body{
 .btn{
   text-decoration: none;
   color: whitesmoke;
+  outline: none;
+  border: none;
   width: 150px;
   padding: .6rem;
   margin-top: 1rem;
   background-color: rgba(245, 245, 245,.2);
+}
+.btn-inst{
+  font-size: 14px;
+  padding: .8rem;
+  cursor: pointer;
+  letter-spacing: 1px;
 }
 span{
   color: rgba(245, 245, 245,.5);
@@ -51,3 +60,62 @@ span{
   transition: all .2s;
 } 
 
+
+.modal {
+  display: none;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  animation: fadeIn, .4s;
+}
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  background-image: linear-gradient( #845FAC,#B7759D);
+  width: 100%;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+.close {
+  color: white;
+  float: right;
+  font-size: 38px;
+}
+.close:hover,
+.close:focus {
+  opacity: .3;
+  cursor: pointer;
+}
+.modal-header {
+  padding: 2px 16px;
+  color: white;
+}
+.modal-body {
+  padding: 10px 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-body ul{ 
+  list-style-position: inside;
+  list-style-type: lower-greek;
+  text-align: justify;
+}
+.modal-body ul li{
+  line-height: 2.2;
+}
+
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+@keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}

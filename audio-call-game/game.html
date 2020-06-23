@@ -9,12 +9,26 @@
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
+  <div id="hud">
+    <div id="hud-item">
+      <p class="hud-prefix">
+        Words
+      </p>
+      <h1 class="hud-main-text" id="questionCounter"></h1>
+    </div>
+    <div id="hud-item">
+      <p class="hud-prefix">
+        Score
+      </p>
+      <h1 class="hud-main-text" id="score"></h1>
+    </div>
+  </div>
   <div class="container">
     <div id="home" class="flex-center flex-column">
       <div class="header_container">
-      <i class='fas fa-volume-up icon-circle'></i>
-      
-      <h1 id="question" class="title"></h1>
+        <i class='fas fa-volume-up icon-circle'></i>
+        <h1 id="question" class="title"></h1>
+        <h1 id="transcription" class="title"></h1>
     </div>
       <div class="choice">
         <div class="choice-container">
