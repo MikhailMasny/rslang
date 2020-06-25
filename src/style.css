@@ -1,3 +1,62 @@
-.test {
-    color: aqua;
+html,
+body {
+    height: 100%;
+    margin: 0;
 }
+
+.app {
+    height: 100%;
+}
+
+.wrapper {
+    max-width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.button {
+    box-sizing: border-box;
+    display: inline-block;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.loading-screen {
+    background: rgb(92, 58, 180);
+    background: linear-gradient(
+      65deg,
+      rgba(92, 58, 180, 1) 0%,
+      rgba(29, 114, 253, 1) 63%,
+      rgba(69, 173, 252, 1) 100%
+    );
+  }
+  
+  .game-start-button {
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+  }
+  
+  .game-start-button:hover,
+  .game-start-button:active {
+    border: 1px solid white;
+    background-color: #fff5;
+    color: white;
+  }
+  
+  .game-title {
+    color: white;
+  }
+  
+  .game-description {
+    color: white;
+  }
+  
