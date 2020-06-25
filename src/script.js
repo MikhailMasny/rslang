@@ -2,6 +2,8 @@ import './style.css';
 
 const app = document.querySelector('.app');
 
+let secondsForGame = 60;
+
 const showGameLoadScreen = () => {
   document.body.classList.add('loading-screen');
 
@@ -75,7 +77,17 @@ const showGameMainScreen = () => {
 
   const timer = document.createElement('div');
   timer.classList.add('timer');
+  timer.innerText = secondsForGame;
   card.append(timer);
+
+  const timerStart = () => {
+    setInterval(() => {
+      secondsForGame -= 1;
+      timer.innerText = secondsForGame;
+    }, 1000);
+  };
+
+  timerStart();
 };
 
 app.addEventListener('click', (event) => {
