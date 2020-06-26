@@ -2,14 +2,24 @@ import './style.css';
 
 const app = document.querySelector('.app');
 
+const wrapper = document.createElement('div');
+wrapper.classList.add('wrapper');
+app.append(wrapper);
+
+const timer = document.createElement('div');
+const scoreCounter = document.createElement('span');
+const question = document.createElement('div');
+const answer = document.createElement('div');
+
 let secondsForGame = 60;
+let wordsArray = [];
+let shuffleDictionary = [];
+let currentWord = '';
+const userLearningLevel = 0;
+const dictionary = [];
 
 const showGameLoadScreen = () => {
   document.body.classList.add('loading-screen');
-
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('wrapper');
-  app.append(wrapper);
 
   const gameStartScreen = document.createElement('div');
   gameStartScreen.classList.add('game-start-screen');
@@ -37,11 +47,7 @@ showGameLoadScreen();
 const showGameMainScreen = () => {
   document.body.classList.remove('loading-screen');
 
-  app.innerHTML = '';
-
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('wrapper');
-  app.append(wrapper);
+  wrapper.innerHTML = '';
 
   const card = document.createElement('div');
   card.classList.add('card');
@@ -49,13 +55,15 @@ const showGameMainScreen = () => {
 
   const score = document.createElement('div');
   score.classList.add('score');
+  score.innerText = 'Score: ';
+  scoreCounter.classList.add('score-counter');
+  scoreCounter.innerText = 0;
+  score.append(scoreCounter);
   card.append(score);
 
-  const question = document.createElement('div');
   question.classList.add('question');
   card.append(question);
 
-  const answer = document.createElement('div');
   answer.classList.add('answer');
   card.append(answer);
 
@@ -75,23 +83,69 @@ const showGameMainScreen = () => {
   buttonDisagree.innerText = 'false';
   buttonsContainer.append(buttonDisagree);
 
-  const timer = document.createElement('div');
   timer.classList.add('timer');
   timer.innerText = secondsForGame;
   card.append(timer);
+};
 
-  const timerStart = () => {
+const timerStart = () => {
+  if (secondsForGame > 0) {
     setInterval(() => {
       secondsForGame -= 1;
       timer.innerText = secondsForGame;
     }, 1000);
-  };
-
-  timerStart();
+  }
 };
+
+const showWord = () => {
+  currentWord = shuffleDictionary.pop();
+  question.innerText = currentWord.word;
+  answer.innerText = currentWord.wordTranslate;
+};
+
+const makeDictionary = () => {
+  while (wordsArray.length) {
+    currentWord = wordsArray.pop();
+    const { word } = currentWord;
+    const { wordTranslate } = currentWord;
+    dictionary.push({ word, wordTranslate });
+  }
+
+  // make shuffle true/false dictionary array
+  const arrayTrue = dictionary.slice(0, Math.floor(dictionary.length / 2));
+  let arrayFalse = dictionary.slice(Math.floor(dictionary.length / 2));
+  const tempWords = [];
+  const tempTranslations = [];
+  arrayFalse.forEach((item) => {
+    tempWords.push(item.word);
+    tempTranslations.push(item.wordTranslate);
+  });
+  tempTranslations.unshift(tempTranslations.pop());
+  arrayFalse = [];
+  for (let i = 0; i < 10; i += 1) {
+    arrayFalse.push({ word: tempWords[i], wordTranslate: tempTranslations[i] });
+  }
+  shuffleDictionary = [...arrayTrue, ...arrayFalse].sort(() => 0.5 - Math.random());
+  console.log(shuffleDictionary);
+
+  showWord();
+};
+
+const getWords = (page, group) => {
+  fetch(`https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`)
+    .then((response) => response.json())
+    .then((data) => {
+      wordsArray = data;
+      wordsArray.sort(() => 0.5 - Math.random());
+      makeDictionary();
+    });
+};
+
+getWords(10, userLearningLevel);
 
 app.addEventListener('click', (event) => {
   if (event.target.classList.contains('game-start-button')) {
     showGameMainScreen();
+    timerStart();
   }
 });
