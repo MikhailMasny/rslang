@@ -10,13 +10,18 @@ const timer = document.createElement('div');
 const scoreCounter = document.createElement('span');
 const question = document.createElement('div');
 const answer = document.createElement('div');
+const buttonsContainer = document.createElement('div');
+const apiURL = 'https://afternoon-falls-25894.herokuapp.com/';
 
-let secondsForGame = 60;
+let secondsForGame = 30;
 let wordsArray = [];
 let shuffleDictionary = [];
 let currentWord = '';
 const userLearningLevel = 0;
 const dictionary = [];
+let wordIsTrue = false;
+let rightAnswers = 0;
+const randomWordsPage = Math.floor(Math.random() * 20);
 
 const showGameLoadScreen = () => {
   document.body.classList.add('loading-screen');
@@ -32,7 +37,7 @@ const showGameLoadScreen = () => {
 
   const gameDescription = document.createElement('p');
   gameDescription.classList.add('game-description');
-  gameDescription.innerText = 'Test your knowledge by answering true or false. You have 60 seconds to do this.';
+  gameDescription.innerText = 'Test your knowledge by answering true or false. You have 30 seconds to do this.';
   gameStartScreen.append(gameDescription);
 
   const gameStartButton = document.createElement('button');
@@ -45,7 +50,7 @@ const showGameLoadScreen = () => {
 showGameLoadScreen();
 
 const showGameMainScreen = () => {
-  document.body.classList.remove('loading-screen');
+  // document.body.classList.remove('loading-screen');
 
   wrapper.innerHTML = '';
 
@@ -67,7 +72,6 @@ const showGameMainScreen = () => {
   answer.classList.add('answer');
   card.append(answer);
 
-  const buttonsContainer = document.createElement('div');
   buttonsContainer.classList.add('buttons');
   card.append(buttonsContainer);
 
@@ -88,19 +92,31 @@ const showGameMainScreen = () => {
   card.append(timer);
 };
 
+const disableButtons = () => {
+  document
+    .querySelectorAll('button')
+    .forEach((element) => {
+      const el = element;
+      el.disabled = true;
+    });
+};
+
 const timerStart = () => {
-  if (secondsForGame > 0) {
-    setInterval(() => {
+  setInterval(() => {
+    if (secondsForGame > 0) {
       secondsForGame -= 1;
-      timer.innerText = secondsForGame;
-    }, 1000);
-  }
+    } else {
+      disableButtons();
+    }
+    timer.innerText = secondsForGame;
+  }, 1000);
 };
 
 const showWord = () => {
   currentWord = shuffleDictionary.pop();
   question.innerText = currentWord.word;
   answer.innerText = currentWord.wordTranslate;
+  wordIsTrue = currentWord.truth;
 };
 
 const makeDictionary = () => {
@@ -108,7 +124,7 @@ const makeDictionary = () => {
     currentWord = wordsArray.pop();
     const { word } = currentWord;
     const { wordTranslate } = currentWord;
-    dictionary.push({ word, wordTranslate });
+    dictionary.push({ word, wordTranslate, truth: 'true' });
   }
 
   // make shuffle true/false dictionary array
@@ -123,16 +139,15 @@ const makeDictionary = () => {
   tempTranslations.unshift(tempTranslations.pop());
   arrayFalse = [];
   for (let i = 0; i < 10; i += 1) {
-    arrayFalse.push({ word: tempWords[i], wordTranslate: tempTranslations[i] });
+    arrayFalse.push({ word: tempWords[i], wordTranslate: tempTranslations[i], truth: 'false' });
   }
   shuffleDictionary = [...arrayTrue, ...arrayFalse].sort(() => 0.5 - Math.random());
-  console.log(shuffleDictionary);
 
   showWord();
 };
 
 const getWords = (page, group) => {
-  fetch(`https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`)
+  fetch(`${apiURL}words?page=${page}&group=${group}`)
     .then((response) => response.json())
     .then((data) => {
       wordsArray = data;
@@ -141,11 +156,27 @@ const getWords = (page, group) => {
     });
 };
 
-getWords(10, userLearningLevel);
+getWords(randomWordsPage, userLearningLevel);
 
 app.addEventListener('click', (event) => {
   if (event.target.classList.contains('game-start-button')) {
     showGameMainScreen();
     timerStart();
+  }
+});
+
+buttonsContainer.addEventListener('click', (event) => {
+  if (event.target.tagName === 'BUTTON') {
+    if (shuffleDictionary.length && secondsForGame > 0) {
+      if (event.target.innerText === wordIsTrue.toString()) {
+        rightAnswers += 1;
+        scoreCounter.innerText = rightAnswers;
+      } else {
+        console.log('No! It\'s wrong answer!');
+      }
+      showWord();
+    } else {
+      console.error('Error: Time is over or no more words!');
+    }
   }
 });

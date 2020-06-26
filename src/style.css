@@ -68,6 +68,7 @@ body {
     height: 14rem;
     background-color: #eee;
     border-radius: 5px;
+    box-shadow: 0 5px 0 #0002;
   }
   
   .question,
@@ -84,7 +85,7 @@ body {
     height: 2rem;
   }
 
-  .agree:hover,  .disagree:hover,  .agree:active,  .disagree:active  {
+  .agree:active,  .disagree:active  {
     border: none;
     opacity: 0.5;
   }
