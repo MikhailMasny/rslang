@@ -11,13 +11,14 @@ const scoreCounter = document.createElement('span');
 const question = document.createElement('div');
 const answer = document.createElement('div');
 const buttonsContainer = document.createElement('div');
-const apiURL = 'https://afternoon-falls-25894.herokuapp.com/';
+const card = document.createElement('div');
 
-const secondsForGame = 30;
+const apiURL = 'https://afternoon-falls-25894.herokuapp.com/';
+let secondsForGame = 30;
 let wordsArray = [];
 let shuffleDictionary = [];
 let currentWord = '';
-const userLearningLevel = 3;
+const userLearningLevel = 1;
 const groupsFromUsersLevel = Math.floor(Math.random() * userLearningLevel);
 const dictionary = [];
 let wordIsTrue = false;
@@ -51,11 +52,8 @@ const showGameLoadScreen = () => {
 showGameLoadScreen();
 
 const showGameMainScreen = () => {
-  // document.body.classList.remove('loading-screen');
-
   wrapper.innerHTML = '';
 
-  const card = document.createElement('div');
   card.classList.add('card');
   wrapper.append(card);
 
@@ -93,24 +91,44 @@ const showGameMainScreen = () => {
   card.append(timer);
 };
 
-const disableButtons = () => {
-  document
-    .querySelectorAll('button')
-    .forEach((element) => {
-      const el = element;
-      el.disabled = true;
-    });
+const showGameResults = () => {
+  wrapper.innerHTML = '';
+  const gameResult = document.createElement('section');
+  gameResult.classList.add('game-result');
+  const gameResultText = document.createElement('p');
+
+  if (localStorage.rsLangGameSprintScore) {
+    const savedScore = localStorage.rsLangGameSprintScore;
+    if (savedScore > rightAnswers) {
+      gameResultText.innerText = `Sorry. Current score is ${rightAnswers}. You don't bit your last score ${savedScore}`;
+    } else {
+      gameResultText.innerText = `Congratultions! Your score is ${rightAnswers}. You bit the last saved score!`;
+      localStorage.rsLangGameSprintScore = rightAnswers;
+    }
+  } else {
+    localStorage.rsLangGameSprintScore = rightAnswers;
+  }
+  const resetLink = document.createElement('a');
+  resetLink.classList.add('button');
+  resetLink.classList.add('game-reset-button');
+  resetLink.setAttribute('href', '/src');
+  resetLink.innerText = 'Don\'t give up! Try again!';
+
+  gameResult.append(gameResultText);
+  gameResult.append(resetLink);
+  wrapper.append(gameResult);
 };
 
 const timerStart = () => {
-  let seconds = secondsForGame;
   setInterval(() => {
-    if (seconds > 0) {
-      seconds -= 1;
+    if (secondsForGame > 0) {
+      secondsForGame -= 1;
     } else {
-      disableButtons();
+      card.classList.remove('card-true');
+      card.classList.remove('card-false');
+      showGameResults();
     }
-    timer.innerText = seconds;
+    timer.innerText = secondsForGame;
   }, 1000);
 };
 
@@ -171,6 +189,65 @@ buttonsContainer.addEventListener('click', (event) => {
   if (event.target.tagName === 'BUTTON') {
     if (shuffleDictionary.length && secondsForGame > 0) {
       if (event.target.innerText === wordIsTrue.toString()) {
+        rightAnswers += 1;
+        scoreCounter.innerText = rightAnswers;
+      } else {
+        console.log('No! It\'s wrong answer!');
+      }
+      showWord();
+    } else {
+      console.error('Error: Time is over or no more words!');
+      showGameResults();
+    }
+  }
+});
+
+document.addEventListener('mousedown', (event) => {
+  if (event.target.classList.contains('button') && shuffleDictionary.length && secondsForGame > 0) {
+    if (event.target.innerText === wordIsTrue.toString()) {
+      card.classList.add('card-true');
+    } else {
+      card.classList.add('card-false');
+    }
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  card.classList.remove('card-true');
+  card.classList.remove('card-false');
+});
+
+document.addEventListener('keydown', (event) => {
+  if (shuffleDictionary.length && secondsForGame > 0) {
+    if (event.code === 'ArrowLeft') {
+      document.querySelector('.agree').style.opacity = 0.5;
+    }
+    if (event.code === 'ArrowRight') {
+      document.querySelector('.disagree').style.opacity = 0.5;
+    }
+    if ((event.code === 'ArrowLeft').toString() === wordIsTrue) {
+      card.classList.add('card-true');
+    } else {
+      card.classList.add('card-false');
+    }
+  } else {
+    showGameResults();
+  }
+});
+
+document.addEventListener('keyup', (event) => {
+  card.classList.remove('card-true');
+  card.classList.remove('card-false');
+  if (shuffleDictionary.length && secondsForGame > 0) {
+    document
+      .querySelectorAll('button')
+      .forEach((element) => {
+        const el = element;
+        el.style.opacity = 1;
+      });
+
+    if (shuffleDictionary.length && secondsForGame > 0) {
+      if ((event.code === 'ArrowLeft').toString() === wordIsTrue) {
         rightAnswers += 1;
         scoreCounter.innerText = rightAnswers;
       } else {

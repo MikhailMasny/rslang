@@ -2,6 +2,7 @@ html,
 body {
     height: 100%;
     margin: 0;
+    color: white;
 }
 
 .app {
@@ -28,6 +29,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
+    text-decoration: none;
 }
 
 .loading-screen {
@@ -40,14 +42,16 @@ body {
     );
   }
   
-  .game-start-button {
+  .game-start-button, .game-reset-button {
     border: 1px solid white;
     background-color: transparent;
     color: white;
   }
   
   .game-start-button:hover,
-  .game-start-button:active {
+  .game-start-button:active,
+  .game-reset-button:hover,
+  .game-reset-button:active {
     border: 1px solid white;
     background-color: #fff5;
     color: white;
@@ -62,6 +66,7 @@ body {
   }
   
   .card {
+    color: black;
     box-sizing: border-box;
     padding: 20px;
     width: 100%;
@@ -69,6 +74,7 @@ body {
     background-color: #eee;
     border-radius: 5px;
     box-shadow: 0 5px 0 #0002;
+    border: 5px solid #eee;;
   }
   
   .question,
@@ -98,3 +104,10 @@ body {
     background-color: tomato;
   }
   
+  .card-true {
+    border: 5px solid limegreen;
+  }
+
+  .card-false {
+    border: 5px solid tomato;
+  }
