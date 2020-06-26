@@ -13,11 +13,12 @@ const answer = document.createElement('div');
 const buttonsContainer = document.createElement('div');
 const apiURL = 'https://afternoon-falls-25894.herokuapp.com/';
 
-let secondsForGame = 30;
+const secondsForGame = 30;
 let wordsArray = [];
 let shuffleDictionary = [];
 let currentWord = '';
-const userLearningLevel = 0;
+const userLearningLevel = 3;
+const groupsFromUsersLevel = Math.floor(Math.random() * userLearningLevel);
 const dictionary = [];
 let wordIsTrue = false;
 let rightAnswers = 0;
@@ -102,13 +103,14 @@ const disableButtons = () => {
 };
 
 const timerStart = () => {
+  let seconds = secondsForGame;
   setInterval(() => {
-    if (secondsForGame > 0) {
-      secondsForGame -= 1;
+    if (seconds > 0) {
+      seconds -= 1;
     } else {
       disableButtons();
     }
-    timer.innerText = secondsForGame;
+    timer.innerText = seconds;
   }, 1000);
 };
 
@@ -156,7 +158,7 @@ const getWords = (page, group) => {
     });
 };
 
-getWords(randomWordsPage, userLearningLevel);
+getWords(randomWordsPage, groupsFromUsersLevel);
 
 app.addEventListener('click', (event) => {
   if (event.target.classList.contains('game-start-button')) {
