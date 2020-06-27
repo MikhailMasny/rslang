@@ -117,7 +117,7 @@ const showGameResults = () => {
   const resetLink = document.createElement('a');
   resetLink.classList.add('button');
   resetLink.classList.add('game-reset-button');
-  resetLink.setAttribute('href', '/src');
+  resetLink.setAttribute('href', '/');
   resetLink.innerText = 'Try again!';
 
   gameResult.append(gameResultText);
