@@ -15,6 +15,7 @@ const card = document.createElement('div');
 
 const apiURL = 'https://afternoon-falls-25894.herokuapp.com/';
 let secondsForGame = 30;
+const progressBarWidth = 100 / secondsForGame;
 let wordsArray = [];
 let shuffleDictionary = [];
 let currentWord = '';
@@ -59,7 +60,6 @@ const showGameMainScreen = () => {
 
   const score = document.createElement('div');
   score.classList.add('score');
-  score.innerText = 'Score: ';
   scoreCounter.classList.add('score-counter');
   scoreCounter.innerText = 0;
   score.append(scoreCounter);
@@ -77,17 +77,23 @@ const showGameMainScreen = () => {
   const buttonAgree = document.createElement('button');
   buttonAgree.classList.add('button');
   buttonAgree.classList.add('agree');
-  buttonAgree.innerText = 'true';
+  buttonAgree.innerText = '← true';
+  buttonAgree.dataset.name = 'true';
   buttonsContainer.append(buttonAgree);
 
   const buttonDisagree = document.createElement('button');
   buttonDisagree.classList.add('button');
   buttonDisagree.classList.add('disagree');
-  buttonDisagree.innerText = 'false';
+  buttonDisagree.innerText = 'false →';
+  buttonDisagree.dataset.name = 'false';
   buttonsContainer.append(buttonDisagree);
 
   timer.classList.add('timer');
-  timer.innerText = secondsForGame;
+  timer.innerHTML = `
+    <div class="progress-container" >
+      <div class="progress-bar" id="myBar"></div>
+    </div>
+    `;
   card.append(timer);
 };
 
@@ -112,23 +118,32 @@ const showGameResults = () => {
   resetLink.classList.add('button');
   resetLink.classList.add('game-reset-button');
   resetLink.setAttribute('href', '/src');
-  resetLink.innerText = 'Don\'t give up! Try again!';
+  resetLink.innerText = 'Try again!';
 
   gameResult.append(gameResultText);
   gameResult.append(resetLink);
   wrapper.append(gameResult);
 };
 
+const progressBarChange = (param) => {
+  const newWidth = param * progressBarWidth;
+  document.getElementById('myBar').style.width = `${newWidth}%`;
+};
+
 const timerStart = () => {
-  setInterval(() => {
-    if (secondsForGame > 0) {
+  const timerCounter = setInterval(() => {
+    if (secondsForGame >= 0) {
       secondsForGame -= 1;
+      progressBarChange(secondsForGame);
     } else {
-      card.classList.remove('card-true');
-      card.classList.remove('card-false');
+      scoreCounter.classList.remove('card-true');
+      scoreCounter.classList.remove('card-false');
       showGameResults();
+      clearInterval(timerCounter);
     }
-    timer.innerText = secondsForGame;
+    if (secondsForGame >= 0 && secondsForGame < 10) {
+      document.getElementById('myBar').style.background = 'tomato';
+    }
   }, 1000);
 };
 
@@ -188,7 +203,7 @@ app.addEventListener('click', (event) => {
 buttonsContainer.addEventListener('click', (event) => {
   if (event.target.tagName === 'BUTTON') {
     if (shuffleDictionary.length && secondsForGame > 0) {
-      if (event.target.innerText === wordIsTrue.toString()) {
+      if (event.target.dataset.name === wordIsTrue.toString()) {
         rightAnswers += 1;
         scoreCounter.innerText = rightAnswers;
       } else {
@@ -204,17 +219,17 @@ buttonsContainer.addEventListener('click', (event) => {
 
 document.addEventListener('mousedown', (event) => {
   if (event.target.classList.contains('button') && shuffleDictionary.length && secondsForGame > 0) {
-    if (event.target.innerText === wordIsTrue.toString()) {
-      card.classList.add('card-true');
+    if (event.target.dataset.name === wordIsTrue.toString()) {
+      scoreCounter.classList.add('card-true');
     } else {
-      card.classList.add('card-false');
+      scoreCounter.classList.add('card-false');
     }
   }
 });
 
 document.addEventListener('mouseup', () => {
-  card.classList.remove('card-true');
-  card.classList.remove('card-false');
+  scoreCounter.classList.remove('card-true');
+  scoreCounter.classList.remove('card-false');
 });
 
 document.addEventListener('keydown', (event) => {
@@ -226,9 +241,9 @@ document.addEventListener('keydown', (event) => {
       document.querySelector('.disagree').style.opacity = 0.5;
     }
     if ((event.code === 'ArrowLeft').toString() === wordIsTrue) {
-      card.classList.add('card-true');
+      scoreCounter.classList.add('card-true');
     } else {
-      card.classList.add('card-false');
+      scoreCounter.classList.add('card-false');
     }
   } else {
     showGameResults();
@@ -236,8 +251,8 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('keyup', (event) => {
-  card.classList.remove('card-true');
-  card.classList.remove('card-false');
+  scoreCounter.classList.remove('card-true');
+  scoreCounter.classList.remove('card-false');
   if (shuffleDictionary.length && secondsForGame > 0) {
     document
       .querySelectorAll('button')
