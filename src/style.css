@@ -12,3 +12,129 @@
     width: 1024px;
     margin: 0 auto;
 }
+
+/* Header */
+
+.header {
+    height: 840px;
+    /* background-color: #ecf2ff; */
+    /* background-image: url("./assets/images/bg-header.png"); */
+}
+
+/* Navigation */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__margin-indent {
+    margin-top: 20px;
+    margin-bottom: 270px;
+}
+
+.nav__logo {
+    cursor: default;
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 47px;
+    line-height: 56px;
+    text-align: center;
+    letter-spacing: 1.46875px;
+    color: #00214D;
+}
+
+.nav__menu {
+    width: 480px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__text {
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    color: #1B2D45;
+}
+
+.nav__text-decoration {
+    text-decoration: underline;
+}
+
+.nav__button {
+    width: 117px;
+    height: 48px;
+    background: #00EBC7;
+    border: none;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    color: #00214D;
+}
+
+/* Topic */
+
+.topic {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topic__title {
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 47px;
+    line-height: 56px;
+    text-align: center;
+    letter-spacing: 1.5px;
+    color: #00214D;
+}
+
+.topic__title-indent {
+    margin-bottom: 32px;
+}
+
+.topic__text {
+    width: 749px;
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #5F6C7D;
+}
+
+.topic__text-indent {
+    margin-bottom: 40px;
+}
+
+.topic__button {
+    width: 233px;
+    height: 67px;
+    background: #00EBC7;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #00214D;
+}
