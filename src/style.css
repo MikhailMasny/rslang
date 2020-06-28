@@ -363,8 +363,7 @@
 
 /* Tablet */
 
-@media screen and (max-width: 1020px)
-{
+@media screen and (max-width: 1020px) {
     .wrapper {
         width: 760px;
     }
