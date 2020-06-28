@@ -1,0 +1,10 @@
+.hidden {
+    display: none;
+}
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
