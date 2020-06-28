@@ -58,6 +58,10 @@
     padding-right: 10px;
 }
 
+.nav__element-hidden {
+    display: none;
+}
+
 .nav__margin-indent {
     margin-top: 20px;
     margin-bottom: 200px;
@@ -76,7 +80,7 @@
 }
 
 .nav__menu {
-    width: 430px;
+    width: 350px;
     list-style: none;
     display: flex;
     justify-content: space-between;
@@ -93,8 +97,12 @@
     color: #1B2D45;
 }
 
-.nav__text-decoration {
+.nav__text-underline {
     text-decoration: underline;
+}
+
+.nav__text-none {
+    text-decoration: none;
 }
 
 .nav__button {

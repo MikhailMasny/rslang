@@ -40,6 +40,15 @@ module.exports = {
       inject: true,
       chunks: ['auth'],
     }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/logout.html',
+      filename: './logout.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['auth'],
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
