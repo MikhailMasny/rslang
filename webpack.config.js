@@ -8,6 +8,7 @@ module.exports = {
     main: ['@babel/polyfill', './src/script.js', './src/style.css'],
     auth: ['@babel/polyfill', './src/assets/javascript/auth.js', './src/assets/css/auth.css'],
     team: ['./src/assets/css/team.css'],
+    common: ['./src/assets/css/common.css']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
