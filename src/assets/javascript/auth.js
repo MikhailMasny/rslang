@@ -6,7 +6,7 @@ const BUTTON_SIGN_UP = document.querySelector('.auth__button-signup');
 const BUTTON_LOGOUT = document.querySelector('.auth__button-logout');
 const INPUT_EMAIL = document.querySelector('.auth__input-email');
 const INPUT_PASSWORD = document.querySelector('.auth__input-password');
-const HOST_PAGE_INDEX = 'http://localhost:8080/';
+const HOST_PAGE_INDEX = 'https://team-34-rslang.netlify.app/'; // local: http://localhost:8080/
 
 function redirectToIndexPage() {
   window.location.replace(HOST_PAGE_INDEX);
