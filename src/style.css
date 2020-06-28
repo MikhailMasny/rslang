@@ -252,3 +252,72 @@
     height: 360px;
     background-color: red;
 }
+
+/* Presentation */
+
+.presentation {
+    width: 1000px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.presentation__content {
+    width: 800px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #FDE24F;
+    border-radius: 10px;
+    background-image: url("./assets/images/presentation-bg.png");
+}
+
+.presentation__title {
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 59px;
+    text-align: center;
+    letter-spacing: 1.3px;
+    color: #00214D;
+}
+
+.presentation__title-indent {
+    margin-bottom: 16px;
+}
+
+.presentation__text {
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #5F6C7D;
+}
+
+.presentation__text-indent {
+    margin-bottom: 40px;
+}
+
+.presentation__button {
+    width: 233px;
+    height: 67px;
+    background: #FF5470;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+}
