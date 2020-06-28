@@ -33,6 +33,10 @@
     margin-bottom: 10px;
 }
 
+.auth__title-logout {
+    margin-bottom: 30px;
+}
+
 .auth__text {
     font-family: 'Rubik', sans-serif;
     font-style: normal;
