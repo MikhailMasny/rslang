@@ -1,5 +1,3 @@
-import './style.css';
-
 const app = document.querySelector('.app');
 
 const wrapper = document.createElement('div');
@@ -117,7 +115,7 @@ const showGameResults = () => {
   const resetLink = document.createElement('a');
   resetLink.classList.add('button');
   resetLink.classList.add('game-reset-button');
-  resetLink.setAttribute('href', '/');
+  resetLink.setAttribute('href', 'sprint.html');
   resetLink.innerText = 'Try again!';
 
   gameResult.append(gameResultText);
