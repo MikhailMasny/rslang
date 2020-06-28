@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     main: ['@babel/polyfill', './src/script.js', './src/style.css'],
     auth: ['@babel/polyfill', './src/assets/javascript/auth.js', './src/assets/css/auth.css'],
+    team: ['./src/assets/css/team.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -48,6 +49,15 @@ module.exports = {
       },
       inject: true,
       chunks: ['auth'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/team.html',
+      filename: './team.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['team'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
