@@ -263,6 +263,10 @@
     align-items: center;
 }
 
+.presentation__margin-indent {
+    margin-bottom: 140px;
+}
+
 .presentation__content {
     width: 800px;
     height: 300px;
@@ -320,4 +324,22 @@
     text-align: center;
     letter-spacing: 0.5px;
     color: #FFFFFF;
+}
+
+.footer {
+    width: 1000px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__text {
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 30px;
+    letter-spacing: 0.5px;
+    color: #5F6C7D;
 }
