@@ -71,8 +71,8 @@ const chooseVariant = (e) => {
 
 const getNewQuestion = () => {
   if (availableQuestions.length === 0) {
-    
-    return window.location.assign('/end.html');
+    localStorage.setItem('recentScore',score);
+    return window.location.assign('../end/end.html');
   }
   questionCounter++;
   questionCounterText.innerText = `${questionCounter}/20`;
