@@ -6,6 +6,11 @@ const BUTTON_SIGN_UP = document.querySelector('.auth__button-signup');
 const BUTTON_LOGOUT = document.querySelector('.auth__button-logout');
 const INPUT_EMAIL = document.querySelector('.auth__input-email');
 const INPUT_PASSWORD = document.querySelector('.auth__input-password');
+const HOST_PAGE_INDEX = 'https://team-34-rslang.netlify.app/'; // local: http://localhost:8080/
+
+function redirectToIndexPage() {
+  window.location.replace(HOST_PAGE_INDEX);
+}
 
 function clearInputs() {
   INPUT_EMAIL.value = '';
@@ -80,8 +85,9 @@ async function signin() {
     const result = await authRequest(data.user, constants.SIGN_IN);
     if (result && result.isCompleted) {
       localStorage.setItem('user_credentials', JSON.stringify(result.message));
-      alert('You have successfully logged in');
       clearInputs();
+      alert('You have successfully logged in');
+      redirectToIndexPage();
     }
   }
 }
@@ -92,8 +98,9 @@ async function signup() {
     const result = await authRequest(data.user, constants.USER_CREATE);
     if (result && result.isCompleted) {
       localStorage.setItem('user_data', JSON.stringify(result.message));
-      alert('You are successfully registered in the system');
       clearInputs();
+      alert('You are successfully registered in the system');
+      redirectToIndexPage();
     }
   }
 }
@@ -101,6 +108,8 @@ async function signup() {
 function logout() {
   localStorage.removeItem('user_data');
   localStorage.removeItem('user_credentials');
+  alert('You have successfully logged out');
+  redirectToIndexPage();
 }
 
 function main() {

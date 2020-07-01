@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap');
+
+.wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .hidden {
     display: none;
 }
@@ -7,4 +14,147 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.auth__margin-indent {
+    margin-top: 100px;
+}
+
+.auth__title {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 32px;
+    color: #2E384D;
+}
+
+.auth__title-indent {
+    margin-bottom: 10px;
+}
+
+.auth__title-logout {
+    margin-bottom: 30px;
+}
+
+.auth__text {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 22px;
+    color: #8798AD;
+}
+
+.auth__text-indent {
+    margin-bottom: 45px;
+}
+
+.auth__label {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 1.125px;
+    text-transform: uppercase;
+    color: #B0BAC9;
+}
+
+.auth__label-indent {
+    margin-bottom: 8px;
+}
+
+.auth__control {
+    justify-content: start;
+}
+
+.auth__control-indent {
+    margin-bottom: 20px;
+}
+
+.auth__input {
+    padding: 11px 16px;
+    background: rgba(224, 231, 255, 0.2);
+    border: 1px solid #E0E7FF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    color: #2E384D;
+}
+
+.auth__input::placeholder {
+    color: #8798AD;
+}
+
+.auth__input-size {
+    width: 300px;
+    height: 40px;
+}
+
+.auth__button {
+    background: #2E5BFF;
+    border-radius: 4px;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+}
+
+.auth__button:hover {
+    background: #33AC2E;
+}
+
+.auth__button-size {
+    width: 300px;
+    height: 50px;
+}
+
+.auth__button-indent {
+    margin-bottom: 12px;
+}
+
+.auth__link {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: right;
+    color: #B0BAC9;
+}
+
+.auth__link-text {
+    color: #B0BAC9;
+}
+
+.auth__link-redirect {
+    color: #2E5BFF;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.auth__link-redirect:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1020px) {
+    .wrapper {
+        width: 760px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .wrapper {
+        width: 310px;
+    }
 }
