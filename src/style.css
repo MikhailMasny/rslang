@@ -213,7 +213,15 @@
     font-size: 42px;
     line-height: 59px;
     letter-spacing: 1.3px;
+}
+
+.description__title-link {
+    text-decoration: none;
     color: #00214D;
+}
+
+.description__title-link:hover {
+    text-decoration: underline;
 }
 
 .description__title-indent {
@@ -265,7 +273,10 @@
 .picture {
     width: 360px;
     height: 360px;
-    background-color: red;
+}
+
+.picture__audio-image::before {
+    content: url("./assets/images/audio-call-game.png");
 }
 
 /* Presentation */
