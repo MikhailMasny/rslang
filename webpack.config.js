@@ -8,7 +8,11 @@ module.exports = {
     main: ['@babel/polyfill', './src/script.js', './src/style.css'],
     auth: ['@babel/polyfill', './src/assets/javascript/auth.js', './src/assets/css/auth.css'],
     team: ['./src/assets/css/team.css'],
-    common: ['./src/assets/css/common.css']
+    common: ['./src/assets/css/common.css'],
+    audioCommon: ['./src/assets/css/audio-call-game/style.css'],
+    audioHome: ['@babel/polyfill', './src/assets/javascript/audio-call-game/app.js', './src/assets/css/audio-call-game/style.css'],
+    audioGame: ['@babel/polyfill', './src/assets/javascript/audio-call-game/game.js', './src/assets/css/audio-call-game/game.css'],
+    audioEnd: ['@babel/polyfill', './src/assets/javascript/audio-call-game/end.js'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -59,6 +63,33 @@ module.exports = {
       },
       inject: true,
       chunks: ['team'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/audio-call-game/index.html',
+      filename: './audio-call-game/index.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['audioHome'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/audio-call-game/game.html',
+      filename: './audio-call-game/game.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['audioCommon', 'audioGame'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/audio-call-game/end.html',
+      filename: './audio-call-game/end.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['audioCommon', 'audioEnd'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
