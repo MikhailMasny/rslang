@@ -29,7 +29,7 @@ const getWords = (page, group) => {
       data.forEach((element) => {
         const li = document.createElement('li');
         // li.dataset.word = element.word;
-        li.innerHTML = `<div data-word="${element.word}" data-audio="${path + element.audio}">${element.textExample} (${element.wordTranslate})</div>
+        li.innerHTML = `<div data-guessed="false" data-word="${element.word}" data-audio="${path + element.audio}">${element.textExample} (${element.wordTranslate})</div>
         <div class="text-muted">${element.textExampleTranslate}</div>
         <div><span class="tip">👁️</span><span class="fav">⭐</span><span class="del">🗑️</span></div>`;
         ol.append(li);
@@ -64,9 +64,10 @@ ol.addEventListener('click', (event) => {
   if (clickedElement.classList.contains('del')) {
     clickedElement.closest('li').style.display = 'none';
   }
-  if (clickedElement.tagName === 'B') {
+  if (clickedElement.tagName === 'B' && clickedElement.dataset.guessed === 'false') {
     parentNode.querySelector('b').style.display = 'none';
     parentNode.querySelector('input').style.display = 'inline-block';
+    parentNode.querySelector('input').value = '';
     parentNode.querySelector('input').select();
   }
   if (clickedElement.tagName === 'INPUT') {
@@ -81,6 +82,7 @@ ol.addEventListener('input', (event) => {
     || clickedEl.value.toLowerCase() !== clickedEl.parentNode.dataset.word.toLowerCase()) {
     clickedEl.style.backgroundColor = 'tomato';
   } else {
+    clickedEl.parentNode.dataset.guessed = 'true';
     clickedEl.parentNode.querySelector('b').style.color = 'limegreen';
     clickedEl.parentNode.querySelector('b').style.display = 'inline-block';
     clickedEl.parentNode.querySelector('input').style.display = 'none';
