@@ -295,6 +295,10 @@
     content: url("./assets/images/speak-it-game.png");
 }
 
+.picture__savana-image::before {
+    content: url("./assets/images/savana-game.png");
+}
+
 /* Presentation */
 
 .presentation {
