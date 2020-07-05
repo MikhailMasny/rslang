@@ -13,6 +13,7 @@ module.exports = {
     audioHome: ['@babel/polyfill', './src/assets/javascript/audio-call-game/app.js', './src/assets/css/audio-call-game/style.css'],
     audioGame: ['@babel/polyfill', './src/assets/javascript/audio-call-game/game.js', './src/assets/css/audio-call-game/game.css'],
     audioEnd: ['@babel/polyfill', './src/assets/javascript/audio-call-game/end.js'],
+    sprintGame: ['@babel/polyfill', './src/assets/javascript/sprint-game/app.js', './src/assets/css/sprint-game/style.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -90,6 +91,15 @@ module.exports = {
       },
       inject: true,
       chunks: ['audioCommon', 'audioEnd'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/sprint-game/index.html',
+      filename: './sprint-game/index.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['sprintGame'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',

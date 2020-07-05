@@ -1,0 +1,146 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.5rem;
+}
+
+.app {
+    height: 100%;
+}
+
+.wrapper {
+    max-width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    box-sizing: border-box;
+    display: inline-block;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    text-decoration: none;
+    width: 40%;
+}
+
+.loading-screen {
+    background: rgb(92, 58, 180);
+    background: linear-gradient(65deg,
+        rgba(92, 58, 180, 1) 0%,
+        rgba(29, 114, 253, 1) 63%,
+        rgba(69, 173, 252, 1) 100%);
+}
+
+.game-start-screen,
+.game-result {
+    margin: 20px;
+}
+
+.game-start-button,
+.game-reset-button {
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+}
+
+.game-start-button:hover,
+.game-start-button:active,
+.game-reset-button:hover,
+.game-reset-button:active {
+    border: 1px solid white;
+    background-color: #fff5;
+    color: white;
+}
+
+.game-title {
+    color: white;
+}
+
+.game-description {
+    color: white;
+}
+
+.card {
+    color: black;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    background-color: #eee;
+    border-radius: 5px;
+    box-shadow: 0 5px 0 #0002;
+    border: 5px solid #eee;
+    margin: 15px;
+}
+
+.question,
+.answer,
+.buttons,
+.score {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.question,
+.answer {
+    font-size: 2rem;
+    height: 2rem;
+}
+
+.agree:active,
+.disagree:active {
+    border: none;
+    opacity: 0.5;
+}
+
+.agree {
+    background-color: limegreen;
+}
+
+.disagree {
+    background-color: tomato;
+}
+
+.score-counter {
+    border: 5px solid #ccc;
+    border-radius: 3rem;
+    padding: 1rem;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    display: inline-block;
+    font-size: 2rem;
+    background-color: white;
+}
+
+.card-true {
+    border: 5px solid limegreen;
+    background-color: rgba(50, 205, 50, 0.1);
+}
+
+.card-false {
+    border: 5px solid tomato;
+    background-color: rgba(255, 99, 71, 0.1);
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: #ccc;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #4caf50;
+    width: 100%;
+}

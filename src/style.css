@@ -108,7 +108,7 @@
 .nav__button {
     width: 117px;
     height: 48px;
-    background: #00EBC7;
+    background: #FDE24F;
     border: none;
     cursor: pointer;
     font-family: 'Heebo', sans-serif;
@@ -117,6 +117,10 @@
     font-size: 16px;
     line-height: 16px;
     color: #00214D;
+}
+
+.nav__button:hover {
+    background: #00EBC7;
 }
 
 /* Topic */
@@ -162,7 +166,7 @@
 .topic__button {
     width: 233px;
     height: 67px;
-    background: #00EBC7;
+    background: #FDE24F;
     border-radius: 3px;
     cursor: pointer;
     border: none;
@@ -174,6 +178,10 @@
     text-align: center;
     letter-spacing: 0.5px;
     color: #00214D;
+}
+
+.topic__button:hover {
+    background: #00EBC7;
 }
 
 /* Main */
@@ -279,6 +287,10 @@
     content: url("./assets/images/audio-call-game.png");
 }
 
+.picture__sprint-image::before {
+    content: url("./assets/images/sprint-game.png");
+}
+
 /* Presentation */
 
 .presentation {
@@ -350,6 +362,10 @@
     text-align: center;
     letter-spacing: 0.5px;
     color: #FFFFFF;
+}
+
+.presentation__button:hover {
+    background: #00EBC7;
 }
 
 /* Footer */
