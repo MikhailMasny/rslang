@@ -1,4 +1,16 @@
-const GIT_URL = 'https://raw.githubusercontent.com/ITETRISI/rslang-data/master/data';
+/* eslint-disable func-names */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-param-reassign */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable new-cap */
+/* eslint-disable no-undef */
+/* eslint-disable max-classes-per-file */
+
 const CONTAINER = document.querySelector('.sound__container');
 const INPUT = document.querySelector('.text__input');
 const RESTART = document.querySelector('.restart');
@@ -15,7 +27,9 @@ const BACK = document.querySelector('.content__btn-return');
 const WRONG = document.querySelector('.wrong');
 const CORRECT = document.querySelector('.correct');
 const NEW_GAME = document.querySelector('.content__btn-new');
+
 const RECOGNIZER = new webkitSpeechRecognition();
+const GIT_URL = 'https://raw.githubusercontent.com/ITETRISI/rslang-data/master/data';
 const USER_ID = '5efc5b18aae472001798c238';
 const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmM1YjE4YWFlNDcyMDAxNzk4YzIzOCIsImlhdCI6MTU5MzYxMTU5MSwiZXhwIjoxNTkzNjI1OTkxfQ.bTSzsCph-j5ceEF585QZ11gAYzDT1uLMVlJtRbu3KQs';
 let userScore = 0;
@@ -42,7 +56,8 @@ class Words {
     const RESPONSE = await fetch(URL);
     const DATA = await RESPONSE.json();
     TRANSLATE.innerHTML = await DATA.text[0];
-    return await DATA.text[0];
+    const result = await DATA.text[0];
+    return result;
   }
 
   wordsRecognizer() {
@@ -83,12 +98,12 @@ class Words {
     CONTAINER.innerHTML = '';
     this.collection.forEach((element) => {
       CONTAINER.innerHTML += `<div class="sound__container-block">
-			<img src="./src/image/headphone.svg" width="40" />
-			<div class="word__container">
-				<span>${element.word}</span>
-				<span>${element.transcription}</span>
-			</div>
-			</div>`;
+      <div class="headphone-img"></div>
+      <div class="word__container">
+        <span>${element.word}</span>
+        <span>${element.transcription}</span>
+      </div>
+      </div>`;
     });
   }
 
@@ -110,7 +125,7 @@ class Game {
         WORDS.correctWordArray.push(correctWord);
         WORDS.wrongWordArray = WORDS.wrongWordArray.filter((element) => element !== correctWord);
         child.classList.add('active');
-        POINTS.innerHTML += '<img src="./src/image/star.svg" width="44" />';
+        POINTS.innerHTML += '<div class="point-image"></div>';
         userScore++;
         if (userScore === 10) {
           showStats();
@@ -127,22 +142,22 @@ class Game {
     WORDS.wrongWordArray.forEach((element) => {
       this.translateWrongWords(element);
       WRONG.innerHTML += `
-			<div class="wrong-word">
-			<img src="./src/image/headphone.svg" width="20" />
-			<span>${element.word}</span>
-			<span>${element.transcription}</span>
-			<span>${element.wordTranslate}</span>
-			</div>`;
+      <div class="wrong-word">
+      <div class="headphone-img"></div>
+      <span>${element.word}</span>
+      <span>${element.transcription}</span>
+      <span>${element.wordTranslate}</span>
+      </div>`;
     });
     WORDS.correctWordArray.forEach((element) => {
       this.translateCorrectWords(element);
       CORRECT.innerHTML += `
-			<div class="correct-word">
-			<img src="./src/image/headphone.svg" width="20" />
-			<span>${element.word}</span>
-			<span>${element.transcription}</span>
-			<span>${element.wordTranslate}</span>
-			</div>`;
+      <div class="correct-word">
+      <div class="headphone-img"></div>
+      <span>${element.word}</span>
+      <span>${element.transcription}</span>
+      <span>${element.wordTranslate}</span>
+      </div>`;
     });
   }
 

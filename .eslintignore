@@ -4,3 +4,4 @@
 build/*
 !build/index.js
 webpack.config.js
+# src/assets/javascript/speak-it-game/app.js
