@@ -125,7 +125,7 @@ class Game {
         WORDS.correctWordArray.push(correctWord);
         WORDS.wrongWordArray = WORDS.wrongWordArray.filter((element) => element !== correctWord);
         child.classList.add('active');
-        POINTS.innerHTML += '<img src="./src/image/star.svg" width="44" />';
+        POINTS.innerHTML += '<div class="point-image"></div>';
         userScore++;
         if (userScore === 10) {
           showStats();

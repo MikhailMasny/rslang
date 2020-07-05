@@ -91,6 +91,10 @@ header {
     overflow: hidden;
 }
 
+.point-image::after {
+    content: url('../../images/speak-it-game/star.png');
+}
+
 .intro, .results {
     display: flex;
     flex-direction: column;
