@@ -343,16 +343,19 @@
     margin-top: 0vw;
 }
 .ldio-knss7jdyktr {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform: translateZ(0) scale(1);
-  backface-visibility: hidden;
-  transform-origin: 0 0;
-  }
-  .ldio-knss7jdyktr div { box-sizing: content-box; }
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+}
 
-  .savana_gameBlock {
+.ldio-knss7jdyktr div {
+    box-sizing: content-box;
+}
+
+.savana_gameBlock {
     display: none;
     flex-direction: column;
     margin: auto;
@@ -360,72 +363,81 @@
     position: absolute;
     height: 85vh;
     overflow: hidden;
-  }
-  .savana_gameBlock__settingsAndLife {
+}
+
+.savana_gameBlock__settingsAndLife {
     width: 100%;
     height: 10vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
-  .savana_gameBlock__settingsAndLife__settings__settingsVolume {
-  height: auto;
-  width: 4vw;
-  margin-left: 23%;
-  cursor: pointer;
-  }
-  @media (max-width: 425px) {
-  .savana_gameBlock__settingsAndLife__settings__settingsVolume {
+}
+
+.savana_gameBlock__settingsAndLife__settings__settingsVolume {
     height: auto;
-    width: 10vw;
+    width: 4vw;
     margin-left: 23%;
     cursor: pointer;
-  }
-  }
-  .savana_gameBlock__settingsAndLife__Life {
-  height: auto;
-  width: 24%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  }
-  @media (max-width: 768px) {
-  .savana_gameBlock__settingsAndLife__Life {
+}
+
+@media (max-width: 425px) {
+    .savana_gameBlock__settingsAndLife__settings__settingsVolume {
+        height: auto;
+        width: 10vw;
+        margin-left: 23%;
+        cursor: pointer;
+    }
+}
+
+.savana_gameBlock__settingsAndLife__Life {
     height: auto;
-    width: 35%;
+    width: 24%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-  }
-  }
-  @media (max-width: 560px) {
-  .savana_gameBlock__settingsAndLife__Life {
-    height: auto;
-    width: 53%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  }
-  .savana_gameBlock__staticWords {
+}
+
+@media (max-width: 768px) {
+    .savana_gameBlock__settingsAndLife__Life {
+        height: auto;
+        width: 35%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 560px) {
+    .savana_gameBlock__settingsAndLife__Life {
+        height: auto;
+        width: 53%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+.savana_gameBlock__staticWords {
     display: flex;
     flex-direction: row;
     width: 61%;
     height: 29vh;
     margin: auto;
     justify-content: space-between;
-  }
-  @media (max-width: 675px) {
-  .savana_gameBlock__staticWords {
-    display: flex;
-    flex-direction: column;
-    width: 73%;
-    height: 45vh;
-    margin-top: 30%;
-  }
-  }
-  .staticWords {
-  background-color: #17171736;
+}
+
+@media (max-width: 675px) {
+    .savana_gameBlock__staticWords {
+        display: flex;
+        flex-direction: column;
+        width: 73%;
+        height: 45vh;
+        margin-top: 30%;
+    }
+}
+
+.staticWords {
+    background-color: #17171736;
     width: auto;
     height: 40%;
     margin: auto;
@@ -438,194 +450,188 @@
     border-radius: 5px 5px 5px 5px;
     font-weight: 600;
     z-index: 2;
-  }
+}
 
-  @media (min-width: 676px) {
-  .staticWords:hover {
-    box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
-    width:auto;
-    height: 40%;
+@media (min-width: 676px) {
+    .staticWords:hover {
+        box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+        width:auto;
+        height: 40%;
+        margin: auto;
+        min-width: 17%;
+        z-index: 2;
+    }
+}
+
+@media (max-width: 675px) {
+    .staticWords {
+        background-color: #17171736;
+        width: 100%;
+        height: 15%;
+        margin: auto;
+        min-width: 17%;
+        cursor: pointer;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 1.4em;
+        display: flex;
+        align-items: center;
+        border-radius: 5px 5px 5px 5px;
+        font-weight: 600;
+        z-index: 2;
+    }
+}
+
+.staticWords span {
+    color: #ffffff;
     margin: auto;
-    min-width: 17%;
-    z-index: 2;
-  }
-  }
-  @media (max-width: 675px) {
-  .staticWords {
-    background-color: #17171736;
     width: 100%;
-    height: 15%;
-    margin: auto;
-    min-width: 17%;
-    cursor: pointer;
+    height: 99%;
+    text-align: center;
+    padding-top: 21%;
+}
+
+@media (max-width: 675px) {
+    .staticWords span {
+        color: #ffffff;
+        margin: auto;
+        width: 100%;
+        height: 66%;
+        text-align: center;
+        padding-top: 0%;
+    }
+}
+
+.savana_gameBlock__dynamicWords {
+    height: 18%;
+    margin-top: -2%;
+    position: absolute;
+    left: 46%;
     font-family: 'Ubuntu', sans-serif;
     font-size: 1.4em;
     display: flex;
     align-items: center;
     border-radius: 5px 5px 5px 5px;
     font-weight: 600;
-    z-index: 2;
-  }
-  }
-  .staticWords span {
-  color: #ffffff;
-    margin: auto;
-    width: 100%;
-    height: 99%;
-    text-align: center;
-    padding-top: 21%;
-  }
-  @media (max-width: 675px) {
-  .staticWords span {
-    color: #ffffff;
-    margin: auto;
-    width: 100%;
-    height: 66%;
-    text-align: center;
-    padding-top: 0%;
-  }
-  }
-  .savana_gameBlock__dynamicWords {
-  height: 18%;
-  margin-top: -2%;
-  position: absolute;
-  left: 46%;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 1.4em;
-  display: flex;
-  align-items: center;
-  border-radius: 5px 5px 5px 5px;
-  font-weight: 600;
-  width: fit-content;
-  z-index: 0;
-  transform: translate(0px, 0vw);
-  top: -3%;
+    width: fit-content;
+    z-index: 0;
+    transform: translate(0px, 0vw);
+    top: -3%;
+}
 
-  }
-
-  .savana_gameBlock__crystal {
+.savana_gameBlock__crystal {
     width: 41%;
     height: 20vh;
     margin: auto;
-  }
-  .crystal {
-  height: 10vh;
-  width: 5vw;
-  margin: auto;
-  display: block;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url('../../images/savana-game/crystal_1.png');
-  animation: clr 1s infinite,tran 1s infinite;
+}
 
+.crystal {
+    height: 10vh;
+    width: 5vw;
+    margin: auto;
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../images/savana-game/crystal_1.png');
+    animation: clr 1s infinite,tran 1s infinite;
+}
 
-  }
-  @keyframes clr
-    {
-    0%   {background-image: url('../../images/savana-game/crystal_1.png');}
-    100%   {background-image: url('../../images/savana-game/crystal_2.png');}
+@keyframes clr {
+    0% {background-image: url('../../images/savana-game/crystal_1.png');}
+    100% {background-image: url('../../images/savana-game/crystal_2.png');}
+}
 
-    }
-  @keyframes tran
-    {
-    0%   {transform: translate(0px, 0%);}
-    40%   {transform: translate(0px, 10%);}
-    60%   {transform: translate(0px, 20%);}
-    80%   {transform: translate(0px, 10%);}
-    100%   {transform: translate(0px, 0%);}
+@keyframes tran {
+    0% {transform: translate(0px, 0%);}
+    40% {transform: translate(0px, 10%);}
+    60% {transform: translate(0px, 20%);}
+    80% {transform: translate(0px, 10%);}
+    100% {transform: translate(0px, 0%);}
+}
 
-    }
-  .settingsAndLife__Life__img {
-  height: 5vh;
-    width: 3vw;
-  }
-  @media (max-width: 425px) {
-  .settingsAndLife__Life__img {
+.settingsAndLife__Life__img {
     height: 5vh;
-    width: 7vw;
-  }
-  }
-  .loader {
-  position: absolute;
-  width: 7%;
-  top: 72%;
-  left: 46.5%;
-  height: 13%;
-  border-radius: 50%;
-  perspective: 800px;
-  }
+    width: 3vw;
+}
 
-  .inner {
-  position: absolute;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  }
+@media (max-width: 425px) {
+    .settingsAndLife__Life__img {
+        height: 5vh;
+        width: 7vw;
+    }
+}
 
-  .inner.one {
-  left: 0%;
-  top: 0%;
-  animation: rotate-one 1s linear infinite;
-  border-bottom: 3px solid #EFEFFA;
-  }
+.loader {
+    position: absolute;
+    width: 7%;
+    top: 72%;
+    left: 46.5%;
+    height: 13%;
+    border-radius: 50%;
+    perspective: 800px;
+}
 
-  .inner.two {
-  right: 0%;
-  top: 0%;
-  animation: rotate-two 1s linear infinite;
-  border-right: 3px solid #EFEFFA;
-  }
+.inner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
 
-  .inner.three {
-  right: 0%;
-  bottom: 0%;
-  animation: rotate-three 1s linear infinite;
-  border-top: 3px solid #EFEFFA;
-  }
+.inner.one {
+    left: 0%;
+    top: 0%;
+    animation: rotate-one 1s linear infinite;
+    border-bottom: 3px solid #EFEFFA;
+}
 
-  @keyframes rotate-one {
-  0% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-  }
-  }
+.inner.two {
+    right: 0%;
+    top: 0%;
+    animation: rotate-two 1s linear infinite;
+    border-right: 3px solid #EFEFFA;
+}
 
-  @keyframes rotate-two {
-  0% {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-  }
-  }
+.inner.three {
+    right: 0%;
+    bottom: 0%;
+    animation: rotate-three 1s linear infinite;
+    border-top: 3px solid #EFEFFA;
+}
 
-  @keyframes rotate-three {
-  0% {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
-  }
-  }
-  .divFin {
-  display: block;
-  position: absolute;
-  width: 100vw;
-  height: 26vh;
-  font-family: 'Ubuntu', sans-serif;
-  top: 40%;
-  font-size: 4em;
-  color: white;
-  text-align: center;
-  }
-  .imgFin {
-  width: 30%;
+@keyframes rotate-one {
+    0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }
+    100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); }
+}
+
+@keyframes rotate-two {
+    0% { transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); }
+    100% { transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); }
+}
+
+@keyframes rotate-three {
+    0% { transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); }
+    100% { transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); }
+}
+
+.divFin {
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 26vh;
+    font-family: 'Ubuntu', sans-serif;
+    top: 40%;
+    font-size: 4em;
+    color: white;
+    text-align: center;
+}
+
+.imgFin {
+    width: 30%;
     height: auto;
     margin: auto;
-  }
+}
+
 .game-savana__audio_startGame {
-  display: none;
-  }
+    display: none;
+}
