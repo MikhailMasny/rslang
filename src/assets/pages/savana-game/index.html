@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS Lang - Savana</title>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <body>
+        <div class="savana_wrapper">
+            <div class="savana_screensaverBanner" id="savana_screensaverBanner">
+                <span class="exitButton banner" id="exitButton">✖</span>
+                <span class="exitButton__textOne">Тренировка не закончена!</span>
+                <span class="exitButton__textTwo">Если вы вернетесь к списку, ваши <br> результаты не будут сохранены</span>
+                <button class="savana_screensaverBanner__exitButton">Закрыть</button>
+                <a class="savana_screensaverBanner__closeButton" id="savana_screensaverBanner__closeButton" href="#">Отмена</a>
+            </div>
+            <div class="savana_screensaver" id="savana_screensaver">
+                <div class="savana_screensaver__exitButtonBlock">
+                    <span class="exitButton" id="savana_screensaver__exitButton">✖</span>
+                </div>
+                <div class="savana_screensaverWrapper" id="savana_screensaverWrapper">
+                    <div class="savana_screensaver__mainTextBlock">
+                        <span class="savana_screensaver__mainText" id="savana_screensaver__mainText">САВАННА</span>
+                    </div>
+                    <div class="savana_screensaver__textDescriptionBlock">
+                        <span class="savana_screensaver__textDescription">Тренировка Саванна развивает словарный запас. Чем больше слов <br> ты знаешь, тем больше очков опыта получишь.</span>
+                    </div>
+                    <div class="savana_screensaver__buttonStartBlock">
+                        <button class="savana_screensaver__buttonStart" id="savana_screensaver__buttonStart">Начать</button>
+                    </div>
+                </div>
+                <div class="spinner_img" id="spinner_img">
+                    <div class="loadingio-spinner-spin-ejjq77wjeww"><div class="ldio-knss7jdyktr">
+                        <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div>
+                            <span class="spinner_number" id="spinner_number"></span>
+                        <div></div></div><div><div></div></div><div><div></div></div>
+                        </div>
+                    </div>
+                    <span class="spinner_number" id="spinner_number"></span>
+                </div>
+            </div>
+            <div class="savana_gameBlock" id="savana_gameBlock">
+                <div class="savana_gameBlock__settingsAndLife">
+                    <div class="savana_gameBlock__settingsAndLife__settings">
+                        <img class="savana_gameBlock__settingsAndLife__settings__settingsVolume" id="settings_volume" src="/src/assets/images/volume_on.png" alt="settings_volume">
+                    </div>
+                    <div class="savana_gameBlock__settingsAndLife__Life" id="savana_gameBlock__settingsAndLife__Life">
+                        <img class="settingsAndLife__Life__img"  src="/src/assets/images/heart_1.png" alt="Life">
+                        <img class="settingsAndLife__Life__img"  src="/src/assets/images/heart_1.png" alt="Life">
+                        <img class="settingsAndLife__Life__img"  src="/src/assets/images/heart_1.png" alt="Life">
+                        <img class="settingsAndLife__Life__img"  src="/src/assets/images/heart_1.png" alt="Life">
+                        <img class="settingsAndLife__Life__img"  src="/src/assets/images/heart_1.png" alt="Life">
+                    </div>
+                </div>
+                <div class="savana_gameBlock__staticWords" id="savana_gameBlock__staticWords">
+                    <div class="staticWords"> <span id="Word_0"></span> </div>
+                    <div class="staticWords"> <span id="Word_1"></span> </div>
+                    <div class="staticWords"> <span id="Word_2"></span> </div>
+                    <div class="staticWords"> <span id="Word_3"></span> </div>
+                </div>
+                <div class="savana_gameBlock__dynamicWords" id="savana_gameBlock__dynamicWords"></div>
+                <div class="savana_gameBlock__crystal">
+                    <div class="loader">
+                        <div class="inner one"></div>
+                        <div class="inner two"></div>
+                        <div class="inner three"></div>
+                    </div>
+                    <div class="crystal"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</body>
+</html>
