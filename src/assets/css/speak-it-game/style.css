@@ -1,0 +1,174 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../images/speak-it-game/anastasiia-kamil--uQZPtoJ8nk-unsplash.jpg');
+    background-size: cover;
+}
+
+.sound__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.sound__container .active{
+    border: 3px solid white;
+}
+
+.sound__container-block {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0,0,0,0);
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 190px;
+    height: 50px;
+    margin: 7px;
+    cursor: pointer;
+}
+
+.sound__container-block:hover {
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.75);
+}
+
+.word__container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.text__input {
+    display: none;
+    background-color: rgba(0,0,0,0);
+    border: 3px solid white;
+    border-radius: 10px;
+    margin: 20px;
+    text-align:center;
+    transition: 1s;
+    outline: none;
+    cursor: default;
+}
+
+.translate {
+    font-size: 22px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.btn__container button {
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 22px;
+    outline: none;
+}
+
+.btn__container button:hover {
+    box-shadow: 0px 8px 15px -8px rgba(0,0,0,0.75);
+}
+
+.points {
+    display: flex;
+    justify-content: flex-end;
+    width: 440px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.intro, .results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../images/speak-it-game/anastasiia-kamil--uQZPtoJ8nk-unsplash.jpg');
+    background-size: cover;
+    transition: .5s;
+}
+
+.intro h1 {
+    margin-top: -130px;
+    letter-spacing: 10px;
+}
+
+.intro__btn {
+    outline: none;
+    width: 120px;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 3px solid black;
+    background-color: rgba(0,0,0,0);
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+.levels {
+    border: 2px solid black;
+    font-size: 20px;
+}
+
+.results {
+    display: none;
+    background-image: url('../../images/speak-it-game/kelli-tungay-2LJ4rqK2qfU-unsplash.jpg');
+}
+
+.results__content {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width: 500px;
+    height: 600px;
+    border-radius: 10px;
+    border:2px solid black ;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.content-statistic{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border:2px solid black;
+}
+
+.content-statistic div div{
+    margin: 5px;
+}
+
+.results__content button {
+    height: 40px;
+    border-radius: 10px;
+    border:2px solid black ;
+    outline: none;
+    margin: 5px 0;
+}
+
+.wrong-word, .correct-word {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.headphone-img::after {
+    content: url('../../images/speak-it-game/headphone.png');
+}

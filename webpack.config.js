@@ -14,6 +14,7 @@ module.exports = {
     audioGame: ['@babel/polyfill', './src/assets/javascript/audio-call-game/game.js', './src/assets/css/audio-call-game/game.css'],
     audioEnd: ['@babel/polyfill', './src/assets/javascript/audio-call-game/end.js'],
     sprintGame: ['@babel/polyfill', './src/assets/javascript/sprint-game/app.js', './src/assets/css/sprint-game/style.css'],
+    speakItGame: ['@babel/polyfill', './src/assets/javascript/speak-it-game/app.js', './src/assets/css/speak-it-game/style.css', './src/assets/css/speak-it-game/normalize.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -100,6 +101,15 @@ module.exports = {
       },
       inject: true,
       chunks: ['sprintGame'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/speak-it-game/index.html',
+      filename: './speak-it-game/index.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['speakItGame'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',

@@ -291,6 +291,10 @@
     content: url("./assets/images/sprint-game.png");
 }
 
+.picture__speakit-image::before {
+    content: url("./assets/images/speak-it-game.png");
+}
+
 /* Presentation */
 
 .presentation {
