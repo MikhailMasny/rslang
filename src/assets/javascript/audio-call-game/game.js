@@ -1,3 +1,10 @@
+/* eslint-disable consistent-return */
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
+
 const question = document.getElementById('question');
 const transcription = document.getElementById('transcription');
 const choices = Array.from(document.getElementsByClassName('choice-text'));
@@ -40,7 +47,7 @@ const chooseVariant = (e) => {
   const selectedAnswer = selectedChoice.innerHTML;
   const rightAnswer = currentQuestion.wordTranslate;
 
-  if (selectedAnswer == rightAnswer) {
+  if (selectedAnswer === rightAnswer) {
     incrementScore(bonus);
     choices.forEach((choice) => {
       choice.classList.add('disable');
@@ -74,7 +81,7 @@ const chooseVariant = (e) => {
 const getNewQuestion = () => {
   if (availableQuestions.length === 0) {
     localStorage.setItem('recentScore', score);
-    return window.location.assign('../end/end.html');
+    return window.location.assign('end.html');
   }
   questionCounter++;
   questionCounterText.innerText = `${questionCounter}/20`;
@@ -118,7 +125,7 @@ const dontKnowAction = () => {
   const rightAnswer = currentQuestion.wordTranslate;
 
   choices.forEach((choice) => {
-    if (choice.innerHTML == rightAnswer) {
+    if (choice.innerHTML === rightAnswer) {
       choice.classList.add('correct');
       question.innerHTML = currentQuestion.word;
       transcription.innerHTML = currentQuestion.transcription;
