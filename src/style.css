@@ -299,6 +299,14 @@
     content: url("./assets/images/savana-game.png");
 }
 
+.picture__pair-image::before {
+    content: url("./assets/images/find-a-pair-game.png");
+}
+
+.picture__puzzle-image::before {
+    content: url("./assets/images/english-puzzle-game.png");
+}
+
 /* Presentation */
 
 .presentation {

@@ -46,9 +46,6 @@ const NUMBER_LIST = [
 const PICTURE_TITLE = [
   'Джон Кольер – Леди Годива (1898)',
 ];
-const PICTURE_URL = [
-  './assets/images/background.jpg',
-];
 let sentenceCounter = 0;
 let castling = [];
 let idkResult = [];
@@ -91,11 +88,9 @@ hintImage.addEventListener('click', () => {
   if (localStorage.getItem('imageHint') === 'on' || localStorage.getItem('imageHint') === null) {
     localStorage.setItem('imageHint', 'off');
     hintImage.style.backgroundColor = 'rgba(255, 0, 0, 0.75)';
-    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = 'none';
   } else if (localStorage.getItem('imageHint') === 'off') {
     localStorage.setItem('imageHint', 'on');
     hintImage.style.backgroundColor = 'rgba(128, 128, 128, 0.5)';
-    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[0]})`;
   }
 });
 
@@ -160,10 +155,8 @@ function onLoad() {
   // image hint
   if (localStorage.getItem('imageHint') === 'on' || localStorage.getItem('imageHint') === null) {
     hintImage.style.backgroundColor = 'rgba(128, 128, 128, 0.5)';
-    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[0]})`;
   } else if (localStorage.getItem('imageHint') === 'off') {
     hintImage.style.backgroundColor = 'rgba(255, 0, 0, 0.75)';
-    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = 'none';
   }
 }
 
@@ -394,7 +387,6 @@ async function getCheck() {
     } else if (buttonCheck.innerText === 'Results') {
       Array.from(document.getElementsByClassName('game-block'))[0].classList.add('display-none');
       Array.from(document.getElementsByClassName('result-block'))[0].classList.remove('display-none');
-      Array.from(document.getElementsByClassName('result-block__picture'))[0].style.backgroundImage = `url(${PICTURE_URL[0]})`;
       Array.from(document.getElementsByClassName('result-block__title'))[0].innerText = PICTURE_TITLE[0]; // eslint-disable-line prefer-destructuring
       document.getElementById('idkNumber').innerText = idkResult.length;
       document.getElementById('checkNumber').innerText = checkResult.length;
