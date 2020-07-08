@@ -1,6 +1,6 @@
 const apiURL = 'https://afternoon-falls-25894.herokuapp.com/';
 let pageNumber = 1; // 1..30, 20 words per page
-let userLevel = 1; // 1..6
+const userLevel = 1; // 1..6
 const path = 'https://raw.githubusercontent.com/splastiq/rslang-data/master/';
 
 const main = document.createElement('div');
@@ -10,6 +10,8 @@ const header = document.createElement('div');
 const dictionary = document.createElement('div');
 const olWrapper = document.createElement('div');
 const settings = document.createElement('div');
+const settingsScreen = document.createElement('div');
+
 const audio = new Audio();
 let gessedOrShowTip = false;
 let mySwiper = null;
@@ -21,7 +23,10 @@ let favoriteWords = [];
 let deletedWords = [];
 let guessedWords = [];
 let unknownWords = [];
-let userSettings = {};
+let userSettings = {
+  showPictures: true,
+  showTranslation: true,
+};
 
 if (localStorage.RSLangAppData) {
   favoriteWords = appData.favoriteWords;
@@ -36,45 +41,46 @@ const buildSettingsScreen = () => {
   <h2>Settings</h2>
   <p class="text-muted">Your own properties for customize user interface</p>
   <form class="user-controls">
-      <label for="user-level"></label>User level:</label>
+      <div class="set-row">
+      <label for="user-level"></label>User level</label>
       <input type="number" onClick="this.select();" name="user-level" pattern="[0-9]*" inputmode="numeric" min="1" max="6" value="1">
-      <br>
-      <label for="cards-per-day"></label>Cards per day:</label>
+      <br></div><div class="set-row">
+      <label for="cards-per-day"></label>Cards per day</label>
       <input type="number" onClick="this.select();" name="cards-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="20">
+      <br></div><div class="set-row">
+      <label for="new-words-per-day"></label>New words per day</label>
+      <input type="number" onClick="this.select();" name="new-words-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="10">
+      <br></div>
+      <fieldset class="properties-fieldset">
+      <legend>Cards properties</legend>
+      <input class="properties-show-picture" type="checkbox" name="showPicture" checked>
+      <label for="showPicture">show pictures</label>
       <br>
-      <label for="new-words-per-day"></label>New words per day:</label>
-      <input type="number" onClick="this.select();" name="new-words-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="20">
+      <input type="checkbox" name="show translation" checked>
+      <label for="show translation">show translation</label>
       <br>
-      <!--fieldset>
-      <legend>Работа со временем</legend>
-      </fieldset-->
-      <label for="cards-per-day"></label>Show pictures:</label>
-      <input type="checkbox" name="cards-per-day">
-      <br>
-      <label for="show translation"></label>Show translation:</label>
-      <input type="checkbox" name="show translation">
-      <br>
-      <label for="show transcription"></label>Show transcription:</label>
       <input type="checkbox" name="show transcription">
+      <label for="show transcription">show transcription</label>
       <br>
-      <label for="show meaning"></label>Show meaning:</label>
       <input type="checkbox" name="show meaning">
+      <label for="show meaning">show meaning</label>
       <br>
+      </fieldset>
       <button class="saveSettings">Save</button>
   </form>`;
   settings.classList.add('user-settings');
   settings.innerHTML = settingsHTML;
-  app.append(settings);
+  settingsScreen.append(settings);
 };
 
 const buildMainScreen = () => {
   const formHTML = `
-  <form class="user-controls">
-      <!--label for="user-level"></!--label>Level:</label>
+  <form class="menu">
+      <!--label for="user-level">Level:</label>
       <input type="number" onClick="this.select();" name="user-level" pattern="[0-9]*" inputmode="numeric" min="1" max="6" value="1">
       <label for="words-page"></label>Page:</label>
       <input type="number" onClick="this.select();" name="words-page" pattern="[0-9]*" inputmode="numeric" min="1" max="30" value="1"-->
-      <button class="main">Learning</button>
+      <button class="learn">Learning</button>
       <button class="dictionary-button">Dictionary</button>
       <button class="settings">Settings</button>
   </form>`;
@@ -91,6 +97,8 @@ const buildMainScreen = () => {
   app.append(main);
   dictionary.classList.add('dictionary');
   main.append(dictionary);
+  settingsScreen.classList.add('settings-screen');
+  main.append(settingsScreen);
   olWrapper.classList.add('swiper-container');
   const sliderArrowsWrapper = document.createElement('div');
   sliderArrowsWrapper.classList.add('slider-arrows-wrapper');
@@ -102,6 +110,7 @@ const buildMainScreen = () => {
 };
 
 buildMainScreen();
+buildSettingsScreen();
 
 const swiperInit = () => {
   isSwiperInit = true;
@@ -125,9 +134,11 @@ const getWords = (page, group) => {
           li.classList.add('swiper-slide');
           li.innerHTML = `
           <div class="word-info">
-            <div data-guessed="false" data-wordid="${element.id}" data-word="${element.word}" data-audio="${path + element.audio}">${element.textExample} (${element.wordTranslate})</div>
-            <div class="text-muted">${element.textExampleTranslate}</div>
-            <div><span class="tip">👁️</span><span class="fav">⭐</span><span class="del">🗑️</span></div>
+            <div class="word-image"><img src="${path + element.image}"></div>
+            <div class="text-example" data-guessed="false" data-audioexample="${path + element.audioExample}" data-wordid="${element.id}" data-word="${element.word}" data-audio="${path + element.audio}">${element.textExample}</div>
+            <div class="word-translation">${element.wordTranslate}</div>
+            <div class="text-example-translate text-muted">${element.textExampleTranslate}</div>
+            <div class="card-buttons"><span class="tip">👁️</span><span class="fav">⭐</span><span class="del">🗑️</span></div>
           </div>`;
           ol.append(li);
         }
@@ -168,7 +179,7 @@ const saveResults = () => {
 ol.addEventListener('click', (event) => {
   const clickedElement = event.target;
   const parentNode = clickedElement.closest('li').children[0];
-  const currentWord = parentNode.children[0].dataset.wordid;
+  const currentWord = parentNode.children[1].dataset.wordid;
   if (clickedElement.classList.contains('tip')) {
     if (!unknownWords.includes(currentWord)) {
       unknownWords.push(currentWord);
@@ -178,19 +189,22 @@ ol.addEventListener('click', (event) => {
     parentNode.querySelector('b').style.color = 'grey';
     parentNode.querySelector('b').style.display = 'inline-block';
     parentNode.querySelector('input').style.display = 'none';
-    audio.setAttribute('src', parentNode.children[0].dataset.audio);
+    audio.setAttribute('src', parentNode.children[1].dataset.audio);
     audio.play();
   }
+  // if (clickedElement.classList.contains('text-example')) {
+  //   console.log(parentNode.children[1].dataset.audioexample);
+  //   audio.setAttribute('src', parentNode.children[1].dataset.audioexample);
+  //   audio.play();
+  // }
   if (clickedElement.classList.contains('fav')) {
-    // eslint-disable-next-line no-restricted-globals
-    const shure4Favorites = confirm('Add to favorites?');
+    const shure4Favorites = window.confirm('Add to favorites?');
     if (!favoriteWords.includes(currentWord) && shure4Favorites) {
       favoriteWords.push(currentWord);
     }
   }
   if (clickedElement.classList.contains('del')) {
-    // eslint-disable-next-line no-restricted-globals
-    const shure4Delete = confirm('Are you shure for delete word?');
+    const shure4Delete = window.confirm('Are you shure for delete word?');
     if (!deletedWords.includes(currentWord) && shure4Delete) {
       deletedWords.push(currentWord);
       clickedElement.closest('li').style.display = 'none';
@@ -215,7 +229,7 @@ ol.addEventListener('click', (event) => {
 ol.addEventListener('input', (event) => {
   const clickedEl = event.target;
   const parentNode = clickedEl.closest('li').children[0];
-  const currentWord = parentNode.children[0].dataset.wordid;
+  const currentWord = parentNode.children[1].dataset.wordid;
   if (clickedEl.value.length === 0
     // || clickedElement.value.toLowerCase() !== clickedElement.nextSibling.innerText
     || clickedEl.value.toLowerCase() !== clickedEl.parentNode.dataset.word.toLowerCase()) {
@@ -238,12 +252,14 @@ ol.addEventListener('input', (event) => {
   }
 });
 
-const userControls = document.querySelector('.user-controls');
-userControls.addEventListener('input', (event) => {
-  ol.innerHTML = '';
-  if (event.target.name === 'words-page') pageNumber = event.target.value;
-  if (event.target.name === 'user-level') userLevel = event.target.value;
-  getWords(pageNumber, userLevel);
+const userSettingsScreen = document.querySelector('.user-settings');
+userSettingsScreen.addEventListener('input', () => {
+  console.log('useer-controls');
+  if (!document.querySelector('.properties-show-picture').checked) {
+    document.querySelector('.word-image').style.display = 'none';
+  } else {
+    document.querySelector('.word-image').style.display = 'block';
+  }
 });
 
 const accordeon = () => {
@@ -266,7 +282,7 @@ const getWordsfromID = (wordID, trgt) => {
   fetch(`${apiURL}words/${wordID}`)
     .then((response) => response.json())
     .then((data) => {
-      target.innerText += data.word;
+      target.innerHTML += `${data.word} ${data.transcription} - ${data.wordTranslate} <span class="dict-item-buttons"><!--span class="dict-word-sound">🎵</span--> <span class="dict-word-del">🗑️</span></span>`;
     });
   return '';
 };
@@ -286,10 +302,10 @@ const buildDictionaryScreen = () => {
   <div class="dictionary-grid">
     <h2>Dictionary</h2>
     <p class="text-muted">Tip: Click item to remove.<br>
-    Learned - words you guessed right<br>
-    Deleted - words that you removed<br>
-    Favorite - words you mark with star<br>
-    Difficult - words that you spied</p>
+    Learned - words that you guessed right<br>
+    Favorite - words that you marked with star<br>
+    Difficult - words that you spied<br>
+    Deleted - words that you removed, this words won't show again in main app</p>
     <div class="learned">
       <h3>Learned<span class="learned-count">${guessedWords.length}</h3>
       <ul>
@@ -356,27 +372,27 @@ const buildDictionaryScreen = () => {
   });
 };
 
-userControls.addEventListener('click', (event) => {
+document.querySelector('.menu').addEventListener('click', (event) => {
   event.preventDefault();
   if (event.target.classList.contains('settings')) {
-    buildSettingsScreen();
+    // buildSettingsScreen();
     document.querySelector('.swiper-container').style.display = 'none';
     document.querySelector('.slider-arrows-wrapper').style.display = 'none';
-    document.querySelector('.user-settings').style.display = 'block';
+    document.querySelector('.settings-screen').style.display = 'block';
     document.querySelector('.dictionary').style.display = 'none';
   }
   if (event.target.classList.contains('dictionary-button')) {
     buildDictionaryScreen();
     document.querySelector('.swiper-container').style.display = 'none';
     document.querySelector('.slider-arrows-wrapper').style.display = 'none';
-    document.querySelector('.user-settings').style.display = 'none';
+    document.querySelector('.settings-screen').style.display = 'none';
     document.querySelector('.dictionary').style.display = 'block';
   }
-  if (event.target.classList.contains('main')) {
+  if (event.target.classList.contains('learn')) {
     buildSettingsScreen();
     document.querySelector('.swiper-container').style.display = 'block';
     document.querySelector('.slider-arrows-wrapper').style.display = 'block';
-    document.querySelector('.user-settings').style.display = 'none';
+    document.querySelector('.settings-screen').style.display = 'none';
     document.querySelector('.dictionary').style.display = 'none';
   }
 });
@@ -386,7 +402,7 @@ dictionary.addEventListener('click', (event) => {
   const difficultCount = document.querySelector('.difficult-count');
   const deletedCount = document.querySelector('.deleted-count');
   const favoriteCount = document.querySelector('.favorite-count');
-  const clickedWord = event.target;
+  const clickedWord = event.target.parentNode.parentNode;
   if (clickedWord.classList.contains('learned-word')) {
     const indexOfWordId = guessedWords.indexOf(clickedWord.dataset.id);
     guessedWords.splice(indexOfWordId, 1);
@@ -418,21 +434,18 @@ dictionary.addEventListener('click', (event) => {
 });
 
 document.querySelector('.slider-arrows-wrapper').addEventListener('click', (event) => {
+  mySwiper.on('reachEnd', () => {
+    pageNumber += 1;
+    getWords(pageNumber, userLevel);
+  });
   if (event.target.classList.contains('swiper-button-next') && gessedOrShowTip) {
     mySwiper.slideNext();
   }
   if (event.target.classList.contains('swiper-button-prev')) {
     mySwiper.slidePrev();
-    // document.querySelector('.swiper-button-next').classList.remove('swiper-button-disabled');
-    // gessedOrShowTip = true;
   }
   gessedOrShowTip = false;
   document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
-  mySwiper.on('reachEnd', () => {
-    pageNumber += 1;
-    getWords(pageNumber, userLevel);
-    // document.querySelectorAll('.user-controls input')[1].value = pageNumber;
-  });
 });
 
 document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
