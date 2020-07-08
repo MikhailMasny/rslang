@@ -240,6 +240,7 @@ swithcSound.addEventListener('click', async () => {
 
 function fillCurrentSentence(array) {
   if (sentenceCounter < 10) {
+    array[0].sort(() => Math.random() - 0.5);
     for (let i = 0; i < array[0].length; i += 1) {
       const word = document.createElement('div');
       word.classList.add('word', 'flex-row');
