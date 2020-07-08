@@ -2,8 +2,8 @@ const BUTTON = document.querySelector('.link');
 
 BUTTON.addEventListener('click', () => {
   if (localStorage.getItem('user_credentials')) {
-    location.href = '/find-a-pair/src/html/index.html';
+    window.location.href = '/find-a-pair-game/game.html';
   } else {
-    location.href = '/signin.html';
+    window.location.href = '/signin.html';
   }
 });

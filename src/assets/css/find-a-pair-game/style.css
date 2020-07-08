@@ -1,0 +1,46 @@
+body {
+    height: 100vh;
+    margin: 0 auto;
+    font-family: 'Heebo', sans-serif;
+    background-image: url('../../images/find-a-pair-game/background.jpg');
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.link {
+    width: 150px;
+    height: 50px;
+    background: #FDE24F;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 0;
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.5px;
+    color: #00214D;
+    transition: .5s;
+    margin-top: 10px;
+}
+
+.link:hover {
+    background-color: #00EBC7;
+}
+
+p {
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 38px;
+}

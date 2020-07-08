@@ -17,6 +17,8 @@ module.exports = {
     speakItGame: ['@babel/polyfill', './src/assets/javascript/speak-it-game/app.js', './src/assets/css/speak-it-game/style.css'],
     savanaGame: ['@babel/polyfill', './src/assets/javascript/savana-game/app.js', './src/assets/css/savana-game/style.css', './src/assets/css/savana-game/yui.css'],
     puzzleGame: ['@babel/polyfill', './src/assets/javascript/english-puzzle-game/app.js', './src/assets/css/english-puzzle-game/style.css'],
+    pairHome: ['@babel/polyfill', './src/assets/javascript/find-a-pair-game/app.js', './src/assets/css/find-a-pair-game/style.css'],
+    pairGame: ['@babel/polyfill', './src/assets/javascript/find-a-pair-game/game.js', './src/assets/css/find-a-pair-game/game.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -130,6 +132,24 @@ module.exports = {
       },
       inject: true,
       chunks: ['puzzleGame'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/find-a-pair-game/index.html',
+      filename: './find-a-pair-game/index.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['pairHome'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/find-a-pair-game/game.html',
+      filename: './find-a-pair-game/game.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['pairGame'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
