@@ -16,6 +16,7 @@ module.exports = {
     sprintGame: ['@babel/polyfill', './src/assets/javascript/sprint-game/app.js', './src/assets/css/sprint-game/style.css'],
     speakItGame: ['@babel/polyfill', './src/assets/javascript/speak-it-game/app.js', './src/assets/css/speak-it-game/style.css'],
     savanaGame: ['@babel/polyfill', './src/assets/javascript/savana-game/app.js', './src/assets/css/savana-game/style.css', './src/assets/css/savana-game/yui.css'],
+    puzzleGame: ['@babel/polyfill', './src/assets/javascript/english-puzzle-game/app.js', './src/assets/css/english-puzzle-game/style.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -120,6 +121,15 @@ module.exports = {
       },
       inject: true,
       chunks: ['savanaGame'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/english-puzzle-game/index.html',
+      filename: './english-puzzle-game/index.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['puzzleGame'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
