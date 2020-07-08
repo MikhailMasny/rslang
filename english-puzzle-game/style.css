@@ -1,0 +1,339 @@
+body {
+    margin: 0;
+    min-width: 320px;
+    height: 100vh;
+    width: 100%;
+    background-image: url(./assets/images/puzzle-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    user-select: none;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.start-screen {
+    color: whitesmoke;
+}
+
+.start-screen__title,
+.start-screen__sub-title {
+    margin: 0 0 20px 0;
+    width: 300px;
+    text-align: center;
+}
+
+.start-screen__game-name {
+    text-transform: uppercase;
+}
+
+.start-screen__sub-title {
+    font-weight: lighter;
+}
+
+.start-screen__button {
+    width: 200px;
+    height: 50px;
+    border: 1px solid rgba(245, 245, 245, 0.25);
+    background-color: rgba(128, 128, 128, 0.75);
+    outline: none;
+    border-radius: 5px;
+    font-size: 17px;
+    color: whitesmoke;
+    transition: all 0.5s;
+}
+
+.start-screen__button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.game-block {
+    width: 960px;
+    height: 100vh;
+    justify-content: center;
+}
+
+.game-block__menu {
+    width: 100%;
+    height: 50px;
+    color: whitesmoke;
+    font-size: 18px;
+    justify-content: space-between;
+}
+
+.game-block__menu p {
+    margin: 0 10px 0 10px;
+}
+
+.game-block__select-block {
+    width: 240px;
+    height: 30px;
+}
+
+.game-block__select-menu {
+    width: 60px;
+    height: 30px;
+    outline: none;
+    text-align-last: center;
+    border: 1px solid rgba(245, 245, 245, 0.25);
+    border-radius: 3px;
+    background-color: rgba(128, 128, 128, 0.75);
+    color: whitesmoke;
+}
+
+.game-block__select-menu:hover {
+    cursor: pointer;
+}
+
+.game-block__button-block {
+    width: 200px;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.game-block__button-block button {
+    height: 43px;
+    width: 43px;
+    background-size: auto;
+    border: 1px solid rgba(245, 245, 245, 0.25);
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    justify-content: center;
+    transition: all 1s;
+}
+
+.game-block__button-block button img {
+    height: 25px;
+    width: 25px;
+}
+
+.game-block__hint {
+    width: 500px;
+    height: 100px;
+}
+
+.game-block__hint-button {
+    width: 49px;
+    height: 49px;
+    border: 1px solid rgba(245, 245, 245, 0.25);
+    background-color: rgba(128, 128, 128, 0.5);
+    outline: none;
+    border-radius: 50%;
+    justify-content: center;
+    transition: all 0.1s;
+}
+
+.game-block__hint-button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.game-block__hint-button img {
+    width: 35px;
+    height: 35px;
+}
+
+.game-block__hint-message {
+    width: 100%;
+    height: 50px;
+    margin: 0px 0 0 0;
+    color: whitesmoke;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.game-block__game-field {
+    height: 500px;
+    width: 100%;
+}
+
+.game-block__number-list {
+    height: 100%;
+    width: 50px;
+}
+
+.game-block__number {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(245, 245, 245, 0.25);
+    border-radius: 50%;
+    margin: 9px 0 9px 0;
+    background-color: rgba(128, 128, 128, 0.75);
+    color: whitesmoke;
+    font-size: 18px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.game-block__sentence-list {
+    width: 910px;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.game-block__sentence {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(128, 128, 128, 1);
+}
+
+.game-block__enigma {
+    width: 910px;
+    height: 50px;
+    margin: 25px 0  0 50px;
+    color: whitesmoke;
+}
+
+.title-text {
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.game-block__action {
+    width: 320px;
+    height: 75px;
+    margin: 25px 0 75px 0;
+    justify-content: space-between;
+}
+
+.game-block__action button,
+.result-block button {
+    width: 150px;
+    height: 48px;
+    border: 1px solid rgba(245, 245, 245, 0.25);
+    background-color: rgba(128, 128, 128, 0.75);
+    outline: none;
+    border-radius: 5px;
+    font-size: 17px;
+    color: whitesmoke;
+    transition: all 0.5s;
+}
+
+.game-block__action button:hover,
+.result-block button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.display-none {
+    display: none;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.word {
+    height: 46px;
+    border: 2px solid white;
+    background-color: gray;
+    color: whitesmoke;
+    justify-content: center;
+    transition: all 0.25s;
+}
+
+.word-guess {
+    height: 46px;
+    background-color: gray;
+    color: whitesmoke;
+    justify-content: center;
+    transition: all 1s;
+}
+
+.word:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.background-none {
+    border: 2px solid whitesmoke;
+    background: none;
+}
+
+.border-none {
+    border: none;
+}
+
+.border-none:hover {
+    cursor: default;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.result-block__picture {
+    height: 200px;
+    width: 400px;
+    background-color: wheat;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.result-block__title {
+    margin: 15px 0 15px 0;
+    color: white;
+    font-size: 22px;
+}
+
+.result-block__wrapper {
+    height: 500px;
+    width: 1000px;
+    background-color: rgba(128, 128, 128, 0.75);
+}
+
+.result-block button {
+    margin-top: 15px;
+}
+
+.result-block__idk,
+.result-block__check {
+    width: 50%;
+    height: 100%;
+    color: white;
+    font-size: 22px;
+    justify-content: center;
+}
+
+.result-block__check div {
+    color: green;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.result-block__idk div {
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#idkBlock,
+#checkBlock {
+    color: whitesmoke;
+}
+
+.font-size {
+    font-size: 17px;
+    font-weight: lighter;
+    margin: 5px 0 0 0;
+    text-align: center;
+}
