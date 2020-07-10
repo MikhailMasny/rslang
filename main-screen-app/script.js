@@ -29,20 +29,21 @@ let guessedWords = [];
 let unknownWords = [];
 let showPictures = true;
 let showTranslation = true;
-// let userSettings = {
-
-// };
 
 if (localStorage.RSLangAppData) {
   favoriteWords = appData.favoriteWords;
   deletedWords = appData.deletedWords;
   guessedWords = appData.guessedWords;
   unknownWords = appData.unknownWords;
-  // userSettings = appData.userSettings;
   showPictures = appData.showPictures;
   showTranslation = appData.showTranslation;
   userLevel = appData.userLevel;
   cardsCount = appData.cardsCount;
+} else {
+  userLevel = 1;
+  cardsCount = 10;
+  showPictures = true;
+  showTranslation = true;
 }
 
 const buildSettingsScreen = () => {
@@ -150,10 +151,6 @@ const swiperInit = () => {
   // eslint-disable-next-line no-undef
   mySwiper = new Swiper('.swiper-container', {
     allowTouchMove: false,
-    // navigation: {
-    //   nextEl: '.swiper-button-next',
-    //   prevEl: '.swiper-button-prev',
-    // },
   });
 };
 
@@ -163,7 +160,6 @@ const saveResults = () => {
     deletedWords,
     guessedWords,
     unknownWords,
-    // userSettings,
     showPictures,
     showTranslation,
     userLevel,
@@ -239,7 +235,7 @@ const getWords = (page, group) => {
       progressBar.style.display = 'block';
     });
 };
-
+console.log(userLevel);
 getWords(pageNumber, userLevel);
 
 const loadNextOPageOfWords = () => {
@@ -415,17 +411,12 @@ const buildDictionaryScreen = () => {
   dictionary.innerHTML = dictionaryHTML;
   accordeon();
 
-  // const buttonDelete = document.createElement('div');
-  // buttonDelete.classList.add('button-delete');
-  // buttonDelete.innerText = '🗑️';
-
   const learnedUl = document.querySelector('.learned ul');
   guessedWords.forEach((item) => {
     const learnedLi = document.createElement('li');
     learnedLi.classList.add('learned-word');
     learnedLi.dataset.id = item;
     learnedLi.innerText = `${getWordsfromID(item, learnedLi)}`;
-    // learnedLi.append(buttonDelete);
     learnedUl.append(learnedLi);
   });
 
