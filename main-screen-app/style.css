@@ -36,7 +36,7 @@ button:focus {
     outline: none;
 }
 
-ol {
+ol, ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -63,6 +63,10 @@ h2 {
     padding: 16px;
     text-align: center;
     color: white;
+}
+
+.header h1 {
+    margin: 10px;
 }
 
 .tip,
@@ -145,10 +149,10 @@ h2 {
 }
 
 .word-info {
-    margin: 10px;
+    /* margin: 10px; */
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 0 5px #0001;
+    /* border-radius: 20px; */
+    /* box-shadow: 0 0 5px #0001; */
     text-align: center;
     background-color: white;
 }
@@ -158,8 +162,8 @@ h2 {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #2b2d4d;
-    color: #fff;
+    background-color: #3F51B5;
+    color: #ffffff;
     /* top: 0;
     margin-top: 0; */
     bottom: auto;
@@ -167,23 +171,25 @@ h2 {
     top: auto;
     left: calc(50% - 20px);
     position: static;
-    margin: 0 auto;
+    margin: 0;
+    display: inline-flex;
 }
 
-.swiper-button-prev {
+/* .swiper-button-prev {
     display: none;
-}
+} */
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
     font-size: 16px;
 }
 
-/* .slider-arrows-wrapper {
-    position: relative;
-    top: -200px;
-    margin: -50px;
-} */
+.slider-arrows-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 40px;
+}
 
 .learned-count,
 .difficult-count,
@@ -212,7 +218,7 @@ h2 {
 
 .word-image img {
     width: 100%;
-    border-radius: 20px 20px 0 0;
+    /* border-radius: 20px 20px 0 0; */
 }
 
 .word-translation {
@@ -264,12 +270,18 @@ h2 {
 }
 
 .card-buttons {
-    font-size: 30px;
-    margin: 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-around;
 }
 
 .card-buttons span {
-    margin: 0 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+
+.card-buttons span:hover {
+    background-color: #003dfa1a;
 }
 
 .set-row {
@@ -277,10 +289,8 @@ h2 {
 }
 
 .progress-bar {
-    background-color: #eee;
-    margin: 20px 10px;
-    border-radius: 1rem;
-    height: 5px;
+    background-color: #ccc;
+    height: 10px;
     overflow: hidden;
     position: relative;
     z-index: 2;
@@ -288,14 +298,13 @@ h2 {
 
 .progress-bar-indicator {
     width: 0%;
-    background-color: #ffc107;
-    height: 5px;
+    background-color: #FF9800;
+    height: 10px;
 }
 
 .cards-counter-wrapper {
     text-align: center;
-    color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .modal-finish {
@@ -313,4 +322,82 @@ h2 {
 
 .modal-finish button:hover {
     background-color: #354c92;
+}
+
+.cards-wrapper {
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.1s 0.1s ease-in;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 400px) {
+    .word-image img {
+        border-radius: 0;
+    }
+    .cards-wrapper {
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+  }
+
+  .navigation {
+    position: fixed;
+    left: -400px;
+    top: 0;
+    bottom: 0;
+    z-index: 11;
+    padding: 80px;
+    transition: left 0.2s ease-in-out;
+    background-color: #3f5aaa;
+    color: #fff;
+    max-width: 320px;
+}
+
+.navigation_show {
+    left: 0;
+}
+
+.hamburger {
+    position: fixed;
+    z-index: 12;
+    cursor: pointer;
+    color: #3f5aaa;
+    background-color: white;
+    padding: 0.5rem 0.7rem 0.3rem;
+    border-radius: 5rem;
+    transition: color 0.3s;
+    display: inline-block;
+    margin: 20px 10px;
+}
+
+.menu__item {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 2rem;
+    /* margin-left: -10px; */
+}
+
+.menu__item:hover,
+.menu__item_active {
+    background-color: #fff3;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    background-color: #0008;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
 }

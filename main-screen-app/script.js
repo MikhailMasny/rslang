@@ -97,14 +97,15 @@ const buildMainScreen = () => {
       <input type="number" onClick="this.select();" name="user-level" pattern="[0-9]*" inputmode="numeric" min="1" max="6" value="1">
       <label for="words-page"></label>Page:</label>
       <input type="number" onClick="this.select();" name="words-page" pattern="[0-9]*" inputmode="numeric" min="1" max="30" value="1"-->
-      <button class="learn">Learning</button>
+      <!--button class="learn">Learning</--button>
       <button class="dictionary-button">Dictionary</button>
       <button class="settings">Settings</button>
   </form>`;
 
   const sliderArrows = `
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>`;
+    <div class="swiper-button-prev"></div>
+    <div class="cards-counter-wrapper"><span class="current-progress-cards">0</span>/<span class="cards-per-day">${cardsCount}</span></div>
+    <div class="swiper-button-next"></div>`;
 
   header.classList.add('header');
   header.innerHTML = '<h1>RS Lang</h1>';
@@ -117,9 +118,11 @@ const buildMainScreen = () => {
   settingsScreen.classList.add('settings-screen');
   main.append(settingsScreen);
   olWrapper.classList.add('swiper-container');
+
   const sliderArrowsWrapper = document.createElement('div');
   sliderArrowsWrapper.classList.add('slider-arrows-wrapper');
   sliderArrowsWrapper.innerHTML = sliderArrows;
+
   progressBar.style.display = 'none';
   progressBar.classList.add('progress-bar');
   const progressBarIndicator = document.createElement('div');
@@ -128,13 +131,9 @@ const buildMainScreen = () => {
   ol.classList.add('swiper-wrapper');
   olWrapper.append(ol);
   cardsWrapper.classList.add('cards-wrapper');
-  const cardsCounterWrapper = document.createElement('div');
-  cardsCounterWrapper.classList.add('cards-counter-wrapper');
-  cardsCounterWrapper.innerHTML = `<span class="current-progress-cards">0</span>/<span class="cards-per-day">${cardsCount}</span>`;
   cardsWrapper.append(olWrapper);
   cardsWrapper.append(sliderArrowsWrapper);
   cardsWrapper.append(progressBar);
-  cardsWrapper.append(cardsCounterWrapper);
   main.append(cardsWrapper);
 };
 
@@ -184,7 +183,7 @@ const checkUserSettings = () => {
   document.querySelector('.properties-user-level').value = userLevel;
   document.querySelector('.properties-cards-per-day').value = cardsCount;
 };
-
+// cardsWrapper.style.opacity = '0';
 const getWords = (page, group) => {
   fetch(`${apiURL}words?page=${page - 1}&group=${group - 1}`)
     .then((response) => response.json())
@@ -200,7 +199,9 @@ const getWords = (page, group) => {
             <div class="word-translation">${element.wordTranslate}</div>
             <div class="text-example-translate text-muted">${element.textExampleTranslate}</div>
             <!--div class="text-example-meaning text-muted">${element.textMeaning}</div-->
-            <div class="card-buttons"><span class="tip">👁️</span><span class="fav">⭐</span><span class="del">🗑️</span></div>
+            <div class="card-buttons">
+              <span class="tip">don't know</span><span class="fav">difficult</span><span class="del">delete</span>
+            </div>
           </div>`;
           ol.append(li);
         }
@@ -218,6 +219,7 @@ const getWords = (page, group) => {
           span.style.width = `${elWidth}px`;
           span.classList.add('word-input');
           parentDiv.insertBefore(span, el);
+          cardsWrapper.style.opacity = '1';
         }
       });
       if (!isSwiperInit) swiperInit();
@@ -393,7 +395,7 @@ const buildDictionaryScreen = () => {
       </ul>
     </div>
     <div class="difficult">
-      <h3>Difficult<span class="difficult-count">${unknownWords.length}</h3>
+      <h3>Don't know<span class="difficult-count">${unknownWords.length}</h3>
       <ul>
       </ul>
     </div>
@@ -403,7 +405,7 @@ const buildDictionaryScreen = () => {
       </ul>
     </div>
     <div class="favorite">
-      <h3>Favorite<span class="favorite-count">${favoriteWords.length}</h3>
+      <h3>Difficult<span class="favorite-count">${favoriteWords.length}</h3>
       <ul>
       </ul>
     </div>
@@ -511,6 +513,7 @@ const arrowsClicked = (event) => {
     cardNumber += 1;
     document.querySelector('.current-progress-cards').innerText = cardNumber;
     progressBarChange(cardNumber);
+    document.querySelector('.swiper-button-prev').classList.remove('swiper-button-disabled');
   }
   if (event.target.classList.contains('swiper-button-prev')) {
     mySwiper.slidePrev();
@@ -536,3 +539,44 @@ document.querySelector('.slider-arrows-wrapper').addEventListener('click', (even
 });
 
 document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
+document.querySelector('.swiper-button-prev').classList.add('swiper-button-disabled');
+
+const hamburger = document.querySelector('.hamburger');
+const navigation = document.querySelector('.navigation');
+const overlay = document.querySelector('.overlay');
+
+let isActive = false;
+document.addEventListener('click', (event) => {
+  if (event.target.classList.contains('hamburger')) {
+    if (!isActive) {
+      isActive = true;
+      navigation.classList.add('navigation_show');
+      hamburger.classList.add('hamburger_active');
+      hamburger.innerText = '✕';
+      overlay.style.display = 'block';
+    } else {
+      isActive = false;
+      navigation.classList.remove('navigation_show');
+      hamburger.classList.remove('hamburger_active');
+      hamburger.innerText = 'MENU';
+      overlay.style.display = 'none';
+    }
+  }
+
+  if (isActive && (event.target.classList.contains('menu__item') || event.target.classList.contains('overlay'))) {
+    isActive = false;
+    navigation.classList.remove('navigation_show');
+    hamburger.classList.remove('hamburger_active');
+    hamburger.innerText = 'MENU';
+    overlay.style.display = 'none';
+  }
+});
+
+const nav = document.querySelector('nav ul');
+const menuItems = document.querySelectorAll('.menu__item');
+nav.addEventListener('click', (event) => {
+  if (event.target.classList.contains('menu__item')) {
+    menuItems.forEach((item) => item.classList.remove('menu__item_active'));
+    event.target.classList.add('menu__item_active');
+  }
+});
