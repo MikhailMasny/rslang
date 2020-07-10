@@ -1,6 +1,5 @@
 const apiURL = 'https://afternoon-falls-25894.herokuapp.com/';
 let pageNumber = 1; // 1..30, 20 words per page
-const userLevel = 1; // 1..6
 const path = 'https://raw.githubusercontent.com/splastiq/rslang-data/master/';
 
 const main = document.createElement('div');
@@ -11,29 +10,39 @@ const dictionary = document.createElement('div');
 const olWrapper = document.createElement('div');
 const settings = document.createElement('div');
 const settingsScreen = document.createElement('div');
+const cardsWrapper = document.createElement('div');
+const progressBar = document.createElement('div');
 
 const audio = new Audio();
 let gessedOrShowTip = false;
 let mySwiper = null;
 let isSwiperInit = false;
+let cardNumber = 0;
 
 let appData = JSON.parse(localStorage.getItem('RSLangAppData'));
 
+let userLevel = 1; // 1..6
+let cardsCount = 10;
 let favoriteWords = [];
 let deletedWords = [];
 let guessedWords = [];
 let unknownWords = [];
-let userSettings = {
-  showPictures: true,
-  showTranslation: true,
-};
+let showPictures = true;
+let showTranslation = true;
+// let userSettings = {
+
+// };
 
 if (localStorage.RSLangAppData) {
   favoriteWords = appData.favoriteWords;
   deletedWords = appData.deletedWords;
   guessedWords = appData.guessedWords;
   unknownWords = appData.unknownWords;
-  userSettings = appData.userSettings;
+  // userSettings = appData.userSettings;
+  showPictures = appData.showPictures;
+  showTranslation = appData.showTranslation;
+  userLevel = appData.userLevel;
+  cardsCount = appData.cardsCount;
 }
 
 const buildSettingsScreen = () => {
@@ -43,30 +52,37 @@ const buildSettingsScreen = () => {
   <form class="user-controls">
       <div class="set-row">
       <label for="user-level"></label>User level</label>
-      <input type="number" onClick="this.select();" name="user-level" pattern="[0-9]*" inputmode="numeric" min="1" max="6" value="1">
+      <select class="properties-user-level" name="user-level">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+      <!--input class="properties-user-level" type="number" onClick="this.select();" name="user-level" pattern="[0-9]*" inputmode="numeric" min="1" max="6" value="1"-->
       <br></div><div class="set-row">
       <label for="cards-per-day"></label>Cards per day</label>
-      <input type="number" onClick="this.select();" name="cards-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="20">
-      <br></div><div class="set-row">
+      <input class="properties-cards-per-day" type="number" onClick="this.select();" name="cards-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="20">
+      <br></div><!--div class="set-row">
       <label for="new-words-per-day"></label>New words per day</label>
-      <input type="number" onClick="this.select();" name="new-words-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="10">
-      <br></div>
+      <input class="properties-words-per-day" type="number" onClick="this.select();" name="new-words-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="10">
+      <br></div-->
       <fieldset class="properties-fieldset">
       <legend>Cards properties</legend>
-      <input class="properties-show-picture" type="checkbox" name="showPicture" checked>
+      <input class="properties-show-picture" type="checkbox" name="showPicture">
       <label for="showPicture">show pictures</label>
       <br>
-      <input type="checkbox" name="show translation" checked>
+      <input class="properties-show-translation" type="checkbox" name="show translation">
       <label for="show translation">show translation</label>
-      <br>
-      <input type="checkbox" name="show transcription">
+      <!--br>
+      <input class="properties-show-transcription" type="checkbox" name="show transcription">
       <label for="show transcription">show transcription</label>
       <br>
-      <input type="checkbox" name="show meaning">
+      <input class="properties-show-meaning" type="checkbox" name="show meaning">
       <label for="show meaning">show meaning</label>
-      <br>
+      <br-->
       </fieldset>
-      <button class="saveSettings">Save</button>
   </form>`;
   settings.classList.add('user-settings');
   settings.innerHTML = settingsHTML;
@@ -103,14 +119,31 @@ const buildMainScreen = () => {
   const sliderArrowsWrapper = document.createElement('div');
   sliderArrowsWrapper.classList.add('slider-arrows-wrapper');
   sliderArrowsWrapper.innerHTML = sliderArrows;
+  progressBar.style.display = 'none';
+  progressBar.classList.add('progress-bar');
+  const progressBarIndicator = document.createElement('div');
+  progressBarIndicator.classList.add('progress-bar-indicator');
+  progressBar.append(progressBarIndicator);
   ol.classList.add('swiper-wrapper');
   olWrapper.append(ol);
-  main.append(olWrapper);
-  main.append(sliderArrowsWrapper);
+  cardsWrapper.classList.add('cards-wrapper');
+  const cardsCounterWrapper = document.createElement('div');
+  cardsCounterWrapper.classList.add('cards-counter-wrapper');
+  cardsCounterWrapper.innerHTML = `<span class="current-progress-cards">0</span>/<span class="cards-per-day">${cardsCount}</span>`;
+  cardsWrapper.append(olWrapper);
+  cardsWrapper.append(sliderArrowsWrapper);
+  cardsWrapper.append(progressBar);
+  cardsWrapper.append(cardsCounterWrapper);
+  main.append(cardsWrapper);
 };
 
 buildMainScreen();
 buildSettingsScreen();
+
+const progressBarChange = (param) => {
+  const newWidth = param * (100 / cardsCount);
+  document.querySelector('.progress-bar-indicator').style.width = `${newWidth}%`;
+};
 
 const swiperInit = () => {
   isSwiperInit = true;
@@ -122,6 +155,38 @@ const swiperInit = () => {
     //   prevEl: '.swiper-button-prev',
     // },
   });
+};
+
+const saveResults = () => {
+  appData = {
+    favoriteWords,
+    deletedWords,
+    guessedWords,
+    unknownWords,
+    // userSettings,
+    showPictures,
+    showTranslation,
+    userLevel,
+    cardsCount,
+  };
+  localStorage.setItem('RSLangAppData', JSON.stringify(appData));
+};
+
+const checkUserSettings = () => {
+  if (!showPictures) {
+    document.querySelector('.word-image').style.display = 'none';
+  } else {
+    document.querySelector('.word-image').style.display = 'block';
+    document.querySelector('.properties-show-picture').checked = true;
+  }
+  if (!showTranslation) {
+    document.querySelector('.text-example-translate').style.display = 'none';
+  } else {
+    document.querySelector('.text-example-translate').style.display = 'block';
+    document.querySelector('.properties-show-translation').checked = true;
+  }
+  document.querySelector('.properties-user-level').value = userLevel;
+  document.querySelector('.properties-cards-per-day').value = cardsCount;
 };
 
 const getWords = (page, group) => {
@@ -138,6 +203,7 @@ const getWords = (page, group) => {
             <div class="text-example" data-guessed="false" data-audioexample="${path + element.audioExample}" data-wordid="${element.id}" data-word="${element.word}" data-audio="${path + element.audio}">${element.textExample}</div>
             <div class="word-translation">${element.wordTranslate}</div>
             <div class="text-example-translate text-muted">${element.textExampleTranslate}</div>
+            <!--div class="text-example-meaning text-muted">${element.textMeaning}</div-->
             <div class="card-buttons"><span class="tip">👁️</span><span class="fav">⭐</span><span class="del">🗑️</span></div>
           </div>`;
           ol.append(li);
@@ -159,21 +225,28 @@ const getWords = (page, group) => {
         }
       });
       if (!isSwiperInit) swiperInit();
+
       mySwiper.update();
+
+      if (document.querySelectorAll('.swiper-slide').length < 2) {
+        pageNumber += 1;
+        getWords(pageNumber, userLevel);
+      }
+
+      checkUserSettings();
+
+      progressBarChange(cardNumber);
+      progressBar.style.display = 'block';
     });
 };
 
 getWords(pageNumber, userLevel);
 
-const saveResults = () => {
-  appData = {
-    favoriteWords,
-    deletedWords,
-    guessedWords,
-    unknownWords,
-    userSettings,
-  };
-  localStorage.setItem('RSLangAppData', JSON.stringify(appData));
+const loadNextOPageOfWords = () => {
+  mySwiper.on('reachEnd', () => {
+    pageNumber += 1;
+    getWords(pageNumber, userLevel);
+  });
 };
 
 ol.addEventListener('click', (event) => {
@@ -252,14 +325,36 @@ ol.addEventListener('input', (event) => {
   }
 });
 
-const userSettingsScreen = document.querySelector('.user-settings');
-userSettingsScreen.addEventListener('input', () => {
-  console.log('useer-controls');
+const startNewLearning = () => {
+  window.location.reload(false);
+};
+
+const userControls = document.querySelector('.user-controls');
+userControls.addEventListener('change', (event) => {
   if (!document.querySelector('.properties-show-picture').checked) {
+    showPictures = false;
     document.querySelector('.word-image').style.display = 'none';
   } else {
+    showPictures = true;
     document.querySelector('.word-image').style.display = 'block';
   }
+  if (!document.querySelector('.properties-show-translation').checked) {
+    showTranslation = false;
+    document.querySelector('.text-example-translate').style.display = 'none';
+  } else {
+    showTranslation = true;
+    document.querySelector('.text-example-translate').style.display = 'block';
+  }
+  if (event.target.classList.contains('properties-user-level')) {
+    userLevel = parseInt(document.querySelector('.properties-user-level').value, 10);
+    startNewLearning();
+  }
+  if (event.target.classList.contains('properties-cards-per-day')) {
+    cardsCount = parseInt(document.querySelector('.properties-cards-per-day').value, 10);
+    startNewLearning();
+  }
+  saveResults();
+  checkUserSettings();
 });
 
 const accordeon = () => {
@@ -286,16 +381,6 @@ const getWordsfromID = (wordID, trgt) => {
     });
   return '';
 };
-
-// async function getWordsfromID(wordID) {
-//   try {
-//     const response = await fetch(`${apiURL}words/${wordID}`);
-//     const data = await response.json();
-//     return data;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
 
 const buildDictionaryScreen = () => {
   const dictionaryHTML = `
@@ -375,23 +460,18 @@ const buildDictionaryScreen = () => {
 document.querySelector('.menu').addEventListener('click', (event) => {
   event.preventDefault();
   if (event.target.classList.contains('settings')) {
-    // buildSettingsScreen();
-    document.querySelector('.swiper-container').style.display = 'none';
-    document.querySelector('.slider-arrows-wrapper').style.display = 'none';
+    document.querySelector('.cards-wrapper').style.display = 'none';
     document.querySelector('.settings-screen').style.display = 'block';
     document.querySelector('.dictionary').style.display = 'none';
   }
   if (event.target.classList.contains('dictionary-button')) {
     buildDictionaryScreen();
-    document.querySelector('.swiper-container').style.display = 'none';
-    document.querySelector('.slider-arrows-wrapper').style.display = 'none';
+    document.querySelector('.cards-wrapper').style.display = 'none';
     document.querySelector('.settings-screen').style.display = 'none';
     document.querySelector('.dictionary').style.display = 'block';
   }
   if (event.target.classList.contains('learn')) {
-    buildSettingsScreen();
-    document.querySelector('.swiper-container').style.display = 'block';
-    document.querySelector('.slider-arrows-wrapper').style.display = 'block';
+    document.querySelector('.cards-wrapper').style.display = 'block';
     document.querySelector('.settings-screen').style.display = 'none';
     document.querySelector('.dictionary').style.display = 'none';
   }
@@ -433,19 +513,35 @@ dictionary.addEventListener('click', (event) => {
   }
 });
 
-document.querySelector('.slider-arrows-wrapper').addEventListener('click', (event) => {
-  mySwiper.on('reachEnd', () => {
-    pageNumber += 1;
-    getWords(pageNumber, userLevel);
-  });
+const arrowsClicked = (event) => {
+  loadNextOPageOfWords();
   if (event.target.classList.contains('swiper-button-next') && gessedOrShowTip) {
     mySwiper.slideNext();
+    cardNumber += 1;
+    document.querySelector('.current-progress-cards').innerText = cardNumber;
+    progressBarChange(cardNumber);
   }
   if (event.target.classList.contains('swiper-button-prev')) {
     mySwiper.slidePrev();
   }
   gessedOrShowTip = false;
   document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
+
+  if (cardNumber === cardsCount) {
+    cardsWrapper.innerHTML = `
+    <div class="modal-finish">
+      <div>Your daily card limit is over! If you want to train again, do it!</div>
+      <div><button class="start-new-game-button">Play again</button></div>
+    </div>
+    `;
+    document.querySelector('.start-new-game-button').addEventListener('click', () => {
+      startNewLearning();
+    });
+  }
+};
+
+document.querySelector('.slider-arrows-wrapper').addEventListener('click', (event) => {
+  arrowsClicked(event);
 });
 
 document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');

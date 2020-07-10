@@ -146,7 +146,7 @@ h2 {
 
 .word-info {
     margin: 10px;
-    padding: 10px;
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 5px #0001;
     text-align: center;
@@ -160,8 +160,14 @@ h2 {
     border-radius: 50%;
     background-color: #2b2d4d;
     color: #fff;
-    top: 0;
-    margin-top: 0;
+    /* top: 0;
+    margin-top: 0; */
+    bottom: auto;
+    right: auto;
+    top: auto;
+    left: calc(50% - 20px);
+    position: static;
+    margin: 0 auto;
 }
 
 .swiper-button-prev {
@@ -173,11 +179,11 @@ h2 {
     font-size: 16px;
 }
 
-.slider-arrows-wrapper {
+/* .slider-arrows-wrapper {
     position: relative;
     top: -200px;
     margin: -50px;
-}
+} */
 
 .learned-count,
 .difficult-count,
@@ -201,7 +207,7 @@ h2 {
 
 .word-image {
     text-align: center;
-    margin: -10px -10px 10px -10px;
+    margin: -30px -30px 10px -30px;
 }
 
 .word-image img {
@@ -244,11 +250,16 @@ h2 {
 
 
 .dictionary,
-.settings-screen {
+.settings-screen,
+.modal-finish {
     background-color: white;
     border-radius: 20px;
     margin: 10px;
     padding: 30px;
+}
+
+.dictionary,
+.settings-screen {
     display: none;
 }
 
@@ -263,4 +274,43 @@ h2 {
 
 .set-row {
     margin: 10px 0;
+}
+
+.progress-bar {
+    background-color: #eee;
+    margin: 20px 10px;
+    border-radius: 1rem;
+    height: 5px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-bar-indicator {
+    width: 0%;
+    background-color: #ffc107;
+    height: 5px;
+}
+
+.cards-counter-wrapper {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.modal-finish {
+    text-align: center;
+}
+
+.modal-finish button {
+    background-color: #3f59aa;
+    border: none;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.modal-finish button:hover {
+    background-color: #354c92;
 }
