@@ -17,7 +17,7 @@ const audio = new Audio();
 let gessedOrShowTip = false;
 let mySwiper = null;
 let isSwiperInit = false;
-let cardNumber = 0;
+let cardNumber = 1;
 
 let appData = JSON.parse(localStorage.getItem('RSLangAppData'));
 
@@ -29,6 +29,9 @@ let guessedWords = [];
 let unknownWords = [];
 let showPictures = true;
 let showTranslation = true;
+let showTipButton = true;
+let showFavButton = true;
+let showDelButton = true;
 
 if (localStorage.RSLangAppData) {
   favoriteWords = appData.favoriteWords;
@@ -37,6 +40,9 @@ if (localStorage.RSLangAppData) {
   unknownWords = appData.unknownWords;
   showPictures = appData.showPictures;
   showTranslation = appData.showTranslation;
+  showTipButton = appData.showTipButton;
+  showFavButton = appData.showFavButton;
+  showDelButton = appData.showDelButton;
   userLevel = appData.userLevel;
   cardsCount = appData.cardsCount;
 } else {
@@ -44,72 +50,78 @@ if (localStorage.RSLangAppData) {
   cardsCount = 10;
   showPictures = true;
   showTranslation = true;
+  showTipButton = true;
+  showFavButton = true;
+  showDelButton = true;
 }
 
 const buildSettingsScreen = () => {
   const settingsHTML = `
-  <h2>Settings</h2>
-  <p class="text-muted">Your own properties for customize user interface</p>
-  <form class="user-controls">
-      <div class="set-row">
-      <label for="user-level"></label>User level</label>
-      <select class="properties-user-level" name="user-level">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-      </select>
-      <!--input class="properties-user-level" type="number" onClick="this.select();" name="user-level" pattern="[0-9]*" inputmode="numeric" min="1" max="6" value="1"-->
-      <br></div><div class="set-row">
-      <label for="cards-per-day"></label>Cards per day</label>
-      <input class="properties-cards-per-day" type="number" onClick="this.select();" name="cards-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="20">
-      <br></div><!--div class="set-row">
-      <label for="new-words-per-day"></label>New words per day</label>
-      <input class="properties-words-per-day" type="number" onClick="this.select();" name="new-words-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="10">
-      <br></div-->
-      <fieldset class="properties-fieldset">
-      <legend>Cards properties</legend>
-      <input class="properties-show-picture" type="checkbox" name="showPicture">
-      <label for="showPicture">show pictures</label>
-      <br>
-      <input class="properties-show-translation" type="checkbox" name="show translation">
-      <label for="show translation">show translation</label>
-      <!--br>
-      <input class="properties-show-transcription" type="checkbox" name="show transcription">
-      <label for="show transcription">show transcription</label>
-      <br>
-      <input class="properties-show-meaning" type="checkbox" name="show meaning">
-      <label for="show meaning">show meaning</label>
-      <br-->
-      </fieldset>
-  </form>`;
+    <h2>Settings</h2>
+    <p class="text-muted">Your own properties for customize user interface</p>
+    <form class="user-controls">
+        <div class="set-row">
+            <label for="user-level"></label>User level</label>
+            <select class="properties-user-level" name="user-level">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <br></div>
+        <div class="set-row">
+            <label for="cards-per-day"></label>Cards per day</label>
+            <input class="properties-cards-per-day" type="number" onClick="this.select();" name="cards-per-day"
+                pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="20">
+            <br></div>
+        <!--div class="set-row">
+        <label for="new-words-per-day"></label>New words per day</label>
+        <input class="properties-words-per-day" type="number" onClick="this.select();" name="new-words-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="10">
+        <br></div-->
+        <fieldset class="cards-properties-fieldset">
+            <legend>Cards properties</legend>
+            <input class="properties-show-picture" type="checkbox" name="showPicture">
+            <label for="showPicture">show pictures</label>
+            <br>
+            <input class="properties-show-translation" type="checkbox" name="show translation">
+            <label for="show translation">show translation</label>
+            <!--br>
+        <input class="properties-show-transcription" type="checkbox" name="show transcription">
+        <label for="show transcription">show transcription</label>
+        <br>
+        <input class="properties-show-meaning" type="checkbox" name="show meaning">
+        <label for="show meaning">show meaning</label>
+        <br-->
+        </fieldset>
+    
+        <fieldset class="btn-properties-fieldset">
+            <legend>Buttons properties</legend>
+            <input class="properties-show-tip-btn" type="checkbox" name="show-TipButton">
+            <label for="show-TipButton">show "dont't khow"</label>
+            <br>
+            <input class="properties-show-fav-btn" type="checkbox" name="show-FavButton">
+            <label for="show-FavButton">show "difficult"</label>
+            <br>
+            <input class="properties-show-del-btn" type="checkbox" name="show-DelButton">
+            <label for="show-DelButton">show "delete"</label>
+        </fieldset>
+    </form>
+  `;
   settings.classList.add('user-settings');
   settings.innerHTML = settingsHTML;
   settingsScreen.append(settings);
 };
 
 const buildMainScreen = () => {
-  const formHTML = `
-  <form class="menu">
-      <!--label for="user-level">Level:</label>
-      <input type="number" onClick="this.select();" name="user-level" pattern="[0-9]*" inputmode="numeric" min="1" max="6" value="1">
-      <label for="words-page"></label>Page:</label>
-      <input type="number" onClick="this.select();" name="words-page" pattern="[0-9]*" inputmode="numeric" min="1" max="30" value="1"-->
-      <!--button class="learn">Learning</--button>
-      <button class="dictionary-button">Dictionary</button>
-      <button class="settings">Settings</button>
-  </form>`;
-
   const sliderArrows = `
     <div class="swiper-button-prev"></div>
-    <div class="cards-counter-wrapper"><span class="current-progress-cards">0</span>/<span class="cards-per-day">${cardsCount}</span></div>
+    <div class="cards-counter-wrapper"><span class="current-progress-cards">1</span>/<span class="cards-per-day">${cardsCount}</span></div>
     <div class="swiper-button-next"></div>`;
 
   header.classList.add('header');
   header.innerHTML = '<h1>RS Lang</h1>';
-  header.innerHTML += formHTML;
   app.append(header);
   main.classList.add('main');
   app.append(main);
@@ -163,6 +175,9 @@ const saveResults = () => {
     showTranslation,
     userLevel,
     cardsCount,
+    showTipButton,
+    showFavButton,
+    showDelButton,
   };
   localStorage.setItem('RSLangAppData', JSON.stringify(appData));
 };
@@ -180,10 +195,28 @@ const checkUserSettings = () => {
     document.querySelector('.text-example-translate').style.display = 'block';
     document.querySelector('.properties-show-translation').checked = true;
   }
+  if (!showTipButton) {
+    document.querySelector('.tip').style.display = 'none';
+  } else {
+    document.querySelector('.tip').style.display = 'block';
+    document.querySelector('.properties-show-tip-btn').checked = true;
+  }
+  if (!showFavButton) {
+    document.querySelector('.fav').style.display = 'none';
+  } else {
+    document.querySelector('.fav').style.display = 'block';
+    document.querySelector('.properties-show-fav-btn').checked = true;
+  }
+  if (!showDelButton) {
+    document.querySelector('.del').style.display = 'none';
+  } else {
+    document.querySelector('.del').style.display = 'block';
+    document.querySelector('.properties-show-del-btn').checked = true;
+  }
   document.querySelector('.properties-user-level').value = userLevel;
   document.querySelector('.properties-cards-per-day').value = cardsCount;
 };
-// cardsWrapper.style.opacity = '0';
+
 const getWords = (page, group) => {
   fetch(`${apiURL}words?page=${page - 1}&group=${group - 1}`)
     .then((response) => response.json())
@@ -237,7 +270,6 @@ const getWords = (page, group) => {
       progressBar.style.display = 'block';
     });
 };
-console.log(userLevel);
 getWords(pageNumber, userLevel);
 
 const loadNextOPageOfWords = () => {
@@ -269,7 +301,7 @@ ol.addEventListener('click', (event) => {
   //   audio.play();
   // }
   if (clickedElement.classList.contains('fav')) {
-    const shure4Favorites = window.confirm('Add to favorites?');
+    const shure4Favorites = window.confirm('Add to difficult?');
     if (!favoriteWords.includes(currentWord) && shure4Favorites) {
       favoriteWords.push(currentWord);
     }
@@ -351,6 +383,27 @@ userControls.addEventListener('change', (event) => {
     cardsCount = parseInt(document.querySelector('.properties-cards-per-day').value, 10);
     startNewLearning();
   }
+  if (!document.querySelector('.properties-show-tip-btn').checked) {
+    showTipButton = false;
+    document.querySelector('.tip').style.display = 'none';
+  } else {
+    showTipButton = true;
+    document.querySelector('.tip').style.display = 'block';
+  }
+  if (!document.querySelector('.properties-show-fav-btn').checked) {
+    showFavButton = false;
+    document.querySelector('.fav').style.display = 'none';
+  } else {
+    showFavButton = true;
+    document.querySelector('.fav').style.display = 'block';
+  }
+  if (!document.querySelector('.properties-show-del-btn').checked) {
+    showDelButton = false;
+    document.querySelector('.del').style.display = 'none';
+  } else {
+    showDelButton = true;
+    document.querySelector('.del').style.display = 'block';
+  }
   saveResults();
   checkUserSettings();
 });
@@ -384,11 +437,11 @@ const buildDictionaryScreen = () => {
   const dictionaryHTML = `
   <div class="dictionary-grid">
     <h2>Dictionary</h2>
-    <p class="text-muted">Tip: Click item to remove.<br>
+    <p class="text-muted">
     Learned - words that you guessed right<br>
-    Favorite - words that you marked with star<br>
-    Difficult - words that you spied<br>
-    Deleted - words that you removed, this words won't show again in main app</p>
+    Difficult - words that you marked with "difficult"<br>
+    Don't know - words that you spied<br>
+    Deleted - words that you removed (won't show again in main app)</p>
     <div class="learned">
       <h3>Learned<span class="learned-count">${guessedWords.length}</h3>
       <ul>
@@ -475,32 +528,36 @@ dictionary.addEventListener('click', (event) => {
   const difficultCount = document.querySelector('.difficult-count');
   const deletedCount = document.querySelector('.deleted-count');
   const favoriteCount = document.querySelector('.favorite-count');
-  const clickedWord = event.target.parentNode.parentNode;
-  if (clickedWord.classList.contains('learned-word')) {
-    const indexOfWordId = guessedWords.indexOf(clickedWord.dataset.id);
+  const clickedBinButton = event.target.parentNode.parentNode;
+  const clickedWord = event.target;
+  if (clickedWord.tagName === 'LI') {
+    console.log(clickedWord.dataset.id);
+  }
+  if (clickedBinButton.classList.contains('learned-word')) {
+    const indexOfWordId = guessedWords.indexOf(clickedBinButton.dataset.id);
     guessedWords.splice(indexOfWordId, 1);
-    clickedWord.style.display = 'none';
+    clickedBinButton.style.display = 'none';
     learnedCount.innerText = guessedWords.length;
     saveResults();
   }
-  if (clickedWord.classList.contains('difficult-word')) {
-    const indexOfWordId = unknownWords.indexOf(clickedWord.dataset.id);
+  if (clickedBinButton.classList.contains('difficult-word')) {
+    const indexOfWordId = unknownWords.indexOf(clickedBinButton.dataset.id);
     unknownWords.splice(indexOfWordId, 1);
-    clickedWord.style.display = 'none';
+    clickedBinButton.style.display = 'none';
     difficultCount.innerText = unknownWords.length;
     saveResults();
   }
-  if (clickedWord.classList.contains('deleted-word')) {
-    const indexOfWordId = deletedWords.indexOf(clickedWord.dataset.id);
+  if (clickedBinButton.classList.contains('deleted-word')) {
+    const indexOfWordId = deletedWords.indexOf(clickedBinButton.dataset.id);
     deletedWords.splice(indexOfWordId, 1);
-    clickedWord.style.display = 'none';
+    clickedBinButton.style.display = 'none';
     deletedCount.innerText = deletedWords.length;
     saveResults();
   }
-  if (clickedWord.classList.contains('favorite-word')) {
-    const indexOfWordId = favoriteWords.indexOf(clickedWord.dataset.id);
+  if (clickedBinButton.classList.contains('favorite-word')) {
+    const indexOfWordId = favoriteWords.indexOf(clickedBinButton.dataset.id);
     favoriteWords.splice(indexOfWordId, 1);
-    clickedWord.style.display = 'none';
+    clickedBinButton.style.display = 'none';
     favoriteCount.innerText = favoriteWords.length;
     saveResults();
   }
@@ -521,7 +578,8 @@ const arrowsClicked = (event) => {
   gessedOrShowTip = false;
   document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
 
-  if (cardNumber === cardsCount) {
+  const cardsCountPlusOne = cardsCount + 1;
+  if (cardNumber === cardsCountPlusOne) {
     cardsWrapper.innerHTML = `
     <div class="modal-finish">
       <div>Your daily card limit is over! If you want to train again, do it!</div>
