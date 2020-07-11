@@ -59,7 +59,7 @@ h2 {
 }
 
 .header {
-    background-color: #374e9796;
+    background-color: #3f59aa;;
     padding: 16px;
     text-align: center;
     color: white;
@@ -312,15 +312,18 @@ h2 {
 
 .modal-finish {
     text-align: center;
+    margin: 10px;
+    border-radius: 20px;
 }
 
 .modal-finish button {
     background-color: #3f59aa;
     border: none;
-    padding: 10px;
+    padding: 10px 20px;
     color: white;
     cursor: pointer;
     margin-top: 20px;
+    border-radius: 2rem;
 }
 
 .modal-finish button:hover {
@@ -334,6 +337,7 @@ h2 {
     opacity: 0;
     transition: all 0.1s 0.1s ease-in;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 400px) {
@@ -373,7 +377,8 @@ h2 {
     border-radius: 5rem;
     transition: color 0.3s;
     display: inline-block;
-    margin: 20px 10px;
+    margin: 10px 0;
+    border: 10px solid #3f5aaa;
 }
 
 .menu__item {
@@ -403,4 +408,20 @@ h2 {
 .container {
     max-width: 400px;
     margin: 0 auto;
+}
+
+.text-example-meaning, .text-example-meaning-translate {
+    border-top: none;
+}
+
+.text-example-meaning i {
+    color: white;
+    border-bottom: 1px solid #ddd;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.text-example {
+    font-size: 1.4rem;
 }

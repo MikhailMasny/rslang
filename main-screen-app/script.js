@@ -29,9 +29,11 @@ let guessedWords = [];
 let unknownWords = [];
 let showPictures = true;
 let showTranslation = true;
+let showMeaning = true;
 let showTipButton = true;
 let showFavButton = true;
 let showDelButton = true;
+let playAudio = true;
 
 if (localStorage.RSLangAppData) {
   favoriteWords = appData.favoriteWords;
@@ -40,28 +42,32 @@ if (localStorage.RSLangAppData) {
   unknownWords = appData.unknownWords;
   showPictures = appData.showPictures;
   showTranslation = appData.showTranslation;
+  showMeaning = appData.showMeaning;
   showTipButton = appData.showTipButton;
   showFavButton = appData.showFavButton;
   showDelButton = appData.showDelButton;
   userLevel = appData.userLevel;
   cardsCount = appData.cardsCount;
+  playAudio = appData.playAudio;
 } else {
   userLevel = 1;
   cardsCount = 10;
   showPictures = true;
   showTranslation = true;
+  showMeaning = true;
   showTipButton = true;
   showFavButton = true;
   showDelButton = true;
+  playAudio = true;
 }
 
 const buildSettingsScreen = () => {
   const settingsHTML = `
-    <h2>Settings</h2>
-    <p class="text-muted">Your own properties for customize user interface</p>
+    <h2>Настройки</h2>
+    <p class="text-muted">Твои персональные настройки внешнего вида</p>
     <form class="user-controls">
         <div class="set-row">
-            <label for="user-level"></label>User level</label>
+            <label for="user-level"></label>Уровень знаний</label>
             <select class="properties-user-level" name="user-level">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -70,42 +76,45 @@ const buildSettingsScreen = () => {
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
-            <br></div>
+            <br>
+        </div>
         <div class="set-row">
-            <label for="cards-per-day"></label>Cards per day</label>
+            <label for="cards-per-day"></label>Карточек в день</label>
             <input class="properties-cards-per-day" type="number" onClick="this.select();" name="cards-per-day"
                 pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="20">
-            <br></div>
-        <!--div class="set-row">
-        <label for="new-words-per-day"></label>New words per day</label>
-        <input class="properties-words-per-day" type="number" onClick="this.select();" name="new-words-per-day" pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="10">
-        <br></div-->
+            <br>
+        </div>
+        <div class="set-row">
+            <label for="words-per-day"></label>Новых слов в день</label>
+            <input class="properties-words-per-day" type="number" onClick="this.select();" name="words-per-day"
+                pattern="[0-9]*" inputmode="numeric" min="1" max="100" value="10">
+            <br>
+        </div>
         <fieldset class="cards-properties-fieldset">
-            <legend>Cards properties</legend>
+            <legend>Вид карточек</legend>
             <input class="properties-show-picture" type="checkbox" name="showPicture">
-            <label for="showPicture">show pictures</label>
+            <label for="showPicture">изображение</label>
             <br>
             <input class="properties-show-translation" type="checkbox" name="show translation">
-            <label for="show translation">show translation</label>
-            <!--br>
-        <input class="properties-show-transcription" type="checkbox" name="show transcription">
-        <label for="show transcription">show transcription</label>
-        <br>
-        <input class="properties-show-meaning" type="checkbox" name="show meaning">
-        <label for="show meaning">show meaning</label>
-        <br-->
+            <label for="show translation">перевод предложения</label>
+            <br>
+            <input class="properties-show-meaning" type="checkbox" name="showMeaning">
+            <label for="showMeaning">значение слова</label>
+            <br>
+            <input class="properties-play-audio" type="checkbox" name="playAudio">
+            <label for="playAudio">озвучить слово</label>
         </fieldset>
     
         <fieldset class="btn-properties-fieldset">
-            <legend>Buttons properties</legend>
+            <legend>Видимость кнопок карточки</legend>
             <input class="properties-show-tip-btn" type="checkbox" name="show-TipButton">
-            <label for="show-TipButton">show "dont't khow"</label>
+            <label for="show-TipButton">ответ</label>
             <br>
             <input class="properties-show-fav-btn" type="checkbox" name="show-FavButton">
-            <label for="show-FavButton">show "difficult"</label>
+            <label for="show-FavButton">сложное</label>
             <br>
             <input class="properties-show-del-btn" type="checkbox" name="show-DelButton">
-            <label for="show-DelButton">show "delete"</label>
+            <label for="show-DelButton">удалить</label>
         </fieldset>
     </form>
   `;
@@ -153,7 +162,7 @@ buildMainScreen();
 buildSettingsScreen();
 
 const progressBarChange = (param) => {
-  const newWidth = param * (100 / cardsCount);
+  const newWidth = (param - 1) * (100 / cardsCount);
   document.querySelector('.progress-bar-indicator').style.width = `${newWidth}%`;
 };
 
@@ -173,46 +182,91 @@ const saveResults = () => {
     unknownWords,
     showPictures,
     showTranslation,
+    showMeaning,
     userLevel,
     cardsCount,
     showTipButton,
     showFavButton,
     showDelButton,
+    playAudio,
   };
   localStorage.setItem('RSLangAppData', JSON.stringify(appData));
 };
 
 const checkUserSettings = () => {
   if (!showPictures) {
-    document.querySelector('.word-image').style.display = 'none';
+    document.querySelectorAll('.word-image').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
-    document.querySelector('.word-image').style.display = 'block';
+    document.querySelectorAll('.word-image').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
     document.querySelector('.properties-show-picture').checked = true;
   }
   if (!showTranslation) {
-    document.querySelector('.text-example-translate').style.display = 'none';
+    document.querySelectorAll('.text-example-translate').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
-    document.querySelector('.text-example-translate').style.display = 'block';
+    document.querySelectorAll('.text-example-translate').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
     document.querySelector('.properties-show-translation').checked = true;
   }
-  if (!showTipButton) {
-    document.querySelector('.tip').style.display = 'none';
+  if (!showMeaning) {
+    document.querySelectorAll('.text-example-meaning').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
-    document.querySelector('.tip').style.display = 'block';
+    document.querySelectorAll('.text-example-meaning').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
+    document.querySelector('.properties-show-meaning').checked = true;
+  }
+  if (!showTipButton) {
+    document.querySelectorAll('.tip').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
+  } else {
+    document.querySelectorAll('.tip').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
     document.querySelector('.properties-show-tip-btn').checked = true;
   }
   if (!showFavButton) {
-    document.querySelector('.fav').style.display = 'none';
+    document.querySelectorAll('.fav').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
-    document.querySelector('.fav').style.display = 'block';
+    document.querySelectorAll('.fav').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
     document.querySelector('.properties-show-fav-btn').checked = true;
   }
   if (!showDelButton) {
-    document.querySelector('.del').style.display = 'none';
+    document.querySelectorAll('.del').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
-    document.querySelector('.del').style.display = 'block';
+    document.querySelectorAll('.del').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
     document.querySelector('.properties-show-del-btn').checked = true;
   }
+  if (playAudio) document.querySelector('.properties-play-audio').checked = true;
   document.querySelector('.properties-user-level').value = userLevel;
   document.querySelector('.properties-cards-per-day').value = cardsCount;
 };
@@ -222,7 +276,7 @@ const getWords = (page, group) => {
     .then((response) => response.json())
     .then((data) => {
       data.forEach((element) => {
-        if (!deletedWords.includes(element.id)) {
+        if (!(deletedWords.includes(element.id) || guessedWords.includes(element.id))) {
           const li = document.createElement('li');
           li.classList.add('swiper-slide');
           li.innerHTML = `
@@ -231,9 +285,10 @@ const getWords = (page, group) => {
             <div class="text-example" data-guessed="false" data-audioexample="${path + element.audioExample}" data-wordid="${element.id}" data-word="${element.word}" data-audio="${path + element.audio}">${element.textExample}</div>
             <div class="word-translation">${element.wordTranslate}</div>
             <div class="text-example-translate text-muted">${element.textExampleTranslate}</div>
-            <!--div class="text-example-meaning text-muted">${element.textMeaning}</div-->
+            <div class="text-example-meaning text-muted">${element.textMeaning}</div>
+            <div class="text-example-meaning-translate text-muted">${element.textMeaningTranslate}</div>
             <div class="card-buttons">
-              <span class="tip">don't know</span><span class="fav">difficult</span><span class="del">delete</span>
+              <span class="tip">ответ</span><span class="fav">сложное</span><span class="del">удалить</span>
             </div>
           </div>`;
           ol.append(li);
@@ -253,23 +308,22 @@ const getWords = (page, group) => {
           span.classList.add('word-input');
           parentDiv.insertBefore(span, el);
           cardsWrapper.style.opacity = '1';
+          const currentInput = document.querySelector('.word-input');
+          currentInput.focus();
         }
       });
       if (!isSwiperInit) swiperInit();
-
       mySwiper.update();
-
       if (document.querySelectorAll('.swiper-slide').length < 2) {
         pageNumber += 1;
         getWords(pageNumber, userLevel);
       }
-
       checkUserSettings();
-
       progressBarChange(cardNumber);
       progressBar.style.display = 'block';
     });
 };
+
 getWords(pageNumber, userLevel);
 
 const loadNextOPageOfWords = () => {
@@ -292,14 +346,10 @@ ol.addEventListener('click', (event) => {
     parentNode.querySelector('b').style.color = 'grey';
     parentNode.querySelector('b').style.display = 'inline-block';
     parentNode.querySelector('input').style.display = 'none';
+    parentNode.querySelector('.text-example-meaning i').style.color = '#888';
     audio.setAttribute('src', parentNode.children[1].dataset.audio);
-    audio.play();
+    if (playAudio) audio.play();
   }
-  // if (clickedElement.classList.contains('text-example')) {
-  //   console.log(parentNode.children[1].dataset.audioexample);
-  //   audio.setAttribute('src', parentNode.children[1].dataset.audioexample);
-  //   audio.play();
-  // }
   if (clickedElement.classList.contains('fav')) {
     const shure4Favorites = window.confirm('Add to difficult?');
     if (!favoriteWords.includes(currentWord) && shure4Favorites) {
@@ -345,12 +395,13 @@ ol.addEventListener('input', (event) => {
     }
     gessedOrShowTip = true;
     document.querySelector('.swiper-button-next').classList.remove('swiper-button-disabled');
+    parentNode.querySelector('.text-example-meaning i').style.color = '#888';
     clickedEl.parentNode.dataset.guessed = 'true';
     clickedEl.parentNode.querySelector('b').style.color = 'limegreen';
     clickedEl.parentNode.querySelector('b').style.display = 'inline-block';
     clickedEl.parentNode.querySelector('input').style.display = 'none';
     audio.setAttribute('src', clickedEl.parentNode.dataset.audio);
-    audio.play();
+    if (playAudio) audio.play();
     saveResults();
   }
 });
@@ -363,17 +414,42 @@ const userControls = document.querySelector('.user-controls');
 userControls.addEventListener('change', (event) => {
   if (!document.querySelector('.properties-show-picture').checked) {
     showPictures = false;
-    document.querySelector('.word-image').style.display = 'none';
+    document.querySelectorAll('.word-image').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
     showPictures = true;
-    document.querySelector('.word-image').style.display = 'block';
+    document.querySelectorAll('.word-image').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
   }
   if (!document.querySelector('.properties-show-translation').checked) {
     showTranslation = false;
-    document.querySelector('.text-example-translate').style.display = 'none';
+    document.querySelectorAll('.text-example-translate').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
     showTranslation = true;
-    document.querySelector('.text-example-translate').style.display = 'block';
+    document.querySelectorAll('.text-example-translate').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
+  }
+  if (!document.querySelector('.properties-show-meaning').checked) {
+    showMeaning = false;
+    document.querySelectorAll('.text-example-meaning').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
+  } else {
+    showMeaning = true;
+    document.querySelectorAll('.text-example-meaning').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
   }
   if (event.target.classList.contains('properties-user-level')) {
     userLevel = parseInt(document.querySelector('.properties-user-level').value, 10);
@@ -385,24 +461,47 @@ userControls.addEventListener('change', (event) => {
   }
   if (!document.querySelector('.properties-show-tip-btn').checked) {
     showTipButton = false;
-    document.querySelector('.tip').style.display = 'none';
+    document.querySelectorAll('.tip').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
     showTipButton = true;
-    document.querySelector('.tip').style.display = 'block';
+    document.querySelectorAll('.tip').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
   }
   if (!document.querySelector('.properties-show-fav-btn').checked) {
     showFavButton = false;
-    document.querySelector('.fav').style.display = 'none';
+    document.querySelectorAll('.fav').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
     showFavButton = true;
-    document.querySelector('.fav').style.display = 'block';
+    document.querySelectorAll('.fav').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
   }
   if (!document.querySelector('.properties-show-del-btn').checked) {
     showDelButton = false;
-    document.querySelector('.del').style.display = 'none';
+    document.querySelectorAll('.del').forEach((element) => {
+      const el = element;
+      el.style.display = 'none';
+    });
   } else {
     showDelButton = true;
-    document.querySelector('.del').style.display = 'block';
+    document.querySelectorAll('.del').forEach((element) => {
+      const el = element;
+      el.style.display = 'block';
+    });
+  }
+  if (!document.querySelector('.properties-play-audio').checked) {
+    playAudio = false;
+  } else {
+    playAudio = true;
   }
   saveResults();
   checkUserSettings();
@@ -436,32 +535,29 @@ const getWordsfromID = (wordID, trgt) => {
 const buildDictionaryScreen = () => {
   const dictionaryHTML = `
   <div class="dictionary-grid">
-    <h2>Dictionary</h2>
-    <p class="text-muted">
-    Learned - words that you guessed right<br>
-    Difficult - words that you marked with "difficult"<br>
-    Don't know - words that you spied<br>
-    Deleted - words that you removed (won't show again in main app)</p>
+    <h2>Словарь</h2>
+    <p class="text-muted">Все слова показанные в процессе изучения</p>
     <div class="learned">
-      <h3>Learned<span class="learned-count">${guessedWords.length}</h3>
-      <ul>
-      </ul>
+      <h3>Изученные<span class="learned-count">${guessedWords.length}</h3>
+      <ul></ul>
     </div>
     <div class="difficult">
-      <h3>Don't know<span class="difficult-count">${unknownWords.length}</h3>
-      <ul>
-      </ul>
+      <h3>Нужно повторить<span class="difficult-count">${unknownWords.length}</h3>
+      <ul></ul>
     </div>
     <div class="deleted">
-      <h3>Deleted<span class="deleted-count">${deletedWords.length}</h3>
-      <ul>
-      </ul>
+      <h3>Удалённые<span class="deleted-count">${deletedWords.length}</h3>
+      <ul></ul>
     </div>
     <div class="favorite">
-      <h3>Difficult<span class="favorite-count">${favoriteWords.length}</h3>
-      <ul>
-      </ul>
+      <h3>Сложные<span class="favorite-count">${favoriteWords.length}</h3>
+      <ul></ul>
     </div>
+    <p class="text-muted" style="border-top: none">
+    * Изученные - слова, которые были успешно угаданы<br>
+    * Сложные - слова, которые были помечены как сложные<br>
+    * Нужно повторить - слова, которые были показаны с поможью кнопки "ответ"<br>
+    * Удаленные - слова, которые были удалены (не показываются больше при изучении)</p>
   </div>`;
   dictionary.innerHTML = dictionaryHTML;
   accordeon();
@@ -571,6 +667,8 @@ const arrowsClicked = (event) => {
     document.querySelector('.current-progress-cards').innerText = cardNumber;
     progressBarChange(cardNumber);
     document.querySelector('.swiper-button-prev').classList.remove('swiper-button-disabled');
+    // const currentInput = document.querySelectorAll('.word-input')[cardNumber - 1];
+    // currentInput.focus();
   }
   if (event.target.classList.contains('swiper-button-prev')) {
     mySwiper.slidePrev();
@@ -580,9 +678,9 @@ const arrowsClicked = (event) => {
 
   const cardsCountPlusOne = cardsCount + 1;
   if (cardNumber === cardsCountPlusOne) {
-    cardsWrapper.innerHTML = `
+    main.innerHTML = `
     <div class="modal-finish">
-      <div>Your daily card limit is over! If you want to train again, do it!</div>
+      <div>Your daily card limit is over! If you want to train again press the button.</div>
       <div><button class="start-new-game-button">Play again</button></div>
     </div>
     `;
