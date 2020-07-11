@@ -104,9 +104,9 @@ const showGameResults = () => {
   if (localStorage.rsLangGameSprintScore) {
     const savedScore = localStorage.rsLangGameSprintScore;
     if (savedScore > rightAnswers) {
-      gameResultText.innerText = `Sorry. Current score is ${rightAnswers}. You don't bit your last score ${savedScore}`;
+      gameResultText.innerText = `Sorry. Current score is ${rightAnswers}. You don't brake your last score ${savedScore}`;
     } else {
-      gameResultText.innerText = `Congratultions! Your score is ${rightAnswers}. You bit the last saved score!`;
+      gameResultText.innerText = `Congratultions! Your score is ${rightAnswers}. You brake the last saved score!`;
       localStorage.rsLangGameSprintScore = rightAnswers;
     }
   } else {
