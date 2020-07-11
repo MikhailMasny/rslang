@@ -127,7 +127,7 @@
     flex-direction: column;
     text-align: center;
     border-radius: 6px 6px 6px 6px;
-    z-index: 1;
+    z-index: 3;
 }
 
 @media (max-width: 460px) {
@@ -141,7 +141,7 @@
         flex-direction: column;
         text-align: center;
         border-radius: 6px 6px 6px 6px;
-        z-index: 1;
+        z-index: 3;
     }
 }
 
@@ -561,7 +561,8 @@
     height: 5vh;
     width: 3vw;
     background-image: url(/src/assets/images/savana-game/heart_0.png);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 @media (max-width: 425px) {
@@ -578,7 +579,8 @@
         height: 5vh;
         width: 7vw;
         background-image: url(/src/assets/images/savana-game/heart_0.png);
-        background-size: cover;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 }
 .savana_gameBlock__settingsAndLife_score {

@@ -102,11 +102,9 @@ savana_gameBlock__staticWords.addEventListener('mouseup', (event) => {
         localStorage.setItem('Savana_trueAnswer',answer);
         bgNumber = bgNumber + 10;
         numberWord = numberWord + 4;
-        console.log('numberWord',numberWord)
         if (numberWord === 16) {
           numberWord = 0;
           levelGame++;
-          console.log('numberWord',numberWord,'levelGame',levelGame)
           numberPage = 0;
           apiWorlds(numberPage, levelGame,numberWordBad,localStorage.getItem('Savana_trueAnswer'));
         } else {
@@ -133,7 +131,7 @@ function animations(numberAnswer) {
   let timer = setInterval(
     function(){
 let timePassed = Date.now() - start;
-savana_gameBlock__dynamicWords.style.transform = `translate(0px, ${timePassed / 10 + '%'})`;if (timePassed > 3000 || savana_gameBlock__dynamicWords.innerHTML === `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|`) clearInterval(timer) & finanim(numberAnswer);
+savana_gameBlock__dynamicWords.style.transform = `translate(0px, ${timePassed / 15 + '%'})`;if (timePassed > 5000 || savana_gameBlock__dynamicWords.innerHTML === `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|`) clearInterval(timer) & finanim(numberAnswer);
     function finanim(numberAnswer) {
       if (savana_gameBlock__dynamicWords.style.transform  > 'translate(0px, 300%)') {
         badAnswer(localStorage.getItem('Savana_numberAnswer'));
@@ -143,13 +141,11 @@ savana_gameBlock__dynamicWords.style.transform = `translate(0px, ${timePassed / 
           finGame(false);
         }
       }
-      console.log('tete')
     }
   },
   );
 }
 function badAnswer(numberAnswer) {
-  console.log('bad',numberAnswer)
  savana_gameBlock__settingsAndLife__Life.children[numberAnswer].className = 'settingsAndLife__Life__img_false';
 }
 
@@ -157,8 +153,8 @@ function wordTrue(up, bg, gameData) {
   savana_gameBlock__dynamicWords.innerHTML= `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|`;
   setTimeout(() => savana_gameBlock__dynamicWords.style.transform = `translate(0px, ${up})` , 100);
   setTimeout(() => savana_gameBlock__dynamicWords.style.display = 'none' , 1000);
-  setTimeout(() => savana_gameBlock__dynamicWords.style.transform = 'translate(0px, 0vw)', 2000);
-  setTimeout(() => savana_gameBlock__dynamicWords.style.display = 'flex',2000);
+  setTimeout(() => savana_gameBlock__dynamicWords.style.transform = 'translate(0px, 0vw)', 2500);
+  setTimeout(() => savana_gameBlock__dynamicWords.style.display = 'flex',3000);
   savana_screensaver.style.backgroundPositionY = `${bg}`;
   savana_gameBlock__settingsAndLife_score.firstElementChild.innerHTML = localStorage.getItem('Savana_trueAnswer');
   ////////////////////////////////////////////////////
@@ -190,7 +186,7 @@ function finGame(info) {
     finalStatistic.className = "finalStatistic";
     savana_screensaver.append(finalStatistic);
     finalStatistic.innerHTML = savana_gameBlock__settingsAndLife_score.innerHTML;
-    setTimeout(() => location.href=location.href,2000);
+    setTimeout(() => location.href="/savana-game/index.html",2000);
   } else {
     savana_gameBlock.style.display = 'none';
     let imgFin = document.createElement('div');
@@ -201,7 +197,7 @@ function finGame(info) {
     finalStatistic.className = "finalStatistic";
     savana_screensaver.append(finalStatistic);
     finalStatistic.innerHTML = savana_gameBlock__settingsAndLife_score.innerHTML;
-    setTimeout(() => location.href=location.href, 2000);
+    setTimeout(() => location.href="/savana-game/index.html",2000);
   }
  return savana_gameBlock__dynamicWords.style.transform = "translate(0px,0%)";
 
