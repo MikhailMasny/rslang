@@ -1,7 +1,7 @@
 body {
     margin: 0;
     min-width: 320px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-image: url('../../images/english-puzzle-game/puzzle-background.jpg');
     background-size: cover;
@@ -189,7 +189,6 @@ body {
     background-color: rgba(128, 128, 128, 0.5);
     background-size: cover;
     background-repeat: no-repeat;
-    /* background: url('../../images/english-puzzle-game/background.jpg'); */
 }
 
 .game-block__sentence {
@@ -280,11 +279,11 @@ body {
 }
 
 .result-block__picture {
-    height: 200px;
-    width: 400px;
-    background-size: cover;
+    height: 320px;
+    width: 640px;
+    background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
-    /* background-image: url('../../images/english-puzzle-game/background.jpg'); */
 }
 
 .result-block__title {
@@ -300,7 +299,7 @@ body {
 }
 
 .result-block button {
-    margin-top: 15px;
+    margin: 15px 0 15px 0;
 }
 
 .result-block__idk,
@@ -328,12 +327,121 @@ body {
     body {
         height: 100%;
     }
+    .game-block {
+        justify-content: flex-start;
+        width: 640px;
+    }
+    .game-block__button-block {
+        margin-right: 15px;
+    }
+    .game-block__select-block {
+        width: 210px;
+        font-size: 15px;
+    }
+    .game-block__select-menu {
+        width: 60px;
+    }
+    .game-block__menu p {
+        margin: 0 5px 0 5px;
+    }
+    .game-block__hint {
+        width: 320px;
+        height: 125px;
+        margin-top: 25px;
+    }
+    .game-block__hint-message {
+        height: 75px;
+        width: 310px;
+        margin: 0 5px 0 5px;
+        font-size: 15px;
+    }
+    .game-block__number-list {
+        width: 25px;
+    }
+    .game-block__number {
+        width: 15px;
+        height: 15px;
+        margin: 4px;
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .game-block__game-field {
+        height: 250px;
+    }
+    .game-block__sentence-list {
+        width: 610px;
+        background-size: cover;
+    }
+    .game-block__sentence {
+        height: 25px;
+        font-size: 10px;
+    }
+    .word-guess {
+        height: 23px;
+        border: 1px solid whitesmoke;
+    }
+    .game-block__enigma {
+        width: 610px;
+        margin: 15px 0 0 20px;
+        height: 25px;
+        font-size: 15px;
+    }
+    .word {
+        height: 23px;
+        border: 1px solid white;
+    }
+    .game-block__action {
+        width: 320px;
+        height: 35px;
+        margin: 15px 0 15px 0;
+    }
+    .game-block__action button,
+    .result-block button {
+        height: 35px;
+        font-size: 15px;
+        width: 125px;
+        margin: 15px 0 0 0;
+    }
+    .result-block__picture {
+        height: 320px;
+        width: 640px;
+    }
+    .result-block__title {
+        font-size: 15px;
+        width: 310px;
+        text-align: center;
+    }
+    .result-block__wrapper {
+        height: 100%;
+        width: 640px;
+        margin: 0 5px 0 5px;
+    }
+    .result-block__idk,
+    .result-block__check {
+        font-size: 15px;
+    }
+    .result-block button {
+        height: 33px;
+        font-size: 15px;
+        width: 110px;
+        margin: 15px 0 15px 0;
+    }
+    .font-size {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    body {
+        height: 100%;
+    }
     .game-block__button-block {
         width: 195px;
         margin-right: 5px;
     }
     .game-block {
         justify-content: flex-start;
+        width: 320px;
     }
     .game-block__select-block {
         width: 120px;
@@ -381,9 +489,6 @@ body {
     .word-guess {
         height: 23px;
         border: 1px solid whitesmoke;
-    }
-    .game-block__enigma {
-        width: 25px;
     }
     .game-block__enigma {
         width: 290px;
@@ -466,11 +571,6 @@ body {
 
 .game-block__icon::before {
     content: url('../../images/english-puzzle-game/saxophone.png');
-}
-
-.background-image-none {
-    background-image: none;
-    background-color: rgba(128, 128, 128, 0.5);
 }
 
 .border-none {

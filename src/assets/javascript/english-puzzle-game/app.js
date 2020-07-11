@@ -108,11 +108,11 @@ hintImage.addEventListener('click', () => {
   if (localStorage.getItem('imageHint') === 'on' || localStorage.getItem('imageHint') === null) {
     localStorage.setItem('imageHint', 'off');
     hintImage.style.backgroundColor = 'rgba(255, 0, 0, 0.75)';
-    document.getElementsByClassName('game-block__sentence-list')[0].classList.add('background-image-none');
+    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = 'none';
   } else if (localStorage.getItem('imageHint') === 'off') {
     localStorage.setItem('imageHint', 'on');
     hintImage.style.backgroundColor = 'rgba(128, 128, 128, 0.5)';
-    document.getElementsByClassName('game-block__sentence-list')[0].classList.remove('background-image-none');
+    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
   }
 });
 
@@ -147,6 +147,7 @@ function getRandomInt(max) {
 }
 
 function onLoad() {
+  randomInt = getRandomInt(PICTURE_TITLE.length - 1);
   // start screen
   if (localStorage.getItem('startScreenChecker') === 'true') {
     startScreen.classList.add('display-none');
@@ -181,16 +182,11 @@ function onLoad() {
   // image hint
   if (localStorage.getItem('imageHint') === 'on' || localStorage.getItem('imageHint') === null) {
     hintImage.style.backgroundColor = 'rgba(128, 128, 128, 0.5)';
-    document.getElementsByClassName('game-block__sentence-list')[0].classList.remove('background-image-none');
+    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
   } else if (localStorage.getItem('imageHint') === 'off') {
     hintImage.style.backgroundColor = 'rgba(255, 0, 0, 0.75)';
-    document.getElementsByClassName('game-block__sentence-list')[0].classList.add('background-image-none');
+    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = 'none';
   }
-
-  // background
-  randomInt = getRandomInt(PICTURE_TITLE.length - 1);
-  document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
-  document.getElementsByClassName('result-block__picture')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
 }
 
 // working progress
@@ -271,11 +267,15 @@ function fillCurrentSentence(array) {
       const word = document.createElement('div');
       word.classList.add('word', 'flex-row');
       word.innerText = `${array[0][i]}`;
-      if (window.screen.width < 960) {
-        word.style.width = `${(282 / array[1]) * array[0][i].length}px`;
-      } else {
+
+      if (window.screen.width > 640) {
         word.style.width = `${(910 / array[1]) * array[0][i].length}px`;
+      } else if (window.screen.width <= 640 && window.screen.width > 320) {
+        word.style.width = `${(570 / array[1]) * array[0][i].length}px`;
+      } else if (window.screen.width <= 320) {
+        word.style.width = `${(282 / array[1]) * array[0][i].length}px`;
       }
+
       currentSentence.appendChild(word);
     }
   }
@@ -293,11 +293,15 @@ function getWordEventListener(array) {
       word.classList.remove('word');
       word.classList.add('word-guess', 'flex-row', 'background-none');
       word.innerText = element.innerText;
-      if (window.screen.width < 960) {
-        word.style.width = `${(282 / array[1]) * element.innerText.length}px`;
-      } else {
+
+      if (window.screen.width > 640) {
         word.style.width = `${(910 / array[1]) * element.innerText.length}px`;
+      } else if (window.screen.width <= 640 && window.screen.width > 320) {
+        word.style.width = `${(570 / array[1]) * element.innerText.length}px`;
+      } else if (window.screen.width <= 320) {
+        word.style.width = `${(282 / array[1]) * element.innerText.length}px`;
       }
+
       word.addEventListener('click', () => {
         replacement(word, word.style.width);
       });
@@ -345,11 +349,15 @@ async function getCheck() {
         word.classList.remove('word');
         word.classList.add('word-guess', 'flex-row', 'background-none');
         word.innerText = `${testArray[0][i]}`;
-        if (window.screen.width < 960) {
-          word.style.width = `${(282 / testArray[1]) * testArray[0][i].length}px`;
-        } else {
+
+        if (window.screen.width > 640) {
           word.style.width = `${(910 / testArray[1]) * testArray[0][i].length}px`;
+        } else if (window.screen.width <= 640 && window.screen.width > 320) {
+          word.style.width = `${(570 / testArray[1]) * testArray[0][i].length}px`;
+        } else if (window.screen.width <= 320) {
+          word.style.width = `${(282 / testArray[1]) * testArray[0][i].length}px`;
         }
+
         document.getElementById(SENTENCE_LIST[sentenceCounter]).appendChild(word);
       }
       for (let j = 0; j < testArray[0].length; j += 1) {
@@ -371,11 +379,13 @@ async function getCheck() {
       document.getElementById('test').classList.add('visibility-hidden');
       document.getElementById('test2').classList.add('visibility-hidden');
       Array.from(document.getElementsByClassName('game-block__number-list'))[0].classList.add('visibility-hidden');
+      document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
       buttonIDK.innerText = 'Continue';
       sentenceCounter = 0;
     } else if (buttonIDK.innerText === 'Continue') {
       buttonIDK.innerText = "I don't know";
       buttonCheck.innerText = 'Check';
+      document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = 'none';
       if (localStorage.getItem('gamePage') === '30') {
         localStorage.setItem('gamePage', 1);
       } else {
@@ -394,7 +404,9 @@ async function getCheck() {
       idkResult = [];
       checkResult = [];
       randomInt = getRandomInt(PICTURE_TITLE.length - 1);
-      document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
+      if (localStorage.getItem('imageHint') === 'on') {
+        document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
+      }
       document.getElementsByClassName('result-block__picture')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
       getLevel();
       getPage();
@@ -441,6 +453,7 @@ async function getCheck() {
       Array.from(document.getElementsByClassName('game-block'))[0].classList.add('display-none');
       Array.from(document.getElementsByClassName('result-block'))[0].classList.remove('display-none');
       Array.from(document.getElementsByClassName('result-block__title'))[0].innerText = PICTURE_TITLE[randomInt]; // eslint-disable-line prefer-destructuring
+      document.getElementsByClassName('result-block__picture')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
       document.getElementById('idkNumber').innerText = idkResult.length;
       document.getElementById('checkNumber').innerText = checkResult.length;
       for (let i = 0; i < idkResult.length; i += 1) {
@@ -489,7 +502,10 @@ async function getCheck() {
     idkResult = [];
     checkResult = [];
     randomInt = getRandomInt(PICTURE_TITLE.length - 1);
-    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
+    document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = 'none';
+    if (localStorage.getItem('imageHint') === 'on') {
+      document.getElementsByClassName('game-block__sentence-list')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
+    }
     document.getElementsByClassName('result-block__picture')[0].style.backgroundImage = `url(${PICTURE_URL[randomInt]})`;
     getLevel();
     getPage();
