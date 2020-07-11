@@ -60,7 +60,8 @@ body {
 }
 
 .game-block {
-    width: 960px;
+    max-width: 960px;
+    min-width: 320px;
     height: 100vh;
     justify-content: center;
 }
@@ -188,7 +189,7 @@ body {
     background-color: rgba(128, 128, 128, 0.5);
     background-size: cover;
     background-repeat: no-repeat;
-    background: url('../../images/english-puzzle-game/background.jpg');
+    /* background: url('../../images/english-puzzle-game/background.jpg'); */
 }
 
 .game-block__sentence {
@@ -273,10 +274,6 @@ body {
     background: none;
 }
 
-.border-none {
-    border: none;
-}
-
 .border-none:hover {
     cursor: default;
     background-color: rgba(0, 0, 0, 0);
@@ -285,9 +282,9 @@ body {
 .result-block__picture {
     height: 200px;
     width: 400px;
-    background-color: wheat;
     background-size: cover;
     background-repeat: no-repeat;
+    /* background-image: url('../../images/english-puzzle-game/background.jpg'); */
 }
 
 .result-block__title {
@@ -297,7 +294,7 @@ body {
 }
 
 .result-block__wrapper {
-    height: 500px;
+    height: 550px;
     width: 1000px;
     background-color: rgba(128, 128, 128, 0.75);
 }
@@ -325,6 +322,118 @@ body {
     color: red;
     font-size: 25px;
     font-weight: bold;
+}
+
+@media screen and (max-width: 960px) {
+    body {
+        height: 100%;
+    }
+    .game-block__button-block {
+        width: 195px;
+        margin-right: 5px;
+    }
+    .game-block {
+        justify-content: flex-start;
+    }
+    .game-block__select-block {
+        width: 120px;
+        font-size: 12px;
+    }
+    .game-block__select-menu {
+        width: 20px;
+    }
+    .game-block__menu p {
+        margin: 0 5px 0 5px;
+    }
+    .game-block__hint {
+        width: 320px;
+        height: 125px;
+        margin-top: 25px;
+    }
+    .game-block__hint-message {
+        height: 75px;
+        width: 310px;
+        margin: 0 5px 0 5px;
+        font-size: 12px;
+    }
+    .game-block__number-list {
+        width: 25px;
+    }
+    .game-block__number {
+        width: 15px;
+        height: 15px;
+        margin: 4px;
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .game-block__game-field {
+        height: 250px;
+    }
+    .game-block__sentence-list {
+        width: 290px;
+        margin-right: 5px;
+        background-size: cover;
+    }
+    .game-block__sentence {
+        height: 25px;
+        font-size: 7px;
+    }
+    .word-guess {
+        height: 23px;
+        border: 1px solid whitesmoke;
+    }
+    .game-block__enigma {
+        width: 25px;
+    }
+    .game-block__enigma {
+        width: 290px;
+        margin: 15px 0 0 20px;
+        height: 25px;
+        font-size: 7px;
+    }
+    .word {
+        height: 23px;
+        border: 1px solid white;
+    }
+    .game-block__action {
+        width: 320px;
+        height: 25px;
+        margin: 15px 0 15px 0;
+    }
+    .game-block__action button,
+    .result-block button {
+        height: 23px;
+        font-size: 12px;
+        width: 85px;
+        margin: 0 25px 0 50px;
+    }
+    .result-block__picture {
+        height: 230px;
+        width: 320px;
+    }
+    .result-block__title {
+        font-size: 15px;
+        width: 310px;
+        text-align: center;
+    }
+    .result-block__wrapper {
+        height: 100%;
+        width: 310px;
+        margin: 0 5px 0 5px;
+    }
+    .result-block__idk,
+    .result-block__check {
+        font-size: 15px;
+    }
+    .result-block button {
+        height: 23px;
+        font-size: 12px;
+        width: 85px;
+        margin: 15px 0 15px 0;
+    }
+    .font-size {
+        font-size: 12px;
+    }
 }
 
 #idkBlock,
@@ -357,4 +466,13 @@ body {
 
 .game-block__icon::before {
     content: url('../../images/english-puzzle-game/saxophone.png');
+}
+
+.background-image-none {
+    background-image: none;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.border-none {
+    border: none;
 }
