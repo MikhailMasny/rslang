@@ -22,7 +22,6 @@ body {
 }
 
 .button {
-    box-sizing: border-box;
     display: inline-block;
     border: none;
     outline: none;
