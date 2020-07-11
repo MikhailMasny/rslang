@@ -30,8 +30,6 @@ const NEW_GAME = document.querySelector('.content__btn-new');
 
 const RECOGNIZER = new webkitSpeechRecognition();
 const GIT_URL = 'https://raw.githubusercontent.com/ITETRISI/rslang-data/master/data';
-const USER_ID = '5efc5b18aae472001798c238';
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmM1YjE4YWFlNDcyMDAxNzk4YzIzOCIsImlhdCI6MTU5MzYxMTU5MSwiZXhwIjoxNTkzNjI1OTkxfQ.bTSzsCph-j5ceEF585QZ11gAYzDT1uLMVlJtRbu3KQs';
 let userScore = 0;
 
 class Words {
@@ -62,21 +60,18 @@ class Words {
 
   wordsRecognizer() {
     RECOGNIZER.lang = 'en';
-    RECOGNIZER.onresult = function (event) {
+    RECOGNIZER.onresult = (event) => {
       const result = event.results[event.resultIndex];
       if (result.isFinal) {
         const word = result[0].transcript.toLowerCase();
         INPUT.value = word;
+        GAME.isThisWordsCorrect(INPUT.value);
+        AUDIO.classList.remove('active');
       }
     };
 
-    RECOGNIZER.onend = function () {
-      const CORRECT_WORD = GAME.isThisWordsCorrect(INPUT.value);
-      if (!CORRECT_WORD) {
-        RECOGNIZER.start();
-      } else {
-        WORDS.addUserWord(CORRECT_WORD);
-      }
+    RECOGNIZER.onend = () => {
+      AUDIO.classList.remove('active');
     };
     RECOGNIZER.start();
   }
@@ -130,10 +125,8 @@ class Game {
         if (userScore === 10) {
           showStats();
         }
-        return correctWord;
       }
     }
-    return false;
   }
 
   drawStats() {
@@ -192,19 +185,23 @@ function getRandomInt(max = 29) {
 }
 
 function updateWords() {
+  RECOGNIZER.abort();
   INPUT.style.display = 'none';
   TRANSLATE.style.display = 'block';
   CONTAINER.addEventListener('click', clickWord);
   POINTS.innerHTML = '';
+  INPUT.value = '';
   TRANSLATE.innerHTML = '';
   [...CONTAINER.children].forEach((element) => element.classList.remove('active'));
   WORDS.wrongWordArray = WORDS.collection;
   WORDS.correctWordArray = [];
   AUDIO.innerHTML = 'Speak please';
   userScore = 0;
+  IMAGE.src = 'https://images.unsplash.com/photo-1543165796-5426273eaab3';
 }
 
 function showStats() {
+  RECOGNIZER.abort();
   CONTENT.style.display = 'none';
   RESULTS.style.display = 'flex';
   GAME.drawStats();
@@ -214,6 +211,7 @@ CONTAINER.addEventListener('click', clickWord);
 
 SELECT.addEventListener('change', () => {
   WORDS.getListOfWords(SELECT.value - 1);
+  updateWords();
 });
 
 RESTART.addEventListener('click', updateWords);
@@ -226,19 +224,27 @@ NEW_GAME.addEventListener('click', () => {
 });
 
 AUDIO.addEventListener('click', () => {
-  CONTAINER.removeEventListener('click', clickWord);
-  TRANSLATE.style.display = 'none';
-  INPUT.style.display = 'block';
-  RECOGNIZER.abort();
-  WORDS.wordsRecognizer();
-  AUDIO.innerHTML = 'Press again to say a new word';
+  if (!AUDIO.classList.contains('active')) {
+    CONTAINER.removeEventListener('click', clickWord);
+    TRANSLATE.style.display = 'none';
+    INPUT.style.display = 'block';
+    RECOGNIZER.abort();
+    WORDS.wordsRecognizer();
+    AUDIO.innerHTML = 'Press again to say a new word';
+    IMAGE.src = 'https://images.unsplash.com/photo-1543165796-5426273eaab3';
+    AUDIO.classList.add('active');
+  }
 });
 
 STATS.addEventListener('click', showStats);
 
 document.querySelector('.intro__btn').addEventListener('click', () => {
-  INTRO.style.display = 'none';
-  CONTENT.style.display = 'flex';
+  if (localStorage.getItem('user_credentials')) {
+    INTRO.style.display = 'none';
+    CONTENT.style.display = 'flex';
+  } else {
+    window.location.href = '/signin.html';
+  }
 });
 
 BACK.addEventListener('click', () => {
