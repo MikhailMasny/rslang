@@ -60,7 +60,7 @@
 }
 
 .savana_screensaver__mainText {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Heebo', sans-serif;
     letter-spacing: 0.2em;
     font-size: 3em;
     color: #6cffde;
@@ -73,14 +73,14 @@
 }
 
 .savana_screensaver__textDescription {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Heebo', sans-serif;    
     font-size: 1.3em;
     color: white;
 }
 
 @media (max-width: 425px) {
     .savana_screensaver__textDescription {
-        font-family: 'Ubuntu', sans-serif;
+        font-family: 'Heebo', sans-serif;
         font-size: 1em;
         color: white;
     }
@@ -127,7 +127,7 @@
     flex-direction: column;
     text-align: center;
     border-radius: 6px 6px 6px 6px;
-    z-index: 1;
+    z-index: 3;
 }
 
 @media (max-width: 460px) {
@@ -141,7 +141,7 @@
         flex-direction: column;
         text-align: center;
         border-radius: 6px 6px 6px 6px;
-        z-index: 1;
+        z-index: 3;
     }
 }
 
@@ -151,14 +151,14 @@
 }
 
 .exitButton__textOne {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Heebo', sans-serif;
     font-size: 1.3em;
     font-weight: 700;
     margin-top: 2%;
 }
 
 .exitButton__textTwo {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Heebo', sans-serif;    
     font-size: 1em;
     margin-top: 5%;
     color: #4c4c4c;
@@ -189,7 +189,7 @@
     margin-top: 2.5vw;
     display: inline-block;
     font-size: 2em;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Heebo', sans-serif;
     color: white;
     transform: rotate(134deg);
     font-weight: bolder;
@@ -202,7 +202,7 @@
         margin-top: 5.5vw;
         display: inline-block;
         font-size: 2em;
-        font-family: 'Ubuntu', sans-serif;
+        font-family: 'Heebo', sans-serif;
         color: white;
         transform: rotate(134deg);
         font-weight: bolder;
@@ -216,7 +216,7 @@
         margin-top: 9.5vw;
         display: inline-block;
         font-size: 2em;
-        font-family: 'Ubuntu', sans-serif;
+        font-family: 'Heebo', sans-serif;        
         color: white;
         transform: rotate(134deg);
         font-weight: bolder;
@@ -395,6 +395,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin: auto;
 }
 
 @media (max-width: 768px) {
@@ -443,7 +444,7 @@
     margin: auto;
     min-width: 17%;
     cursor: pointer;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Heebo', sans-serif;
     font-size: 1.4em;
     display: flex;
     align-items: center;
@@ -471,7 +472,7 @@
         margin: auto;
         min-width: 17%;
         cursor: pointer;
-        font-family: 'Ubuntu', sans-serif;
+        font-family: 'Heebo', sans-serif;        
         font-size: 1.4em;
         display: flex;
         align-items: center;
@@ -506,7 +507,7 @@
     margin-top: -2%;
     position: absolute;
     left: 46%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Heebo', sans-serif;    
     font-size: 1.4em;
     display: flex;
     align-items: center;
@@ -548,15 +549,50 @@
     100% {transform: translate(0px, 0%);}
 }
 
-.settingsAndLife__Life__img {
+.settingsAndLife__Life__img_true {
     height: 5vh;
     width: 3vw;
+    background-image: url(/src/assets/images/savana-game/heart_1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.settingsAndLife__Life__img_false {
+    height: 5vh;
+    width: 3vw;
+    background-image: url(/src/assets/images/savana-game/heart_0.png);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 @media (max-width: 425px) {
-    .settingsAndLife__Life__img {
+    .settingsAndLife__Life__img_true {
         height: 5vh;
         width: 7vw;
+        background-image: url(/src/assets/images/savana-game/heart_1.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+@media (max-width: 425px) {
+    .settingsAndLife__Life__img_false {
+        height: 5vh;
+        width: 7vw;
+        background-image: url(/src/assets/images/savana-game/heart_0.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+.savana_gameBlock__settingsAndLife_score {
+    font-family: 'Heebo', sans-serif;
+    color: white;
+    font-size: 2em;
+}
+@media (max-width: 768px) {
+    .savana_gameBlock__settingsAndLife_score {
+        font-family: 'Heebo', sans-serif;
+        color: white;
+        font-size: 1em;
     }
 }
 
@@ -619,19 +655,45 @@
     position: absolute;
     width: 100vw;
     height: 26vh;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Heebo', sans-serif;    
     top: 40%;
     font-size: 4em;
     color: white;
     text-align: center;
 }
 
-.imgFin {
-    width: 30%;
-    height: auto;
+.savana_game_gameOver {
+    width: 31%;
+    height: 57%;
     margin: auto;
+    background-image: url(/src/assets/images/savana-game/game_over.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.savana_game_win {
+    width: 31%;
+    content: '';
+    height: 57%;
+    margin: auto;
+    background-image: url(/src/assets/images/savana-game/win.png) !important;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .game-savana__audio_startGame {
     display: none;
+}
+.finalStatistic {
+    display: block;
+    background-color: #000000b0;
+    width: 37%;
+    height: 35%;
+    position: relative;
+    margin: -9% auto auto auto;
+    border-radius: 9px 9px 9px 9px;
+    text-align: center;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.4em;
 }
