@@ -125,7 +125,10 @@ const showGameResults = () => {
 
 const progressBarChange = (param) => {
   const newWidth = param * progressBarWidth;
-  document.getElementById('myBar').style.width = `${newWidth}%`;
+  const myBar = document.getElementById('myBar');
+  if (myBar) {
+    myBar.style.width = `${newWidth}%`;
+  }
 };
 
 const timerStart = () => {
@@ -140,7 +143,10 @@ const timerStart = () => {
       clearInterval(timerCounter);
     }
     if (secondsForGame >= 0 && secondsForGame < 10) {
-      document.getElementById('myBar').style.background = 'tomato';
+      const myBar = document.getElementById('myBar');
+      if (myBar) {
+        myBar.style.background = 'tomato';
+      }
     }
   }, 1000);
 };
