@@ -351,13 +351,13 @@ ol.addEventListener('click', (event) => {
     if (playAudio) audio.play();
   }
   if (clickedElement.classList.contains('fav')) {
-    const shure4Favorites = window.confirm('Add to difficult?');
+    const shure4Favorites = window.confirm('Добавить в сложные?');
     if (!favoriteWords.includes(currentWord) && shure4Favorites) {
       favoriteWords.push(currentWord);
     }
   }
   if (clickedElement.classList.contains('del')) {
-    const shure4Delete = window.confirm('Are you shure for delete word?');
+    const shure4Delete = window.confirm('Вы уверены что хотите удалить слово?');
     if (!deletedWords.includes(currentWord) && shure4Delete) {
       deletedWords.push(currentWord);
       clickedElement.closest('li').style.display = 'none';
@@ -556,7 +556,7 @@ const buildDictionaryScreen = () => {
     <p class="text-muted" style="border-top: none">
     * Изученные - слова, которые были успешно угаданы<br>
     * Сложные - слова, которые были помечены как сложные<br>
-    * Нужно повторить - слова, которые были показаны с поможью кнопки "ответ"<br>
+    * Нужно повторить - слова, которые были показаны с помощью кнопки "ответ"<br>
     * Удаленные - слова, которые были удалены (не показываются больше при изучении)</p>
   </div>`;
   dictionary.innerHTML = dictionaryHTML;
@@ -678,7 +678,7 @@ const arrowsClicked = (event) => {
 
   const cardsCountPlusOne = cardsCount + 1;
   if (cardNumber === cardsCountPlusOne) {
-    main.innerHTML = `
+    cardsWrapper.innerHTML = `
     <div class="modal-finish">
       <div>Дневной лимит карточек закончился! Вы можете изменить его в настройках. Хотите начать изучение сново?</div>
       <div><button class="start-new-game-button">Продолжить изучение</button></div>
