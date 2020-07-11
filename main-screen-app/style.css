@@ -12,10 +12,6 @@ body {
     background-attachment: fixed;
 }
 
-/* .header, .main {
-    display: none;
-} */
-
 .word-input,
 b {
     display: inline-block;
@@ -26,7 +22,11 @@ b {
     padding: 0 2px;
     font-weight: 900;
     color: white;
-    font-size: 16px;
+    font-size: 1.4rem;
+}
+
+b {
+    padding: 4px;
 }
 
 input:focus,
@@ -36,7 +36,8 @@ button:focus {
     outline: none;
 }
 
-ol, ul {
+ol,
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -59,7 +60,8 @@ h2 {
 }
 
 .header {
-    background-color: #3f59aa;;
+    background-color: #3f59aa;
+    ;
     padding: 16px;
     text-align: center;
     color: white;
@@ -130,7 +132,8 @@ h2 {
     right: 10px;
 }
 
-.dictionary-grid .dict-word-sound, .dictionary-grid .dict-word-del {
+.dictionary-grid .dict-word-sound,
+.dictionary-grid .dict-word-del {
     cursor: pointer;
 }
 
@@ -207,11 +210,6 @@ h2 {
     top: -3px;
 }
 
-.main {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
 .word-image {
     text-align: center;
     margin: -30px -30px 10px -30px;
@@ -220,6 +218,8 @@ h2 {
 .word-image img {
     width: 100%;
     border-radius: 18px 18px 0 0;
+    height: 200px;
+    object-fit: cover;
 }
 
 .word-translation {
@@ -229,12 +229,14 @@ h2 {
     margin: 10px;
 }
 
-.cards-properties-fieldset, .btn-properties-fieldset {
+.cards-properties-fieldset,
+.btn-properties-fieldset {
     border: 1px solid #ddd;
     margin-bottom: 10px;
 }
 
-.header button, .saveSettings {
+.header button,
+.saveSettings {
     background-color: #fff2;
     border: none;
     padding: 5px;
@@ -242,7 +244,8 @@ h2 {
     cursor: pointer;
 }
 
-.header button:hover, .saveSettings:hover {
+.header button:hover,
+.saveSettings:hover {
     background-color: #fff4;
 }
 
@@ -340,17 +343,7 @@ h2 {
     margin-top: 10px;
 }
 
-@media screen and (max-width: 400px) {
-    .word-image img {
-        border-radius: 0;
-    }
-    .cards-wrapper {
-        border-radius: 0;
-        margin-bottom: 0;
-    }
-  }
-
-  .navigation {
+.navigation {
     position: fixed;
     left: -400px;
     top: 0;
@@ -405,12 +398,8 @@ h2 {
     background-color: #0008;
 }
 
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.text-example-meaning, .text-example-meaning-translate {
+.text-example-meaning,
+.text-example-meaning-translate {
     border-top: none;
 }
 
@@ -424,4 +413,25 @@ h2 {
 
 .text-example {
     font-size: 1.4rem;
+}
+
+.main {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 400px) {
+    .word-image img {
+        border-radius: 0;
+    }
+
+    .cards-wrapper {
+        border-radius: 0;
+        margin-bottom: 0;
+    }
 }

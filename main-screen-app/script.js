@@ -680,8 +680,8 @@ const arrowsClicked = (event) => {
   if (cardNumber === cardsCountPlusOne) {
     main.innerHTML = `
     <div class="modal-finish">
-      <div>Your daily card limit is over! If you want to train again press the button.</div>
-      <div><button class="start-new-game-button">Play again</button></div>
+      <div>Дневной лимит карточек закончился! Вы можете изменить его в настройках. Хотите начать изучение сново?</div>
+      <div><button class="start-new-game-button">Продолжить изучение</button></div>
     </div>
     `;
     document.querySelector('.start-new-game-button').addEventListener('click', () => {
@@ -714,7 +714,7 @@ document.addEventListener('click', (event) => {
       isActive = false;
       navigation.classList.remove('navigation_show');
       hamburger.classList.remove('hamburger_active');
-      hamburger.innerText = 'MENU';
+      hamburger.innerText = 'МЕНЮ';
       overlay.style.display = 'none';
     }
   }
@@ -723,7 +723,7 @@ document.addEventListener('click', (event) => {
     isActive = false;
     navigation.classList.remove('navigation_show');
     hamburger.classList.remove('hamburger_active');
-    hamburger.innerText = 'MENU';
+    hamburger.innerText = 'МЕНЮ';
     overlay.style.display = 'none';
   }
 });
