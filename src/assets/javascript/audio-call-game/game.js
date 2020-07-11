@@ -80,7 +80,7 @@ const chooseVariant = (e) => {
 
 const getNewQuestion = () => {
   if (availableQuestions.length === 0) {
-    localStorage.setItem('recentScore', score);
+    localStorage.setItem('listenGuessRecentScore', score);
     return window.location.assign('end.html');
   }
   questionCounter++;
@@ -88,7 +88,7 @@ const getNewQuestion = () => {
   scoreCounterText.innerText = `${score}/100`;
   btn.removeEventListener('click', getNewQuestion);
   btn.addEventListener('click', dontKnowAction);
-  btn.innerHTML = 'Не знаю';
+  btn.innerHTML = 'Dont know';
   iconCircle.classList.remove('changeSize');
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
