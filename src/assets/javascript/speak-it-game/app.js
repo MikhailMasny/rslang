@@ -122,6 +122,7 @@ class Game {
         child.classList.add('active');
         POINTS.innerHTML += '<div class="point-image"></div>';
         userScore++;
+        localStorage.setItem('speakIt_points', userScore);
         if (userScore === 10) {
           showStats();
         }

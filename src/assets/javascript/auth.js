@@ -6,10 +6,9 @@ const BUTTON_SIGN_UP = document.querySelector('.auth__button-signup');
 const BUTTON_LOGOUT = document.querySelector('.auth__button-logout');
 const INPUT_EMAIL = document.querySelector('.auth__input-email');
 const INPUT_PASSWORD = document.querySelector('.auth__input-password');
-const HOST_PAGE_INDEX = 'https://rslang-team34-mikhailmasny.netlify.app/';
 
 function redirectToIndexPage() {
-  window.location.replace(HOST_PAGE_INDEX);
+  window.location.replace(constants.HOST_PAGE_INDEX);
 }
 
 function clearInputs() {

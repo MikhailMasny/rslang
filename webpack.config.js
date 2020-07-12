@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     main: ['@babel/polyfill', './src/script.js', './src/style.css'],
     auth: ['@babel/polyfill', './src/assets/javascript/auth.js', './src/assets/css/auth.css'],
+    statistic: ['@babel/polyfill', './src/assets/javascript/statistic.js', './src/assets/css/statistic.css'],
     team: ['./src/assets/css/team.css'],
     common: ['./src/assets/css/common.css'],
     audioCommon: ['./src/assets/css/audio-call-game/style.css'],
@@ -71,6 +72,15 @@ module.exports = {
       },
       inject: true,
       chunks: ['team'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/statistic.html',
+      filename: './statistic.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['statistic'],
     }),
     new HtmlWebpackPlugin({
       template: './src/assets/pages/audio-call-game/index.html',
