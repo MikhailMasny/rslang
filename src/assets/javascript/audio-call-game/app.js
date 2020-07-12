@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const MODAL = document.getElementById('myModal');
 const BUTTON = document.getElementById('myBtn');
 const SPAN = document.getElementsByClassName('close')[0];
