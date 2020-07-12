@@ -218,7 +218,7 @@
     font-family: 'Heebo', sans-serif;
     font-style: normal;
     font-weight: 900;
-    font-size: 42px;
+    font-size: 36px;
     line-height: 59px;
     letter-spacing: 1.3px;
 }
@@ -305,6 +305,10 @@
 
 .picture__puzzle-image::before {
     content: url("./assets/images/english-puzzle-game.png");
+}
+
+.picture__main-image {
+    content: url("./assets/images/main-game.jpg");
 }
 
 /* Presentation */

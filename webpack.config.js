@@ -20,6 +20,7 @@ module.exports = {
     puzzleGame: ['@babel/polyfill', './src/assets/javascript/english-puzzle-game/app.js', './src/assets/css/english-puzzle-game/style.css'],
     pairHome: ['@babel/polyfill', './src/assets/javascript/find-a-pair-game/app.js', './src/assets/css/find-a-pair-game/style.css'],
     pairGame: ['@babel/polyfill', './src/assets/javascript/find-a-pair-game/game.js', './src/assets/css/find-a-pair-game/game.css'],
+    mainGame: ['@babel/polyfill', './src/assets/javascript/main-game/app.js', './src/assets/css/main-game/style.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -151,6 +152,15 @@ module.exports = {
       },
       inject: true,
       chunks: ['pairGame'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/assets/pages/main-game/index.html',
+      filename: './main-game/index.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      inject: true,
+      chunks: ['mainGame'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
