@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .savana_wrapper {
     width: 100%;
     height: 100vh;
@@ -73,7 +75,7 @@
 }
 
 .savana_screensaver__textDescription {
-    font-family: 'Heebo', sans-serif;    
+    font-family: 'Heebo', sans-serif;
     font-size: 1.3em;
     color: white;
 }
@@ -158,7 +160,7 @@
 }
 
 .exitButton__textTwo {
-    font-family: 'Heebo', sans-serif;    
+    font-family: 'Heebo', sans-serif;
     font-size: 1em;
     margin-top: 5%;
     color: #4c4c4c;
@@ -216,7 +218,7 @@
         margin-top: 9.5vw;
         display: inline-block;
         font-size: 2em;
-        font-family: 'Heebo', sans-serif;        
+        font-family: 'Heebo', sans-serif;
         color: white;
         transform: rotate(134deg);
         font-weight: bolder;
@@ -472,7 +474,7 @@
         margin: auto;
         min-width: 17%;
         cursor: pointer;
-        font-family: 'Heebo', sans-serif;        
+        font-family: 'Heebo', sans-serif;
         font-size: 1.4em;
         display: flex;
         align-items: center;
@@ -507,7 +509,7 @@
     margin-top: -2%;
     position: absolute;
     left: 46%;
-    font-family: 'Heebo', sans-serif;    
+    font-family: 'Heebo', sans-serif;
     font-size: 1.4em;
     display: flex;
     align-items: center;
@@ -655,7 +657,7 @@
     position: absolute;
     width: 100vw;
     height: 26vh;
-    font-family: 'Heebo', sans-serif;    
+    font-family: 'Heebo', sans-serif;
     top: 40%;
     font-size: 4em;
     color: white;

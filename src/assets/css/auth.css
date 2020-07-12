@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 .wrapper {
     width: 1000px;
@@ -21,7 +21,7 @@
 }
 
 .auth__title {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Heebo', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 34px;
@@ -38,7 +38,7 @@
 }
 
 .auth__text {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Heebo', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
@@ -51,7 +51,7 @@
 }
 
 .auth__label {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Heebo', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -79,7 +79,7 @@
     border: 1px solid #E0E7FF;
     box-sizing: border-box;
     border-radius: 5px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Heebo', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
@@ -99,7 +99,7 @@
 .auth__button {
     background: #2E5BFF;
     border-radius: 4px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Heebo', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -124,7 +124,7 @@
 }
 
 .auth__link {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Heebo', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
