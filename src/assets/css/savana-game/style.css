@@ -554,7 +554,7 @@
 .settingsAndLife__Life__img_true {
     height: 5vh;
     width: 3vw;
-    background-image: url(/src/assets/images/savana-game/heart_1.png);
+    background-image: url('../../images/savana-game/heart_1.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -562,7 +562,7 @@
 .settingsAndLife__Life__img_false {
     height: 5vh;
     width: 3vw;
-    background-image: url(/src/assets/images/savana-game/heart_0.png);
+    background-image: url('../../images/savana-game/heart_0.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -571,7 +571,7 @@
     .settingsAndLife__Life__img_true {
         height: 5vh;
         width: 7vw;
-        background-image: url(/src/assets/images/savana-game/heart_1.png);
+        background-image: url('../../images/savana-game/heart_1.png');
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -580,7 +580,7 @@
     .settingsAndLife__Life__img_false {
         height: 5vh;
         width: 7vw;
-        background-image: url(/src/assets/images/savana-game/heart_0.png);
+        background-image: url('../../images/savana-game/heart_0.png');
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -668,7 +668,7 @@
     width: 31%;
     height: 57%;
     margin: auto;
-    background-image: url(/src/assets/images/savana-game/game_over.png);
+    background-image: url('../../images/savana-game/game_over.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -678,7 +678,7 @@
     content: '';
     height: 57%;
     margin: auto;
-    background-image: url(/src/assets/images/savana-game/win.png) !important;
+    background-image: url('../../images/savana-game/win.png') !important;
     background-size: contain;
     background-repeat: no-repeat;
 }
