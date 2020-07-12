@@ -25,6 +25,9 @@ body {
 
 .start-screen {
     color: whitesmoke;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
 }
 
 .start-screen__title,

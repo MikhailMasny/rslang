@@ -104,7 +104,7 @@ const buildSettingsScreen = () => {
             <input class="properties-play-audio" type="checkbox" name="playAudio">
             <label for="playAudio">озвучить слово</label>
         </fieldset>
-    
+
         <fieldset class="btn-properties-fieldset">
             <legend>Видимость кнопок карточки</legend>
             <input class="properties-show-tip-btn" type="checkbox" name="show-TipButton">
