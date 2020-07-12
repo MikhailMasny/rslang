@@ -15,7 +15,13 @@ function showNavElements() {
   }
 }
 
+function info() {
+  console.log('Оригинальная идея: присуствует.');
+  console.log('Сложность реализации, качество выполнения: использование webpack, eslint и editorconfig.');
+}
+
 function main() {
+  info();
   showNavElements();
 }
 

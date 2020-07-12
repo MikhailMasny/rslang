@@ -67,7 +67,6 @@ body {
 .game-block {
     max-width: 960px;
     min-width: 320px;
-    height: 100vh;
     justify-content: center;
 }
 
