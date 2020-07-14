@@ -408,6 +408,15 @@
     color: #5F6C7D;
 }
 
+.footer__link {
+    text-decoration: none;
+    color: #02D8B7
+}
+
+.footer__link:hover {
+    color: #ff5470;
+}
+
 /* Tablet */
 
 @media screen and (max-width: 1020px) {
