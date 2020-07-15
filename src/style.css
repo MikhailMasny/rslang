@@ -473,11 +473,16 @@
     }
 
     .nav {
-        justify-content: center;
+        flex-direction: column;
     }
 
     .nav__menu {
-        display: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav__menu .nav__text {
+        margin: 10px;
     }
 
     .nav__margin-indent {
@@ -501,7 +506,7 @@
     }
 
     .description {
-        width: 330px;
+        width: 300px;
         justify-content: center;
     }
 
@@ -530,5 +535,9 @@
 
     .footer {
         width: 310px;
+    }
+
+    .footer__text {
+        text-align: center;
     }
 }
