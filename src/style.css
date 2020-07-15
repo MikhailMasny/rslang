@@ -522,4 +522,19 @@
     .footer {
         width: 310px;
     }
+
+    /* responsive menu */
+
+    .nav__menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav__menu .nav__text {
+        margin: 10px;
+    }
+
+    .nav {
+        flex-direction: column;
+    }
 }
