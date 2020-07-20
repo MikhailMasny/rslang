@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:;base64,=">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>RS Lang - Speak It</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="intro">
+            <h1>SPEAKIT</h1>
+            <p>Click on the words to hear them sound. </br> Click on the button and speak the words into the microphone</p>
+            <button class="intro__btn" >START</button>
+        </div>
+        <div class="content">
+            <div class="header">
+                <select class="levels">
+                    <option value="1">Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
+                    <option value="4">Level 4</option>
+                    <option value="5">Level 5</option>
+                    <option value="6">Level 6</option>
+                </select>
+                <div class="points"></div>
+            </div>
+            <div class="body">
+                <img class="image" src="https://images.unsplash.com/photo-1543165796-5426273eaab3" width="400" height="300" alt="image">
+                <span class="translate"></span>
+                <input type="text" class="text__input" readonly>
+                <div class="sound__container"></div>
+                <div class="btn__container">
+                    <button class="restart">Restart</button>
+                    <button class="recognize">Speak please</button>
+                    <button class="stats">Stats</button>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="results__content">
+                <div class="content-statistic">
+                    <span>WRONG</span>
+                    <div class="wrong"></div>
+                    <span>CORRECT</span>
+                    <div class="correct"></div>
+                </div>
+                <button class="content__btn-return">RETURN</button>
+                <button class="content__btn-new">NEW GAME</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

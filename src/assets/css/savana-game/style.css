@@ -1,0 +1,701 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.savana_wrapper {
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.savana_screensaver {
+    background-image: url('../../images/savana-game/bg_img_main.svg');
+    background-position-x: -17vw;
+    background-position-y: 100vh;
+    transition: background-position-y,1s;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 425px) {
+    .savana_screensaver {
+        background-image: url('../../images/savana-game/bg_img_main.svg');
+        background-position-x: -62vw;
+        background-position-y: 102vh;
+        transition: background-position-y,1s;
+        width: 100%;
+        background-size: inherit;
+        background-repeat: inherit;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.savana_screensaver__exitButtonBlock {
+    width: 100%;
+    height: 8vh;
+    text-align: right;
+}
+
+.exitButton {
+    font-size: 2em;
+    color: white;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+.exitButton:hover {
+    font-size: 2em;
+    color: #424242;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+.savana_screensaver__mainTextBlock {
+    width: 100%;
+    height: 8vh;
+    margin-top: 12%;
+    text-align: center;
+}
+
+.savana_screensaver__mainText {
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: 0.2em;
+    font-size: 3em;
+    color: #6cffde;
+}
+
+.savana_screensaver__textDescriptionBlock {
+    width: 100%;
+    height: 9vh;
+    text-align: center;
+}
+
+.savana_screensaver__textDescription {
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.3em;
+    color: white;
+}
+
+@media (max-width: 425px) {
+    .savana_screensaver__textDescription {
+        font-family: 'Heebo', sans-serif;
+        font-size: 1em;
+        color: white;
+    }
+}
+
+.savana_screensaver__buttonStartBlock {
+    width: 100%;
+    height: 12vh;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.savana_screensaver__buttonStart {
+    width: 17vw;
+    height: 10vh;
+    background: #00c49d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.5em;
+    margin-top: 0%;
+}
+
+@media (max-width: 680px) {
+    .savana_screensaver__buttonStart {
+        width: 171px;
+        height: 10vh;
+        background: #00c49d;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.5em;
+        margin-top: 14%;
+    }
+}
+
+.savana_screensaverBanner {
+    margin-left: 34%;
+    width: 33vw;
+    height: 29vh;
+    position: absolute;
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 6px 6px 6px 6px;
+    z-index: 3;
+}
+
+@media (max-width: 460px) {
+    .savana_screensaverBanner {
+        margin-left: 22%;
+        width: 61vw;
+        height: 35vh;
+        position: absolute;
+        background-color: white;
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        border-radius: 6px 6px 6px 6px;
+        z-index: 3;
+    }
+}
+
+.banner {
+    margin-left: 100%;
+    margin-top: -7%;
+}
+
+.exitButton__textOne {
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-top: 2%;
+}
+
+.exitButton__textTwo {
+    font-family: 'Heebo', sans-serif;
+    font-size: 1em;
+    margin-top: 5%;
+    color: #4c4c4c;
+}
+
+.savana_screensaverBanner__exitButton {
+    margin: auto;
+    width: 40%;
+    height: 20%;
+    background-color: #2582e7;
+    border: none;
+    color: #ffffff;
+    border-radius: 6px 6px 6px 6px;
+}
+
+.savana_screensaverBanner__closeButton {
+    margin: auto;
+}
+
+.spinner_img {
+    display: none;
+    margin: auto;
+}
+
+.spinner_number {
+    margin-left: -1.5vh;
+    position: absolute;
+    margin-top: 2.5vw;
+    display: inline-block;
+    font-size: 2em;
+    font-family: 'Heebo', sans-serif;
+    color: white;
+    transform: rotate(134deg);
+    font-weight: bolder;
+}
+
+@media (max-width: 768px) {
+    .spinner_number {
+        margin-left: -1.5vh;
+        position: absolute;
+        margin-top: 5.5vw;
+        display: inline-block;
+        font-size: 2em;
+        font-family: 'Heebo', sans-serif;
+        color: white;
+        transform: rotate(134deg);
+        font-weight: bolder;
+    }
+}
+
+@media (max-width: 425px) {
+    .spinner_number {
+        margin-left: -2.3vh;
+        position: absolute;
+        margin-top: 9.5vw;
+        display: inline-block;
+        font-size: 2em;
+        font-family: 'Heebo', sans-serif;
+        color: white;
+        transform: rotate(134deg);
+        font-weight: bolder;
+    }
+}
+
+
+@keyframes ldio-knss7jdyktr {
+    0% {
+        opacity: 1;
+        backface-visibility: hidden;
+        transform: translateZ(0) scale(1.5,1.5);
+    } 100% {
+        opacity: 0;
+        backface-visibility: hidden;
+        transform: translateZ(0) scale(1,1);
+    }
+}
+
+.ldio-knss7jdyktr div > div {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ff727d;
+    animation: ldio-knss7jdyktr 1s linear infinite;
+}
+
+.ldio-knss7jdyktr div:nth-child(1) > div {
+    left: 148px;
+    top: 88px;
+    animation-delay: -0.875s;
+}
+
+.ldio-knss7jdyktr > div:nth-child(1) {
+    transform: rotate(0deg);
+    transform-origin: 160px 100px;
+    }
+
+.ldio-knss7jdyktr div:nth-child(2) > div {
+    left: 130px;
+    top: 130px;
+    animation-delay: -0.75s;
+}
+
+.ldio-knss7jdyktr > div:nth-child(2) {
+    transform: rotate(45deg);
+    transform-origin: 142px 142px;
+}
+
+.ldio-knss7jdyktr div:nth-child(3) > div {
+    left: 88px;
+    top: 148px;
+    animation-delay: -0.625s;
+}
+
+.ldio-knss7jdyktr > div:nth-child(3) {
+    transform: rotate(90deg);
+    transform-origin: 100px 160px;
+}
+
+.ldio-knss7jdyktr div:nth-child(4) > div {
+    left: 46px;
+    top: 130px;
+    animation-delay: -0.5s;
+}
+
+.ldio-knss7jdyktr > div:nth-child(4) {
+    transform: rotate(135deg);
+    transform-origin: 58px 142px;
+}
+
+.ldio-knss7jdyktr div:nth-child(5) > div {
+    left: 28px;
+    top: 88px;
+    animation-delay: -0.375s;
+}
+
+.ldio-knss7jdyktr > div:nth-child(5) {
+    transform: rotate(180deg);
+    transform-origin: 40px 100px;
+}
+
+.ldio-knss7jdyktr div:nth-child(6) > div {
+    left: 46px;
+    top: 46px;
+    animation-delay: -0.25s;
+}
+
+.ldio-knss7jdyktr > div:nth-child(6) {
+    transform: rotate(225deg);
+    transform-origin: 58px 58px;
+}
+
+.ldio-knss7jdyktr div:nth-child(7) > div {
+    left: 88px;
+    top: 28px;
+    animation-delay: -0.125s;
+}
+
+.ldio-knss7jdyktr > div:nth-child(7) {
+    transform: rotate(270deg);
+    transform-origin: 100px 40px;
+}
+
+.ldio-knss7jdyktr div:nth-child(8) > div {
+    left: 130px;
+    top: 46px;
+    animation-delay: 0s;
+}
+
+.ldio-knss7jdyktr > div:nth-child(8) {
+    transform: rotate(315deg);
+    transform-origin: 142px 58px;
+}
+
+.loadingio-spinner-spin-ejjq77wjeww {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    overflow: hidden;
+    background: #ffffff00;
+    padding-left: 0%;
+    margin-top: 0vw;
+}
+.ldio-knss7jdyktr {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+}
+
+.ldio-knss7jdyktr div {
+    box-sizing: content-box;
+}
+
+.savana_gameBlock {
+    display: none;
+    flex-direction: column;
+    margin: auto;
+    width: 100vw;
+    position: absolute;
+    height: 85vh;
+    overflow: hidden;
+}
+
+.savana_gameBlock__settingsAndLife {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.savana_gameBlock__settingsAndLife__settings__settingsVolume {
+    height: auto;
+    width: 4vw;
+    margin-left: 23%;
+    cursor: pointer;
+}
+
+@media (max-width: 425px) {
+    .savana_gameBlock__settingsAndLife__settings__settingsVolume {
+        height: auto;
+        width: 10vw;
+        margin-left: 23%;
+        cursor: pointer;
+    }
+}
+
+.savana_gameBlock__settingsAndLife__Life {
+    height: auto;
+    width: 24%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .savana_gameBlock__settingsAndLife__Life {
+        height: auto;
+        width: 35%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 560px) {
+    .savana_gameBlock__settingsAndLife__Life {
+        height: auto;
+        width: 53%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+.savana_gameBlock__staticWords {
+    display: flex;
+    flex-direction: row;
+    width: 61%;
+    height: 29vh;
+    margin: auto;
+    justify-content: space-between;
+}
+
+@media (max-width: 675px) {
+    .savana_gameBlock__staticWords {
+        display: flex;
+        flex-direction: column;
+        width: 73%;
+        height: 45vh;
+        margin-top: 30%;
+    }
+}
+
+.staticWords {
+    background-color: #17171736;
+    width: auto;
+    height: 40%;
+    margin: auto;
+    min-width: 17%;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    border-radius: 5px 5px 5px 5px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+@media (min-width: 676px) {
+    .staticWords:hover {
+        box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+        width:auto;
+        height: 40%;
+        margin: auto;
+        min-width: 17%;
+        z-index: 2;
+    }
+}
+
+@media (max-width: 675px) {
+    .staticWords {
+        background-color: #17171736;
+        width: 100%;
+        height: 15%;
+        margin: auto;
+        min-width: 17%;
+        cursor: pointer;
+        font-family: 'Heebo', sans-serif;
+        font-size: 1.4em;
+        display: flex;
+        align-items: center;
+        border-radius: 5px 5px 5px 5px;
+        font-weight: 600;
+        z-index: 2;
+    }
+}
+
+.staticWords span {
+    color: #ffffff;
+    margin: auto;
+    width: 100%;
+    height: 99%;
+    text-align: center;
+    padding-top: 21%;
+}
+
+@media (max-width: 675px) {
+    .staticWords span {
+        color: #ffffff;
+        margin: auto;
+        width: 100%;
+        height: 66%;
+        text-align: center;
+        padding-top: 0%;
+    }
+}
+
+.savana_gameBlock__dynamicWords {
+    height: 18%;
+    margin-top: -2%;
+    position: absolute;
+    left: 46%;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    border-radius: 5px 5px 5px 5px;
+    font-weight: 600;
+    width: fit-content;
+    z-index: 0;
+    transform: translate(0px, 0vw);
+    top: -3%;
+}
+
+.savana_gameBlock__crystal {
+    width: 41%;
+    height: 20vh;
+    margin: auto;
+}
+
+.crystal {
+    height: 10vh;
+    width: 5vw;
+    margin: auto;
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../images/savana-game/crystal_1.png');
+    animation: clr 1s infinite,tran 1s infinite;
+}
+
+@keyframes clr {
+    0% {background-image: url('../../images/savana-game/crystal_1.png');}
+    100% {background-image: url('../../images/savana-game/crystal_2.png');}
+}
+
+@keyframes tran {
+    0% {transform: translate(0px, 0%);}
+    40% {transform: translate(0px, 10%);}
+    60% {transform: translate(0px, 20%);}
+    80% {transform: translate(0px, 10%);}
+    100% {transform: translate(0px, 0%);}
+}
+
+.settingsAndLife__Life__img_true {
+    height: 5vh;
+    width: 3vw;
+    background-image: url('../../images/savana-game/heart_1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.settingsAndLife__Life__img_false {
+    height: 5vh;
+    width: 3vw;
+    background-image: url('../../images/savana-game/heart_0.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 425px) {
+    .settingsAndLife__Life__img_true {
+        height: 5vh;
+        width: 7vw;
+        background-image: url('../../images/savana-game/heart_1.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+@media (max-width: 425px) {
+    .settingsAndLife__Life__img_false {
+        height: 5vh;
+        width: 7vw;
+        background-image: url('../../images/savana-game/heart_0.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+.savana_gameBlock__settingsAndLife_score {
+    font-family: 'Heebo', sans-serif;
+    color: white;
+    font-size: 2em;
+}
+@media (max-width: 768px) {
+    .savana_gameBlock__settingsAndLife_score {
+        font-family: 'Heebo', sans-serif;
+        color: white;
+        font-size: 1em;
+    }
+}
+
+.loader {
+    position: absolute;
+    width: 7%;
+    top: 72%;
+    left: 46.5%;
+    height: 13%;
+    border-radius: 50%;
+    perspective: 800px;
+}
+
+.inner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.inner.one {
+    left: 0%;
+    top: 0%;
+    animation: rotate-one 1s linear infinite;
+    border-bottom: 3px solid #EFEFFA;
+}
+
+.inner.two {
+    right: 0%;
+    top: 0%;
+    animation: rotate-two 1s linear infinite;
+    border-right: 3px solid #EFEFFA;
+}
+
+.inner.three {
+    right: 0%;
+    bottom: 0%;
+    animation: rotate-three 1s linear infinite;
+    border-top: 3px solid #EFEFFA;
+}
+
+@keyframes rotate-one {
+    0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }
+    100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); }
+}
+
+@keyframes rotate-two {
+    0% { transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); }
+    100% { transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); }
+}
+
+@keyframes rotate-three {
+    0% { transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); }
+    100% { transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); }
+}
+
+.divFin {
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 26vh;
+    font-family: 'Heebo', sans-serif;
+    top: 40%;
+    font-size: 4em;
+    color: white;
+    text-align: center;
+}
+
+.savana_game_gameOver {
+    width: 31%;
+    height: 57%;
+    margin: auto;
+    background-image: url('../../images/savana-game/game_over.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.savana_game_win {
+    width: 31%;
+    content: '';
+    height: 57%;
+    margin: auto;
+    background-image: url('../../images/savana-game/win.png') !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.game-savana__audio_startGame {
+    display: none;
+}
+.finalStatistic {
+    display: block;
+    background-color: #000000b0;
+    width: 37%;
+    height: 35%;
+    position: relative;
+    margin: -9% auto auto auto;
+    border-radius: 9px 9px 9px 9px;
+    text-align: center;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.4em;
+}

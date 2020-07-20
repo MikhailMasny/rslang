@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap');
+
+/* BUTTON */
+
+.button {
+    background: #2E5BFF;
+    border-radius: 4px;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+}
+
+.button:hover {
+    background: #33AC2E;
+}
+
+.button__size-default {
+    width: 155px;
+    height: 40px;
+}
+
+/* PROGRESS */
+
+.progress__size-default {
+    width: 400px;
+    height: 18px;
+}
+
+/* INPUT */
+
+.input {
+    padding: 11px 16px;
+    background: rgba(224, 231, 255, 0.2);
+    border: 1px solid #E0E7FF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    color: #2E384D;
+}
+
+.unput::placeholder {
+    color: #8798AD;
+}
+
+.input__size-default {
+    width: 216px;
+    height: 40px;
+}

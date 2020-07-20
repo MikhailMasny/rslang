@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>RS Lang - English Puzzle</title>
+</head>
+<body class="flex-column">
+    <div class="start-screen flex-column">
+        <h1 class="start-screen__title">English puzzle</h1>
+        <h3 class="start-screen__sub-title">Click on words, collect phrases. Words can be drag and drop. Select tooltips in the menu</h3>
+        <button id="startButton"  class="start-screen__button">Start</button>
+    </div>
+    <div class="game-block flex-column display-none">
+        <div class="game-block__menu flex-row">
+            <div class="game-block__select-block flex-row">
+                <p>Level</p>
+                <select id="changeLevel" class="game-block__select-menu">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                </select>
+                <p>Page</p>
+                <select id="changePage" class="game-block__select-menu">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                </select>
+            </div>
+            <div class="game-block__button-block flex-row">
+                <button id="soundSwitch" class="flex-column">
+                    <div class="sound-switch__icon"></div>
+                </button>
+                <button id="titleHint" class="flex-column">
+                    <div class="title-hint__icon"></div>
+                </button>
+                <button id="soundHint" class="flex-column">
+                    <div class="sound-hit__icon"></div>
+                </button>
+                <button id="imageHint" class="flex-column">
+                    <div class="image-hit__icon"></div>
+                </button>
+            </div>
+        </div>
+        <div class="game-block__hint flex-column">
+            <button id="test" class="game-block__hint-button flex-column">
+                <div class="game-block__icon"></div>
+            </button>
+            <p  id="test2" class="game-block__hint-message"></p>
+        </div>
+        <div class="game-block__game-field flex-row">
+            <div class="game-block__number-list flex-column">
+                <div id="numberOne" class="game-block__number visibility-hidden">1</div>
+                <div id="numberTwo" class="game-block__number visibility-hidden">2</div>
+                <div id="numberThree" class="game-block__number visibility-hidden">3</div>
+                <div id="numberFour" class="game-block__number visibility-hidden">4</div>
+                <div id="numberFive" class="game-block__number visibility-hidden">5</div>
+                <div id="numberSix" class="game-block__number visibility-hidden">6</div>
+                <div id="numberSeven" class="game-block__number visibility-hidden">7</div>
+                <div id="numberEight" class="game-block__number visibility-hidden">8</div>
+                <div id="numberNine" class="game-block__number visibility-hidden">9</div>
+                <div id="numberTen" class="game-block__number visibility-hidden">10</div>
+            </div>
+            <div class="game-block__sentence-list flex-column">
+                <div id="sentenceOne" class="game-block__sentence flex-row"></div>
+                <div id="sentenceTwo" class="game-block__sentence flex-row"></div>
+                <div id="sentenceThree" class="game-block__sentence flex-row"></div>
+                <div id="sentenceFour" class="game-block__sentence flex-row"></div>
+                <div id="sentenceFive" class="game-block__sentence flex-row"></div>
+                <div id="sentenceSix" class="game-block__sentence flex-row"></div>
+                <div id="sentenceSeven" class="game-block__sentence flex-row"></div>
+                <div id="sentenceEight" class="game-block__sentence flex-row"></div>
+                <div id="sentenceNine" class="game-block__sentence flex-row"></div>
+                <div id="sentenceTen"class="game-block__sentence flex-row"></div>
+            </div>
+        </div>
+        <div id="sentenceCurrent" class="game-block__enigma flex-row"></div>
+        <div class="game-block__action flex-row">
+            <button id="idkButton">I don't know</button>
+            <button id="checkButton">Check</button>
+        </div>
+    </div>
+    <div class="result-block flex-column display-none">
+        <div class="result-block__picture"></div>
+        <div class="result-block__title"></div>
+        <div class="result-block__wrapper flex-row">
+            <div class="result-block__idk flex-column">I don't know
+                <div id="idkNumber">0</div>
+                <div id="idkBlock"></div>
+            </div>
+            <div class="result-block__check  flex-column">I know
+                <div id="checkNumber">0</div>
+                <div id="checkBlock"></div>
+            </div>
+        </div>
+        <button id="continueButton">Continue</button>
+    </div>
+</body>
+</html>
